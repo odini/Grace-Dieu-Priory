@@ -2,7 +2,7 @@
 interface Props {
   date: Date | string;
   size?: 'sm' | 'md' | 'lg';
-  variant?: 'ivy' | 'burgundy' | 'gold';
+  variant?: string; // Kept for backwards compatibility
   showYear?: boolean;
   showWeekday?: boolean;
   class?: string;
@@ -11,7 +11,6 @@ interface Props {
 const {
   date,
   size = 'md',
-  variant = 'ivy',
   showYear = false,
   showWeekday = false,
   class: className = '',
@@ -24,79 +23,42 @@ const monthName = dateObj.toLocaleDateString('en-GB', { month: 'short' }).toUppe
 const dayNum = dateObj.toLocaleDateString('en-GB', { day: 'numeric' });
 const yearNum = dateObj.toLocaleDateString('en-GB', { year: 'numeric' });
 const weekdayName = dateObj.toLocaleDateString('en-GB', { weekday: 'short' });
-
-// Sizing metrics
-const sizeConfig = {
-  sm: {
-    container: 'w-12 min-w-[48px]',
-    header: 'text-[10px] py-0.5',
-    day: 'text-lg font-serif py-1',
-    footer: 'text-[9px] py-0.5',
-  },
-  md: {
-    container: 'w-16 min-w-[64px]',
-    header: 'text-xs py-1',
-    day: 'text-2xl font-serif py-1.5',
-    footer: 'text-[10px] py-0.5',
-  },
-  lg: {
-    container: 'w-20 min-w-[80px]',
-    header: 'text-sm py-1.5 tracking-wider',
-    day: 'text-3xl font-serif py-2',
-    footer: 'text-xs py-1',
-  },
-}[size];
-
-// Header color themes matching heritage specifications
-const variantConfig = {
-  ivy: {
-    headerBg: 'bg-ivy-green text-parchment-light',
-    border: 'border-ivy-green/40',
-  },
-  burgundy: {
-    headerBg: 'bg-heritage-burgundy text-white',
-    border: 'border-heritage-burgundy/40',
-  },
-  gold: {
-    headerBg: 'bg-candle-gold text-deep-ink font-bold',
-    border: 'border-candle-gold/50',
-  },
-}[variant];
 ---
 
 <div
-  class={`inline-flex flex-col items-center justify-center overflow-hidden rounded-lg border bg-card-surface shadow-xs text-center select-none ${variantConfig.border} ${sizeConfig.container} ${className}`}
+  class={`inline-flex flex-col items-center justify-center select-none shrink-0 w-16 min-w-[64px] ${className}`}
   datetime={dateObj.toISOString()}
 >
   {/* Weekday badge (optional) */}
   {
     showWeekday && (
-      <span class="w-full bg-weathered-stone/40 text-[10px] uppercase font-semibold text-deep-ink-muted py-0.5">
+      <span class="w-full bg-[#FAF8F5] border-t border-x border-[#D9D4C7] rounded-t-md text-[10px] uppercase font-semibold text-[#5C645E] py-0.5 text-center leading-tight">
         {weekdayName}
       </span>
     )
   }
 
-  {/* Month Header Banner */}
+  {/* Header month bar */}
   <span
-    class={`w-full font-sans font-bold uppercase tracking-wider text-center leading-none ${variantConfig.headerBg} ${sizeConfig.header}`}
+    class={`w-full bg-[#2F4A3A] text-[#F6F1E7] text-[10px] font-semibold tracking-wider uppercase py-1 text-center leading-none ${showWeekday ? '' : 'rounded-t-md'}`}
   >
     {monthName}
   </span>
 
-  {/* Big Day Number */}
-  <span class={`font-bold text-deep-ink leading-none ${sizeConfig.day}`}>
-    {dayNum}
-  </span>
+  {/* Day container */}
+  <div class="w-full bg-[#FAF8F5] border-x border-b border-[#D9D4C7] rounded-b-md py-1.5 px-3 text-center flex flex-col items-center justify-center">
+    {/* Day number */}
+    <span class="text-xl font-serif font-bold text-[#1E211E] leading-none">
+      {dayNum}
+    </span>
 
-  {/* Year Footer (optional) */}
-  {
-    showYear && (
-      <span
-        class={`w-full border-t border-weathered-stone/50 bg-parchment-light text-deep-ink-muted font-medium ${sizeConfig.footer}`}
-      >
-        {yearNum}
-      </span>
-    )
-  }
+    {/* Year label */}
+    {
+      showYear && (
+        <span class="text-[10px] text-[#5C645E] leading-none mt-1 pt-1 border-t border-[#D9D4C7]/60 w-full block text-center">
+          {yearNum}
+        </span>
+      )
+    }
+  </div>
 </div>

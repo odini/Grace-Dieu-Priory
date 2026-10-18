@@ -17,223 +17,151 @@ import {
   CheckCircle2,
 } from 'lucide-astro';
 
-// Photo dataset with rich metadata, photo credits, and accessibility alt text
+// Curated photo dataset with standardized aspect ratios, authentic photography, and zero baked-in banners
 const galleryItems = [
   {
-    id: 'wall-uncovered',
-    title: '800-Year-Old Medieval Wall Exposed',
-    category: 'archaeology',
-    categoryLabel: 'Archaeology & Conservation',
-    image: '/images/2024 BBC - Priory Wall exposed.webp',
-    webp: '/images/2024 BBC - Priory Wall exposed.webp',
-    avif: '/images/2024 BBC - Priory Wall exposed.avif',
-    thumbnail: '/images/2024 BBC - Priory Wall exposed.webp',
-    width: 690,
-    height: 360,
-    alt: 'Exposed ancient 800-year-old medieval stone wall following volunteer clearance of invasive brambles',
-    credit: 'Charnwood Forest Geopark & Friends Working Party',
-    date: 'May 2025',
-    aspect: 'aspect-4/3',
+    id: 'standing-arches',
+    title: 'Surviving Cloister Arch in Sunlight',
+    category: 'ruins',
+    categoryLabel: 'Ruins & Architecture',
+    tag: 'ARCHITECTURE',
+    image: '/images/priory-ruins.webp',
+    webp: '/images/priory-ruins.webp',
+    avif: '/images/priory-ruins.avif',
+    thumbnail: '/images/priory-ruins.webp',
+    width: 2016,
+    height: 1134,
+    alt: 'The standing 13th-century stone cloister arch of Grace Dieu Priory bathed in natural sunlight',
+    credit: 'Grace Dieu Priory Trust',
+    date: 'Summer 2026',
     description:
-      'During joint volunteer clearance sessions with Charnwood Forest Geopark, thick overgrowth and brambles were cleared along the southern boundary, revealing an intact length of 13th-century Augustinian walling not seen for generations.',
+      'The monumental surviving Gothic south transept arch standing proudly in the Charnwood meadow, displaying eight centuries of resilient Augustinian stonework.',
   },
   {
     id: 'drone-cloisters',
     title: 'Cloister Arches & Chapter House Aerial',
     category: 'aerial',
-    categoryLabel: 'Aerial & Ruins',
+    categoryLabel: 'Aerial Landscape',
+    tag: 'AERIAL VIEW',
     image: '/images/dji_fly_20261017_114148_0073_1792234397332_photo.webp',
     webp: '/images/dji_fly_20261017_114148_0073_1792234397332_photo.webp',
     avif: '/images/dji_fly_20261017_114148_0073_1792234397332_photo.avif',
     thumbnail: '/images/dji_fly_20261017_114148_0073_1792234397332_photo.webp',
     width: 2000,
     height: 1500,
-    alt: 'High-resolution DJI drone aerial perspective looking down onto the conserved stone cloister arches of Grace Dieu Priory',
+    alt: 'High-resolution drone aerial perspective looking down onto the conserved stone cloister arches of Grace Dieu Priory',
     credit: 'Friends Aerial Survey (DJI)',
     date: 'October 2026',
-    aspect: 'aspect-16/10',
     description:
-      'A bird\'s-eye perspective capturing the ground plan of the nunnery cloisters, chapter house, and Tudor conversion walls surrounded by the green Charnwood parkland.',
+      'A bird\'s-eye perspective capturing the ground plan of the nunnery cloisters, chapter house footings, and Tudor conversion walls surrounded by the green Charnwood parkland.',
   },
   {
-    id: 'medieval-fayre',
-    title: '20th Anniversary Medieval Fayre Encampment',
-    category: 'events',
-    categoryLabel: 'Living History & Events',
-    image: '/images/img5.webp',
-    webp: '/images/img5.webp',
-    avif: '/images/img5.avif',
-    thumbnail: '/images/img5.webp',
-    width: 756,
-    height: 567,
-    alt: 'Living history reenactors in 15th-century armours and period dresses gathered in the ruined cloisters',
-    credit: 'Friends of Grace Dieu Priory Archive',
-    date: 'June 2026',
-    aspect: 'aspect-4/3',
-    description:
-      'The cloisters transformed into a vibrant 1485 living history camp with The Ferrers Household and The Friends of the Thomas Grey Household demonstrating authentic weaponry, leathercraft, and archery.',
-  },
-  {
-    id: 'drone-canopy',
-    title: 'Autumn Woodland Canopy & Priory Grounds',
-    category: 'aerial',
-    categoryLabel: 'Aerial & Ruins',
-    image: '/images/dji_fly_20261017_113834_0065_1792234398223_photo.webp',
-    webp: '/images/dji_fly_20261017_113834_0065_1792234398223_photo.webp',
-    avif: '/images/dji_fly_20261017_113834_0065_1792234398223_photo.avif',
-    thumbnail: '/images/dji_fly_20261017_113834_0065_1792234398223_photo.webp',
-    width: 2000,
-    height: 1500,
-    alt: 'Aerial photograph showing the rich autumn woodland canopy surrounding the stone ruins of Grace Dieu Priory',
-    credit: 'Friends Aerial Survey (DJI)',
-    date: 'October 2026',
-    aspect: 'aspect-16/10',
-    description:
-      'The ancient oak and ash woodland bordering Grace Dieu Brook, showing the tranquil, secluded valley chosen by Roesia de Verdun in 1239.',
-  },
-  {
-    id: 'woodland-flora',
-    title: 'Woodland Flora & Botanical Biodiversity',
+    id: 'woodland-approach',
+    title: 'Woodland Footpath Along Rusty Mary’s Field',
     category: 'nature',
-    categoryLabel: 'Flora & Nature',
-    image: '/images/Grace Dieu Priory Book m.webp',
-    webp: '/images/Grace Dieu Priory Book m.webp',
-    avif: '/images/Grace Dieu Priory Book m.avif',
-    thumbnail: '/images/Grace Dieu Priory Book m.webp',
-    width: 400,
-    height: 500,
-    alt: 'Natural history botanical documentation showing ancient woodland flora, ferns, and rare lichens of the Grace Dieu estate',
-    credit: 'Steve Woodward & Helen Ikin (Loughborough Naturalists\' Club)',
-    date: 'Spring & Summer Surveys',
-    aspect: 'aspect-3/4',
+    categoryLabel: 'Parkland & Woodland',
+    tag: 'WOODLAND TRAIL',
+    image: '/images/grace dieu2.webp',
+    webp: '/images/grace dieu2.webp',
+    avif: '/images/grace dieu2.avif',
+    thumbnail: '/images/grace dieu2.webp',
+    width: 1248,
+    height: 687,
+    alt: 'Winding woodland footpath flanked by mature trees leading from Rusty Mary’s field toward the priory ruins',
+    credit: 'Friends of Grace Dieu Priory',
+    date: 'Autumn Morning',
     description:
-      'Grace Dieu estate is designated an SSSI-adjacent ecological haven, home to unique damp-woodland liverworts, wild native bluebells, meadow buttercups, and ancient stone lichens documented by the Loughborough Naturalists.',
+      'The dappled tree canopy path that leads visitors from the Bull\'s Head car park and Rusty Mary’s meadow across the brook into the peaceful solitude of the ancient monument grounds.',
   },
   {
     id: 'conserved-stone',
-    title: 'Conserved 13th-Century Ashlar Masonry',
-    category: 'archaeology',
-    categoryLabel: 'Archaeology & Conservation',
+    title: 'Conserved 13th-Century Ashlar Stonework',
+    category: 'ruins',
+    categoryLabel: 'Ruins & Architecture',
+    tag: 'ASHLAR MASONRY',
     image: '/images/GDP Stone.webp',
     webp: '/images/GDP Stone.webp',
     avif: '/images/GDP Stone.avif',
     thumbnail: '/images/GDP Stone.webp',
     width: 2000,
     height: 1500,
-    alt: 'Close-up detail of the stabilized medieval stone arches and lime-mortar joints consolidated by the Trust',
-    credit: 'Grace Dieu Priory Trust Consolidation Project',
-    date: 'Conservation Archive',
-    aspect: 'aspect-4/3',
+    alt: 'Close-up detail of hand-dressed medieval stone masonry, mason marks, and lime-mortar joints consolidated by the Trust',
+    credit: 'Trust Conservation Archive',
+    date: 'Conservation Project',
     description:
       'Detailed craftsmanship in Charnwood quartzite and Swithland slate. Between 1996 and 2006, masons painstakingly repointed and pinned collapsing arches without synthetic cement.',
   },
   {
-    id: 'drone-landscape',
-    title: 'Priory Ruins, Meadow & Canal Basin',
-    category: 'aerial',
-    categoryLabel: 'Aerial & Ruins',
-    image: '/images/dji_fly_20261017_114542_0082_1792234392781_photo.webp',
-    webp: '/images/dji_fly_20261017_114542_0082_1792234392781_photo.webp',
-    avif: '/images/dji_fly_20261017_114542_0082_1792234392781_photo.avif',
-    thumbnail: '/images/dji_fly_20261017_114542_0082_1792234392781_photo.webp',
-    width: 2000,
-    height: 1500,
-    alt: 'Aerial view showing the proximity of the priory ruins to the historical 1794 Charnwood Forest Canal cutting and meadow',
-    credit: 'Friends Aerial Survey (DJI)',
-    date: 'October 2026',
-    aspect: 'aspect-16/10',
+    id: 'wall-uncovered',
+    title: 'Volunteer Clearance of the 800-Year-Old Wall',
+    category: 'community',
+    categoryLabel: 'Volunteers & Community',
+    tag: 'VOLUNTEER WORK',
+    image: '/images/2024 BBC - Priory Wall exposed.webp',
+    webp: '/images/2024 BBC - Priory Wall exposed.webp',
+    avif: '/images/2024 BBC - Priory Wall exposed.avif',
+    thumbnail: '/images/2024 BBC - Priory Wall exposed.webp',
+    width: 690,
+    height: 360,
+    alt: 'Volunteer working party clearing brambles and vegetation along the ancient boundary wall',
+    credit: 'Friends & Geopark Working Party',
+    date: 'May 2025',
     description:
-      'Aerial survey showing the connection between the medieval priory precinct, Rusty Mary\'s meadow, and the late 18th-century canal cutting designed by William Jessop.',
+      'During joint volunteer clearance sessions with Charnwood Forest Geopark, thick overgrowth and brambles were cleared along the southern boundary, revealing an intact length of 13th-century Augustinian walling not seen for generations.',
   },
   {
-    id: 'woodland-approach',
-    title: 'The Atmospheric Woodland Approach',
-    category: 'nature',
-    categoryLabel: 'Flora & Nature',
-    image: '/images/grace dieu2.webp',
-    webp: '/images/grace dieu2.webp',
-    avif: '/images/grace dieu2.avif',
-    thumbnail: '/images/grace dieu2.webp',
-    width: 1024,
-    height: 768,
-    alt: 'Winding woodland footpath flanked by moss-covered trees leading toward the priory ruins',
-    credit: 'Friends of Grace Dieu Priory',
-    date: 'Autumn Morning',
-    aspect: 'aspect-4/3',
+    id: 'medieval-fayre',
+    title: '20th Anniversary Living History Encampment',
+    category: 'events',
+    categoryLabel: 'Living History & Events',
+    tag: 'LIVING HISTORY',
+    image: '/images/img5.webp',
+    webp: '/images/img5.webp',
+    avif: '/images/img5.avif',
+    thumbnail: '/images/img5.webp',
+    width: 756,
+    height: 567,
+    alt: 'Living history reenactors in 15th-century armours and period clothing gathered in the ruined cloisters',
+    credit: 'Friends Archive',
+    date: 'June 2026',
     description:
-      'The dappled tree canopy path that leads visitors from the Bull\'s Head car park across the brook into the peaceful solitude of the ancient monument grounds.',
+      'The cloisters transformed into a vibrant 1485 living history camp with The Ferrers Household and The Friends of the Thomas Grey Household demonstrating authentic weaponry, leathercraft, and archery.',
+  },
+  {
+    id: 'priory-foundations',
+    title: 'Ruins Foundations & East Cloister Walk',
+    category: 'ruins',
+    categoryLabel: 'Ruins & Architecture',
+    tag: 'CLOISTER GARTH',
+    image: '/images/priory-ruins-2.webp',
+    webp: '/images/priory-ruins-2.webp',
+    avif: '/images/priory-ruins-2.avif',
+    thumbnail: '/images/priory-ruins-2.webp',
+    width: 1800,
+    height: 1200,
+    alt: 'Consolidated stone foundations and cloister garth meadows of Grace Dieu Priory under open sky',
+    credit: 'Grace Dieu Priory Trust',
+    date: 'Summer 2026',
+    description:
+      'The quiet expanse of the priory cloister precinct, showing conserved foundation walls surrounded by peaceful meadowland and Charnwood trees.',
   },
   {
     id: 'geopark-partnership',
-    title: 'Geopark Official Partnership Presentation',
-    category: 'events',
-    categoryLabel: 'Living History & Events',
+    title: 'Charnwood Forest Geopark Partnership',
+    category: 'community',
+    categoryLabel: 'Volunteers & Community',
+    tag: 'STEWARDSHIP',
     image: '/images/Geopark presentation 2025-02-19.webp',
     webp: '/images/Geopark presentation 2025-02-19.webp',
     avif: '/images/Geopark presentation 2025-02-19.avif',
     thumbnail: '/images/Geopark presentation 2025-02-19.webp',
     width: 690,
     height: 518,
-    alt: 'Trustees receiving the official Charnwood Forest Geopark partner certificate celebrating collaboration',
+    alt: 'Presentation of official Charnwood Forest Geopark partnership certificate to volunteer trustees',
     credit: 'Charnwood Forest Geopark',
     date: 'February 2025',
-    aspect: 'aspect-4/3',
     description:
       'Trustees of Grace Dieu Priory officially receiving their partner accreditation as Charnwood Forest progresses toward prestigious UNESCO Global Geopark designation.',
-  },
-  {
-    id: 'drone-panorama',
-    title: 'Panoramic Vista Across Charnwood Forest',
-    category: 'aerial',
-    categoryLabel: 'Aerial & Ruins',
-    image: '/images/dji_fly_20261017_121424_0089_1792305669278_photo.webp',
-    webp: '/images/dji_fly_20261017_121424_0089_1792305669278_photo.webp',
-    avif: '/images/dji_fly_20261017_121424_0089_1792305669278_photo.avif',
-    thumbnail: '/images/dji_fly_20261017_121424_0089_1792305669278_photo.webp',
-    width: 2000,
-    height: 1500,
-    alt: 'Wide panoramic drone photography capturing the rolling Leicestershire landscape, Belton, and Thringstone',
-    credit: 'Friends Aerial Survey (DJI)',
-    date: 'October 2026',
-    aspect: 'aspect-16/9',
-    description:
-      'High-altitude panorama capturing the regional geological ridge of Precambrian rocks, surrounding farmsteads, and the wooded valley of Grace Dieu.',
-  },
-  {
-    id: 'freehold-acquisition',
-    title: 'BBC News: Freehold Ownership Secured',
-    category: 'archaeology',
-    categoryLabel: 'Archaeology & Conservation',
-    image: '/images/2024 BBC - Priory Sold.webp',
-    webp: '/images/2024 BBC - Priory Sold.webp',
-    avif: '/images/2024 BBC - Priory Sold.avif',
-    thumbnail: '/images/2024 BBC - Priory Sold.webp',
-    width: 690,
-    height: 360,
-    alt: 'Television broadcast report by BBC News announcing the permanent freehold acquisition of Grace Dieu Priory by the Charitable Trust',
-    credit: 'BBC News East Midlands',
-    date: 'November 2024',
-    aspect: 'aspect-16/9',
-    description:
-      'Broadcast coverage documenting the milestone sale that permanently secured the freehold of the ruins and Rusty Mary\'s field in charity hands.',
-  },
-  {
-    id: 'standing-arches',
-    title: 'Transept Arches Against the Evening Sky',
-    category: 'aerial',
-    categoryLabel: 'Aerial & Ruins',
-    image: '/images/header.webp',
-    webp: '/images/header.webp',
-    avif: '/images/header.avif',
-    thumbnail: '/images/header.webp',
-    width: 976,
-    height: 266,
-    alt: 'Dramatic stone Gothic arches of Grace Dieu Priory standing against a soft twilight sky',
-    credit: 'Friends of Grace Dieu Priory Archive',
-    date: 'Heritage Archive',
-    aspect: 'aspect-16/9',
-    description:
-      'The evocative profile of the southern transept wall, showing the surviving lancet window openings and ashlar jambs that have endured eight centuries.',
   },
 ];
 ---
@@ -293,7 +221,7 @@ const galleryItems = [
         <div id="filter-bar" class="flex flex-wrap items-center gap-1.5" role="tablist" aria-label="Gallery category filters">
           <button
             type="button"
-            class="filter-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer bg-ivy-green text-parchment-light shadow-xs"
+            class="filter-btn px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer bg-ivy-green text-parchment-light shadow-xs"
             data-filter="all"
             role="tab"
             aria-selected="true"
@@ -302,50 +230,59 @@ const galleryItems = [
           </button>
           <button
             type="button"
-            class="filter-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer bg-card-surface text-deep-ink border border-weathered-stone hover:bg-parchment-light"
+            class="filter-btn px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer bg-card-surface text-deep-ink border border-weathered-stone hover:bg-parchment-light"
+            data-filter="ruins"
+            role="tab"
+            aria-selected="false"
+          >
+            Ruins & Architecture
+          </button>
+          <button
+            type="button"
+            class="filter-btn px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer bg-card-surface text-deep-ink border border-weathered-stone hover:bg-parchment-light"
             data-filter="aerial"
             role="tab"
             aria-selected="false"
           >
-            Aerial & Ruins
+            Aerial Landscape
           </button>
           <button
             type="button"
-            class="filter-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer bg-card-surface text-deep-ink border border-weathered-stone hover:bg-parchment-light"
-            data-filter="archaeology"
-            role="tab"
-            aria-selected="false"
-          >
-            Archaeology & Conservation
-          </button>
-          <button
-            type="button"
-            class="filter-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer bg-card-surface text-deep-ink border border-weathered-stone hover:bg-parchment-light"
-            data-filter="events"
-            role="tab"
-            aria-selected="false"
-          >
-            Living History & Events
-          </button>
-          <button
-            type="button"
-            class="filter-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer bg-card-surface text-deep-ink border border-weathered-stone hover:bg-parchment-light"
+            class="filter-btn px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer bg-card-surface text-deep-ink border border-weathered-stone hover:bg-parchment-light"
             data-filter="nature"
             role="tab"
             aria-selected="false"
           >
-            Flora & Nature
+            Parkland & Woodland
+          </button>
+          <button
+            type="button"
+            class="filter-btn px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer bg-card-surface text-deep-ink border border-weathered-stone hover:bg-parchment-light"
+            data-filter="community"
+            role="tab"
+            aria-selected="false"
+          >
+            Volunteers & Community
+          </button>
+          <button
+            type="button"
+            class="filter-btn px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer bg-card-surface text-deep-ink border border-weathered-stone hover:bg-parchment-light"
+            data-filter="events"
+            role="tab"
+            aria-selected="false"
+          >
+            Living History
           </button>
         </div>
       </div>
 
-      {/* Gallery Grid / Masonry Showcase */}
-      <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
+      {/* Standardized Card Geometry Grid (Uniform 4:3 Aspect Ratios) */}
+      <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 items-stretch">
         {
           galleryItems.map((item, index) => {
             return (
               <div
-                class="gallery-card group relative bg-card-surface rounded-2xl border-2 border-weathered-stone shadow-stone overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-stone-hover cursor-pointer"
+                class="gallery-card overflow-hidden rounded-xl border border-[#D9D4C7]/70 bg-white shadow-sm hover:shadow-md transition-all duration-200 group cursor-pointer flex flex-col justify-between"
                 data-category={item.category}
                 data-index={index}
                 data-id={item.id}
@@ -360,8 +297,8 @@ const galleryItems = [
                 tabindex="0"
                 aria-label={`Open photo: ${item.title}`}
               >
-                {/* Photo Thumbnail */}
-                <div class={`relative w-full ${item.aspect} bg-parchment-light overflow-hidden`}>
+                {/* Standardized 4:3 Image Container */}
+                <div class="relative w-full aspect-[4/3] overflow-hidden bg-[#EAE6DE]">
                   <picture>
                     <source srcset={item.avif} type="image/avif" />
                     <source srcset={item.webp} type="image/webp" />
@@ -370,40 +307,26 @@ const galleryItems = [
                       alt={item.alt}
                       width={item.width}
                       height={item.height}
-                      class="w-full h-full object-cover group-hover:scale-104 transition-transform duration-500 ease-out"
+                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       loading="lazy"
                       decoding="async"
                     />
                   </picture>
 
-                  {/* Gradient Overlay & Hover Actions */}
-                  <div class="absolute inset-0 bg-gradient-to-t from-deep-ink/80 via-deep-ink/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-between p-4">
-                    <span class="inline-flex items-center gap-1 text-xs font-bold text-white bg-ivy-green/90 px-2.5 py-1 rounded-md backdrop-blur-xs">
-                      <Maximize2 class="w-3.5 h-3.5" />
-                      <span>View Full Resolution</span>
-                    </span>
-
-                    <span class="text-[11px] font-mono text-parchment-light bg-deep-ink/70 px-2 py-0.5 rounded">
-                      {item.date}
-                    </span>
-                  </div>
-
-                  {/* Category Badge */}
-                  <div class="absolute top-3 left-3">
-                    <span class="inline-block px-2.5 py-0.5 rounded-md text-[11px] font-bold uppercase tracking-wider bg-card-surface/90 text-deep-ink backdrop-blur-xs border border-weathered-stone shadow-xs">
-                      {item.categoryLabel}
-                    </span>
-                  </div>
+                  {/* Clean Understated Tag Pill (Top-Left) */}
+                  <span class="absolute top-3 left-3 bg-[#F6F1E7]/90 backdrop-blur-sm border border-[#D9D4C7] text-[#2F4A3A] text-[10px] uppercase tracking-[0.14em] font-medium px-2 py-0.5 rounded shadow-xs">
+                    {item.tag}
+                  </span>
                 </div>
 
-                {/* Caption & Metadata Footer */}
-                <div class="p-4 space-y-1.5 bg-card-surface border-t border-weathered-stone/60">
-                  <h3 class="font-serif font-bold text-lg text-deep-ink leading-snug group-hover:text-ivy-green transition-colors m-0">
+                {/* Streamlined Editorial Caption Footer */}
+                <div class="p-3.5 flex flex-col justify-between gap-1 flex-1">
+                  <h3 class="text-sm font-serif font-medium text-[#1E211E] line-clamp-1 group-hover:text-[#7A2E3A] transition-colors m-0">
                     {item.title}
                   </h3>
-                  <div class="flex items-center justify-between text-xs text-deep-ink-muted">
-                    <span class="truncate max-w-[200px]">Credit: {item.credit}</span>
-                    <span class="font-mono text-[11px]">{item.date}</span>
+                  <div class="flex items-center justify-between gap-2 pt-1 border-t border-[#D9D4C7]/40 mt-auto">
+                    <span class="text-xs text-[#5C645E] truncate max-w-[180px]">Credit: {item.credit}</span>
+                    <span class="text-[11px] text-[#5C645E] font-medium shrink-0">{item.date}</span>
                   </div>
                 </div>
               </div>
@@ -414,7 +337,8 @@ const galleryItems = [
     </div>
 
     {/* Section 2: Privacy-Preserving Aerial Drone Video Feature */}
-    <section class="rounded-2xl border-2 border-weathered-stone bg-card-surface p-6 sm:p-10 shadow-stone space-y-6">
+    {/* Section 2: Privacy-Preserving Aerial Drone Video Feature */}
+    <section class="rounded-2xl border border-[#D9D4C7]/80 bg-white p-6 sm:p-10 shadow-sm space-y-6">
       <div class="max-w-3xl space-y-2">
         <span class="text-xs uppercase font-mono font-bold text-candle-gold-dark tracking-wider">
           Moving Image Showcase
@@ -427,7 +351,7 @@ const galleryItems = [
         </p>
       </div>
 
-      <div class="relative rounded-2xl overflow-hidden border-2 border-weathered-stone shadow-xl bg-deep-ink max-w-4xl mx-auto aspect-16/9">
+      <div class="relative rounded-2xl overflow-hidden border border-[#D9D4C7]/80 shadow-md bg-deep-ink max-w-4xl mx-auto aspect-16/9">
         {/* Click-to-load video player facade protecting visitor privacy */}
         <div id="video-facade" class="absolute inset-0 cursor-pointer group">
           <img
@@ -458,7 +382,7 @@ const galleryItems = [
     </section>
 
     {/* Section 3: Community Photographic Contributions */}
-    <section class="rounded-2xl border-2 border-candle-gold/40 bg-[#FCFAF6] p-6 sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+    <section class="rounded-2xl border border-candle-gold/40 bg-[#FCFAF6] p-6 sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
       <div class="space-y-2 max-w-2xl">
         <div class="flex items-center gap-2">
           <Camera class="w-5 h-5 text-candle-gold-dark" />
@@ -493,29 +417,29 @@ const galleryItems = [
     {/* Backdrop */}
     <div
       id="lightbox-backdrop"
-      class="fixed inset-0 bg-deep-ink/90 backdrop-blur-md transition-opacity duration-300"
+      class="fixed inset-0 bg-[#141C16]/90 backdrop-blur-md transition-opacity duration-300"
       aria-hidden="true"
     ></div>
 
     {/* Lightbox Dialog Container */}
     <div
       id="lightbox-panel"
-      class="relative w-full max-w-5xl bg-card-surface rounded-2xl border-2 border-weathered-stone shadow-2xl overflow-hidden scale-95 transition-all duration-300 z-10 max-h-[92vh] flex flex-col"
+      class="relative w-full max-w-5xl bg-white rounded-2xl border border-[#D9D4C7] shadow-2xl overflow-hidden scale-95 transition-all duration-300 z-10 max-h-[92vh] flex flex-col"
     >
       {/* Top Header */}
-      <div class="p-4 sm:p-5 border-b border-weathered-stone/80 bg-parchment-light flex items-center justify-between">
+      <div class="p-4 sm:p-5 border-b border-[#D9D4C7]/80 bg-[#FAF8F5] flex items-center justify-between">
         <div class="flex items-center gap-2">
           <span
             id="lightbox-category"
-            class="px-2.5 py-0.5 rounded text-[11px] font-bold uppercase tracking-wider bg-ivy-green/10 text-ivy-green border border-ivy-green/20"
+            class="px-2.5 py-0.5 rounded text-[11px] font-medium tracking-[0.12em] uppercase bg-[#F4F1EA] text-[#3F4E4F] border border-[#E5E0D5]"
           ></span>
-          <span id="lightbox-counter" class="text-xs font-mono text-deep-ink-muted"></span>
+          <span id="lightbox-counter" class="text-xs font-mono text-[#5C645E]"></span>
         </div>
 
         <button
           type="button"
           id="lightbox-close"
-          class="p-2 rounded-lg text-deep-ink-muted hover:text-deep-ink hover:bg-weathered-stone/50 transition-colors cursor-pointer"
+          class="p-2 rounded-lg text-[#5C645E] hover:text-[#1E211E] hover:bg-[#F0ECE1] transition-colors cursor-pointer"
           aria-label="Close photo preview (Escape)"
         >
           <X class="w-6 h-6" />
@@ -523,19 +447,19 @@ const galleryItems = [
       </div>
 
       {/* Main Image View Area */}
-      <div class="relative bg-black flex items-center justify-center overflow-hidden min-h-[300px] max-h-[58vh]">
+      <div class="relative bg-black flex items-center justify-center overflow-hidden min-h-[300px] max-h-[60vh]">
         <img
           id="lightbox-image"
           src=""
           alt=""
-          class="max-h-[58vh] max-w-full object-contain mx-auto transition-opacity duration-200"
+          class="max-h-[60vh] max-w-full object-contain mx-auto transition-opacity duration-200"
         />
 
         {/* Previous Button */}
         <button
           type="button"
           id="lightbox-prev"
-          class="absolute left-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-deep-ink/75 hover:bg-deep-ink text-white transition-all cursor-pointer shadow-lg hover:scale-105 focus:outline-none focus:ring-2 focus:ring-candle-gold"
+          class="absolute left-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-[#1E211E]/80 hover:bg-[#1E211E] text-white transition-all cursor-pointer shadow-lg hover:scale-105 focus:outline-none focus:ring-2 focus:ring-candle-gold"
           aria-label="Previous photograph (Left arrow)"
         >
           <ChevronLeft class="w-6 h-6" />
@@ -545,7 +469,7 @@ const galleryItems = [
         <button
           type="button"
           id="lightbox-next"
-          class="absolute right-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-deep-ink/75 hover:bg-deep-ink text-white transition-all cursor-pointer shadow-lg hover:scale-105 focus:outline-none focus:ring-2 focus:ring-candle-gold"
+          class="absolute right-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-[#1E211E]/80 hover:bg-[#1E211E] text-white transition-all cursor-pointer shadow-lg hover:scale-105 focus:outline-none focus:ring-2 focus:ring-candle-gold"
           aria-label="Next photograph (Right arrow)"
         >
           <ChevronRight class="w-6 h-6" />
@@ -553,17 +477,17 @@ const galleryItems = [
       </div>
 
       {/* Information & Credit Footer */}
-      <div class="p-5 sm:p-6 bg-card-surface border-t border-weathered-stone/80 overflow-y-auto space-y-3">
+      <div class="p-5 sm:p-6 bg-white border-t border-[#D9D4C7]/80 overflow-y-auto space-y-3">
         <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
-          <h3 id="lightbox-title" class="font-serif font-bold text-xl sm:text-2xl text-deep-ink m-0"></h3>
-          <div class="flex items-center gap-3 text-xs text-deep-ink-muted shrink-0">
-            <span id="lightbox-date" class="font-mono"></span>
+          <h3 id="lightbox-title" class="font-serif font-bold text-xl sm:text-2xl text-[#1E211E] m-0"></h3>
+          <div class="flex items-center gap-3 text-xs text-[#5C645E] shrink-0">
+            <span id="lightbox-date" class="font-medium"></span>
             <span>·</span>
             <span id="lightbox-credit" class="font-medium"></span>
           </div>
         </div>
 
-        <p id="lightbox-desc" class="text-xs sm:text-sm text-deep-ink-muted leading-relaxed m-0 font-normal"></p>
+        <p id="lightbox-desc" class="text-xs sm:text-sm text-[#5C645E] leading-relaxed m-0 font-normal"></p>
       </div>
     </div>
   </div>
@@ -678,11 +602,13 @@ const galleryItems = [
     }
 
     function showNext() {
+      if (visibleCards.length === 0) return;
       const nextIndex = (currentIndex + 1) % visibleCards.length;
       updateLightbox(nextIndex);
     }
 
     function showPrev() {
+      if (visibleCards.length === 0) return;
       const prevIndex = (currentIndex - 1 + visibleCards.length) % visibleCards.length;
       updateLightbox(prevIndex);
     }

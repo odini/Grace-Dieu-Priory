@@ -33,13 +33,12 @@ const emailDomain = emailParts ? emailParts[1] : '';
 
 <Card
   padding="md"
-  borderAccent={featured ? 'ivy' : 'none'}
-  class={`relative flex flex-col justify-between h-full ${className}`}
+  class={`relative flex flex-col justify-between h-full bg-white ${className}`}
 >
   <div>
     {/* Role Header Badge */}
     <div class="flex items-center justify-between gap-2 mb-3">
-      <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-semibold tracking-wider uppercase bg-ivy-green/10 text-ivy-green border border-ivy-green/20">
+      <span class="inline-flex items-center gap-1.5 text-[11px] font-medium tracking-[0.12em] uppercase px-2.5 py-0.5 rounded-md bg-[#F4F1EA] text-[#3F4E4F] border border-[#E5E0D5]">
         <ShieldCheck class="w-3.5 h-3.5 text-ivy-green" />
         {role}
       </span>

@@ -442,29 +442,35 @@ const contrastAudits = [
         <div class="space-y-4">
           <h3 class="font-serif font-bold text-2xl text-deep-ink">4. Card (`Card.astro`)</h3>
           <p class="text-deep-ink-muted text-base">
-            Standardized elevation, subtle weathered stone borders, and optional heritage accent bands.
+            Unified editorial baseline with quiet stone borders and elevation. Top accent borders have been removed across all cards in favour of subtle contextual category tags inside the card body.
           </p>
 
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            <Card padding="md" borderAccent="ivy">
-              <span class="text-xs uppercase font-semibold text-ivy-green tracking-wider">Top Ivy Accent</span>
-              <h4 class="font-serif font-bold text-xl text-deep-ink mt-2 mb-1">Monastic Archaeology</h4>
+            <Card padding="md">
+              <span class="inline-block text-[11px] font-medium tracking-[0.12em] uppercase px-2.5 py-0.5 rounded-md bg-[#F4F1EA] text-[#3F4E4F] border border-[#E5E0D5] mb-3">
+                Archaeology
+              </span>
+              <h4 class="font-serif font-bold text-xl text-deep-ink mt-1 mb-1">Monastic Archaeology</h4>
               <p class="text-sm text-deep-ink-muted m-0">
                 Conserving the newly uncovered 800-year-old Augustinian boundary wall.
               </p>
             </Card>
 
-            <Card padding="md" borderAccent="burgundy">
-              <span class="text-xs uppercase font-semibold text-heritage-burgundy tracking-wider">Top Burgundy Accent</span>
-              <h4 class="font-serif font-bold text-xl text-deep-ink mt-2 mb-1">Geopark Partnership</h4>
+            <Card padding="md">
+              <span class="inline-block text-[11px] font-medium tracking-[0.12em] uppercase px-2.5 py-0.5 rounded-md bg-[#F4F1EA] text-[#3F4E4F] border border-[#E5E0D5] mb-3">
+                Geopark
+              </span>
+              <h4 class="font-serif font-bold text-xl text-deep-ink mt-1 mb-1">Geopark Partnership</h4>
               <p class="text-sm text-deep-ink-muted m-0">
                 Proud partners in the Charnwood Forest UNESCO Global Geopark aspiration.
               </p>
             </Card>
 
-            <Card padding="md" borderAccent="gold" href="#components">
-              <span class="text-xs uppercase font-semibold text-candle-gold-dark tracking-wider">Clickable Card</span>
-              <h4 class="font-serif font-bold text-xl text-deep-ink mt-2 mb-1 group-hover:text-heritage-burgundy transition-colors">
+            <Card padding="md" href="#components">
+              <span class="inline-block text-[11px] font-medium tracking-wide px-2.5 py-0.5 rounded-md bg-[#7A2E3A]/8 text-[#7A2E3A] border border-[#7A2E3A]/20 mb-3">
+                Volunteers Needed
+              </span>
+              <h4 class="font-serif font-bold text-xl text-deep-ink mt-1 mb-1 group-hover:text-heritage-burgundy transition-colors">
                 Interactive Link Card
               </h4>
               <p class="text-sm text-deep-ink-muted m-0">
@@ -478,35 +484,35 @@ const contrastAudits = [
         <div class="space-y-4">
           <h3 class="font-serif font-bold text-2xl text-deep-ink">5. Date Badge (`DateBadge.astro`)</h3>
           <p class="text-deep-ink-muted text-base">
-            Stacked month/day badge for heritage events, available in Ivy Green, Heritage Burgundy, and Candle Gold.
+            Unified calendar date badge sharing a calm stone/ivy appearance with deep ivy month headers, quiet parchment day containers, and classic serif numbers.
           </p>
 
           <Card padding="md" class="space-y-6">
             <div class="flex flex-wrap items-center gap-6">
-              {/* Ivy Variant */}
+              {/* Event Badge with Year */}
               <div class="flex items-center gap-3">
-                <DateBadge date="2026-10-22" size="lg" variant="ivy" showYear />
+                <DateBadge date="2026-10-22" size="lg" showYear />
                 <div>
                   <div class="font-bold text-deep-ink">AGM 2026</div>
-                  <div class="text-xs text-deep-ink-muted">Ivy Large with Year</div>
+                  <div class="text-xs text-deep-ink-muted">Ivy Header with Year Label</div>
                 </div>
               </div>
 
-              {/* Burgundy Variant */}
+              {/* Event Badge with Weekday */}
               <div class="flex items-center gap-3">
-                <DateBadge date="2026-12-06" size="md" variant="burgundy" showWeekday />
+                <DateBadge date="2026-12-06" size="md" showWeekday />
                 <div>
                   <div class="font-bold text-deep-ink">Carols in Cloisters</div>
-                  <div class="text-xs text-deep-ink-muted">Burgundy Medium with Weekday</div>
+                  <div class="text-xs text-deep-ink-muted">Ivy Header with Weekday Bar</div>
                 </div>
               </div>
 
-              {/* Gold Variant */}
+              {/* Standard Event Badge */}
               <div class="flex items-center gap-3">
-                <DateBadge date="2026-06-28" size="sm" variant="gold" />
+                <DateBadge date="2026-06-28" size="sm" />
                 <div>
                   <div class="font-bold text-deep-ink">Medieval Fayre</div>
-                  <div class="text-xs text-deep-ink-muted">Gold Small</div>
+                  <div class="text-xs text-deep-ink-muted">Standard Compact Date Badge</div>
                 </div>
               </div>
             </div>

@@ -72,11 +72,11 @@ const walksAndTalks = allEvents
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         {
           walksAndTalks.map((item) => (
-            <Card padding="md" borderAccent={item.data.category === 'walk' ? 'ivy' : 'burgundy'} class="flex flex-col justify-between h-full">
+            <Card padding="md" class="flex flex-col justify-between h-full">
               <div class="space-y-4">
                 <div class="flex items-start justify-between gap-3">
-                  <DateBadge date={item.data.eventDate} size="md" variant={item.data.category === 'walk' ? 'ivy' : 'burgundy'} showYear />
-                  <span class="inline-block px-2.5 py-0.5 rounded text-xs font-semibold uppercase tracking-wider bg-weathered-stone/40 text-deep-ink-muted border border-weathered-stone">
+                  <DateBadge date={item.data.eventDate} size="md" showYear />
+                  <span class="text-[11px] font-medium tracking-[0.12em] uppercase px-2.5 py-0.5 rounded-md bg-[#F4F1EA] text-[#3F4E4F] border border-[#E5E0D5]">
                     {item.data.category === 'walk' ? 'Guided Walk' : 'Scholarly Talk'}
                   </span>
                 </div>
@@ -183,7 +183,7 @@ const walksAndTalks = allEvents
         subtitle="Submit your proposed visit dates, student numbers, and curriculum requirements. All inquiries are routed directly to our dedicated education desk."
       />
 
-      <Card padding="lg" class="max-w-3xl mx-auto border-2 border-weathered-stone shadow-xl">
+      <Card padding="lg" class="max-w-3xl mx-auto bg-white">
         <form id="school-inquiry-form" class="space-y-6">
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {/* Field 1: Full Name */}

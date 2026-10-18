@@ -1,6 +1,5 @@
 ---
-import Button from './ui/Button.astro';
-import { Menu, X, Heart, Shield, ChevronRight } from 'lucide-astro';
+import { ChevronDown, Heart, Menu, X, ArrowRight } from 'lucide-astro';
 
 interface Props {
   currentPath?: string;
@@ -8,219 +7,436 @@ interface Props {
 
 const { currentPath = Astro.url.pathname } = Astro.props;
 
-// Canonical navigation items - strictly adhering to the 9 authorized routes (NO ghostly links)
-const navLinks = [
-  { label: 'Visit', href: '/visit' },
-  { label: 'History', href: '/history' },
-  { label: 'Walks & Talks', href: '/walks-and-talks' },
-  { label: 'Events', href: '/events' },
-  { label: 'News', href: '/news' },
-  { label: 'Gallery', href: '/gallery' },
-  { label: 'Shop', href: '/shop' },
-  { label: 'Get Involved', href: '/get-involved' },
-  { label: 'About', href: '/about' },
-  { label: 'Contact', href: '/contact' },
-];
-
+// Active route detection helpers
 const isActive = (href: string) => {
   if (href === '/') return currentPath === '/';
-  return currentPath.startsWith(href);
+  return currentPath === href || currentPath.startsWith(href + '/');
 };
+
+const isGroupActive = (paths: string[]) => {
+  return paths.some((path) => isActive(path));
+};
+
+// Streamlined Navigation Architecture
+const navStructure = [
+  {
+    type: 'link' as const,
+    label: 'Visit',
+    href: '/visit',
+    active: isActive('/visit'),
+  },
+  {
+    type: 'link' as const,
+    label: 'History',
+    href: '/history',
+    active: isActive('/history'),
+  },
+  {
+    type: 'dropdown' as const,
+    label: "What's On",
+    active: isGroupActive(['/events', '/walks-and-talks', '/news']),
+    children: [
+      {
+        label: 'Events & Fairs',
+        href: '/events',
+        desc: 'Medieval fayres, carol concerts & gatherings',
+        active: isActive('/events'),
+      },
+      {
+        label: 'Guided Walks & School Talks',
+        href: '/walks-and-talks',
+        desc: 'Curriculum visits & expert walking tours',
+        active: isActive('/walks-and-talks'),
+      },
+      {
+        label: 'Latest News',
+        href: '/news',
+        desc: 'Archaeological discoveries & updates',
+        active: isActive('/news'),
+      },
+    ],
+  },
+  {
+    type: 'dropdown' as const,
+    label: 'Explore',
+    active: isGroupActive(['/gallery', '/shop']),
+    children: [
+      {
+        label: 'Photo Gallery',
+        href: '/gallery',
+        desc: 'Aerial drone views & archaeological archive',
+        active: isActive('/gallery'),
+      },
+      {
+        label: 'Publications & Books',
+        href: '/shop',
+        desc: 'Monastic account books & nature guides',
+        active: isActive('/shop'),
+      },
+    ],
+  },
+  {
+    type: 'dropdown' as const,
+    label: 'About & Contact',
+    active: isGroupActive(['/about', '/contact']),
+    children: [
+      {
+        label: 'The Trust & Friends',
+        href: '/about',
+        desc: 'Charity governance & Geopark partnership',
+        active: isActive('/about'),
+      },
+      {
+        label: 'Contact Us',
+        href: '/contact',
+        desc: 'Role-based inquiries & trustee directory',
+        active: isActive('/contact'),
+      },
+    ],
+  },
+];
 ---
 
-<header class="sticky top-0 z-40 bg-card-surface/95 backdrop-blur-md border-b border-weathered-stone/80 transition-shadow duration-200 shadow-xs">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-20 gap-4">
-      {/* Brand Identity / Left: Vector Arch Mark + Wordmark */}
+<header class="sticky top-0 z-40 bg-[#F6F1E7] border-b border-[#D9D4C7]/60 transition-shadow duration-200">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+      
+      {/* Logo & Brand Mark (Left) */}
       <a
         href="/"
-        class="flex items-center gap-3 group no-underline text-deep-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-candle-gold rounded-lg p-1 -ml-1 transition-opacity hover:opacity-90"
-        aria-label="Grace Dieu Priory Home"
+        class="flex items-center gap-3.5 group no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B8923A] rounded-lg p-1 -ml-1 transition-opacity hover:opacity-95"
+        aria-label="Grace Dieu Priory Homepage"
       >
-        {/* Minimalist Vector Augustinian Arch Mark */}
-        <div class="w-9 h-11 shrink-0 text-ivy-green group-hover:text-ivy-green-hover transition-colors" aria-hidden="true">
-          <svg viewBox="0 0 36 44" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full drop-shadow-xs">
-            {/* Outer Gothic Pointed Arch */}
-            <path
-              d="M4 42V20C4 10 18 2 18 2C18 2 32 10 32 20V42"
-              stroke="currentColor"
-              stroke-width="2.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            {/* Inner Sub-Arch & Tracery */}
-            <path
-              d="M9 42V22C9 14 18 8 18 8C18 8 27 14 27 22V42"
-              stroke="currentColor"
-              stroke-width="1.75"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              opacity="0.85"
-            />
-            {/* Center Lancet Mullion */}
-            <path d="M18 8V28" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-            <circle cx="18" cy="28" r="1.5" fill="currentColor" />
-            {/* Base Plinth Rule */}
-            <path d="M2 42H34" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-          </svg>
-        </div>
+        {/* Clean SVG arch line-art in deep ivy #2F4A3A (~36px height, crisp 1.5px stroke) */}
+        <svg
+          class="h-9 w-auto text-[#2F4A3A] shrink-0 drop-shadow-xs group-hover:scale-102 transition-transform duration-200"
+          viewBox="0 0 32 40"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          {/* Outer Gothic pointed arch */}
+          <path d="M4 38V17C4 8.5 16 2 16 2C16 2 28 8.5 28 17V38" />
+          {/* Inner sub-arch lancet */}
+          <path d="M8 38V19C8 12.5 16 7 16 7C16 7 24 12.5 24 19V38" opacity="0.8" />
+          {/* Center mullion tracery */}
+          <path d="M16 7V25" />
+          <circle cx="16" cy="25" r="1.25" fill="currentColor" stroke="none" />
+          {/* Base plinth rule */}
+          <path d="M2 38H30" />
+        </svg>
 
         {/* Wordmark */}
         <div class="flex flex-col">
-          <span class="font-serif font-bold text-xl sm:text-2xl tracking-[0.06em] uppercase text-deep-ink leading-tight group-hover:text-ivy-green transition-colors">
+          <span class="font-serif uppercase tracking-[0.18em] text-lg font-semibold text-[#1E211E] leading-tight group-hover:text-[#2F4A3A] transition-colors">
             Grace Dieu Priory
           </span>
-          <span class="text-[10px] sm:text-[11px] font-sans font-semibold uppercase tracking-[0.16em] text-deep-ink-muted">
-            Augustinian Ruins · Charity 1117921
+          <span class="text-[10px] tracking-[0.14em] uppercase text-[#3F4E4F] block -mt-0.5 font-sans font-medium">
+            Augustinian Ruins · Est. 1240
           </span>
         </div>
       </a>
 
-      {/* Desktop Navigation (large screens) */}
-      <nav class="hidden xl:flex items-center gap-1 2xl:gap-2" aria-label="Main Navigation">
+      {/* Streamlined Desktop Navigation (Center, lg+ screens) */}
+      <nav class="hidden lg:flex items-center gap-1 xl:gap-2" aria-label="Main Navigation">
         {
-          navLinks.map((item) => {
-            const active = isActive(item.href);
+          navStructure.map((item) => {
+            if (item.type === 'link') {
+              return (
+                <a
+                  href={item.href}
+                  class={`relative py-2 px-3 text-sm font-medium transition-colors no-underline after:content-[''] after:absolute after:bottom-0 after:left-3 after:right-3 after:h-0.5 after:transition-all ${
+                    item.active
+                      ? 'font-semibold text-[#1E211E] after:bg-[#B8923A]'
+                      : 'text-[#2C3333] hover:text-[#7A2E3A] after:bg-transparent hover:after:bg-[#B8923A]/40'
+                  }`}
+                  aria-current={item.active ? 'page' : undefined}
+                >
+                  {item.label}
+                </a>
+              );
+            }
+
+            // Dropdown Menu Item
             return (
-              <a
-                href={item.href}
-                class={`px-3 py-1.5 rounded-md text-sm font-semibold transition-all duration-150 no-underline whitespace-nowrap ${
-                  active
-                    ? 'text-ivy-green bg-ivy-green/10 border-b-2 border-ivy-green font-bold'
-                    : 'text-deep-ink hover:text-heritage-burgundy hover:bg-weathered-stone/30'
-                }`}
-                aria-current={active ? 'page' : undefined}
-              >
-                {item.label}
-              </a>
+              <div class="relative group dropdown-container">
+                <button
+                  type="button"
+                  class={`dropdown-trigger relative flex items-center gap-1.5 py-2 px-3 text-sm font-medium transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B8923A] rounded-md after:content-[''] after:absolute after:bottom-0 after:left-3 after:right-3 after:h-0.5 after:transition-all ${
+                    item.active
+                      ? 'font-semibold text-[#1E211E] after:bg-[#B8923A]'
+                      : 'text-[#2C3333] hover:text-[#7A2E3A] after:bg-transparent hover:after:bg-[#B8923A]/40'
+                  }`}
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <span>{item.label}</span>
+                  <ChevronDown class="w-3.5 h-3.5 text-[#3F4E4F] transition-transform duration-200 group-hover:rotate-180 group-focus-within:rotate-180" />
+                </button>
+
+                {/* Dropdown Panel */}
+                <div class="dropdown-menu absolute top-full left-0 pt-2 min-w-[270px] z-50 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 transition-all duration-200 ease-out pointer-events-none group-hover:pointer-events-auto group-focus-within:pointer-events-auto">
+                  <div class="bg-white rounded-xl border border-[#D9D4C7] shadow-xl p-2 space-y-1">
+                    {item.children.map((child) => {
+                      return (
+                        <a
+                          href={child.href}
+                          class={`block px-3.5 py-2.5 rounded-lg text-sm transition-colors no-underline ${
+                            child.active
+                              ? 'bg-[#F6F1E7] text-[#1E211E] font-semibold border border-[#D9D4C7]/80'
+                              : 'text-[#2C3333] hover:bg-[#F6F1E7]/70 hover:text-[#7A2E3A]'
+                          }`}
+                          aria-current={child.active ? 'page' : undefined}
+                        >
+                          <div class="font-medium text-sm leading-snug">{child.label}</div>
+                          <div class="text-[11px] text-[#3F4E4F] mt-0.5 font-normal leading-tight">
+                            {child.desc}
+                          </div>
+                        </a>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
             );
           })
         }
       </nav>
 
-      {/* Primary CTA Button (Desktop) */}
-      <div class="hidden lg:flex items-center gap-3">
-        <Button
-          variant="primary"
-          size="sm"
+      {/* Call to Action Button & Mobile Trigger (Right) */}
+      <div class="flex items-center gap-3">
+        {/* Support Us CTA Button */}
+        <a
           href="/get-involved"
-          class="shadow-xs font-semibold px-4 py-2"
+          class="inline-flex items-center gap-2 whitespace-nowrap h-10 px-5 rounded-md bg-[#2F4A3A] hover:bg-[#1E3025] text-[#F6F1E7] text-sm font-medium transition-colors no-underline shadow-xs focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B8923A] focus-visible:ring-offset-2 select-none"
         >
-          <Heart class="w-4 h-4 text-candle-gold-light fill-candle-gold/20" slot="icon-left" />
+          <Heart class="w-4 h-4 text-[#B8923A] fill-[#B8923A]/20 shrink-0" aria-hidden="true" />
           <span>Support Us</span>
-        </Button>
-      </div>
+        </a>
 
-      {/* Mobile Drawer Trigger (Tablet / Phone) */}
-      <div class="flex items-center gap-2 xl:hidden">
-        <Button
-          variant="primary"
-          size="sm"
-          href="/get-involved"
-          class="hidden sm:inline-flex text-xs px-3 py-1.5"
-        >
-          Support Us
-        </Button>
-
+        {/* Mobile Hamburger Trigger (Visible on screens below lg) */}
         <button
           type="button"
-          id="mobile-menu-trigger"
-          class="p-2.5 rounded-lg text-deep-ink hover:text-ivy-green hover:bg-weathered-stone/40 focus:outline-none focus:ring-2 focus:ring-candle-gold transition-colors cursor-pointer"
+          id="mobile-drawer-toggle"
+          class="lg:hidden p-2 rounded-md text-[#2C3333] hover:text-[#1E211E] hover:bg-[#D9D4C7]/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B8923A] transition-colors cursor-pointer"
           aria-expanded="false"
-          aria-controls="mobile-nav-drawer"
-          aria-label="Open Navigation Menu"
+          aria-controls="mobile-nav-panel"
+          aria-label="Open mobile navigation menu"
         >
           <Menu class="w-6 h-6" aria-hidden="true" />
         </button>
       </div>
+
     </div>
   </div>
 
-  {/* Mobile Navigation Drawer Modal */}
+  {/* Accessible Mobile Slide-Out Drawer (Below lg screens) */}
   <div
     id="mobile-nav-drawer"
-    class="fixed inset-0 z-50 invisible opacity-0 transition-all duration-300 pointer-events-none xl:hidden"
+    class="fixed inset-0 z-50 invisible opacity-0 transition-all duration-300 pointer-events-none lg:hidden"
     role="dialog"
     aria-modal="true"
     aria-label="Site Navigation Menu"
   >
-    {/* Darkened Backdrop Overlay */}
+    {/* Backdrop Overlay */}
     <div
       id="drawer-backdrop"
-      class="fixed inset-0 bg-deep-ink/50 backdrop-blur-xs transition-opacity duration-300 opacity-0"
+      class="fixed inset-0 bg-[#1E211E]/50 backdrop-blur-xs transition-opacity duration-300 opacity-0"
       aria-hidden="true"
     ></div>
 
-    {/* Off-canvas Drawer Panel */}
+    {/* Off-canvas Panel */}
     <div
       id="drawer-panel"
-      class="fixed top-0 right-0 bottom-0 w-full max-w-sm bg-card-surface border-l border-weathered-stone shadow-2xl flex flex-col justify-between translate-x-full transition-transform duration-300 ease-out z-10 overflow-y-auto"
+      class="fixed top-0 right-0 bottom-0 w-full max-w-sm bg-[#F6F1E7] border-l border-[#D9D4C7] shadow-2xl flex flex-col justify-between translate-x-full transition-transform duration-300 ease-out z-10 overflow-y-auto"
     >
       {/* Drawer Header */}
-      <div class="p-5 border-b border-weathered-stone/80 flex items-center justify-between bg-parchment-light/60">
-        <div class="flex items-center gap-2.5">
-          <div class="w-7 h-9 text-ivy-green">
-            <svg viewBox="0 0 36 44" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
-              <path d="M4 42V20C4 10 18 2 18 2C18 2 32 10 32 20V42" stroke="currentColor" stroke-width="2.5" />
-              <path d="M9 42V22C9 14 18 8 18 8C18 8 27 14 27 22V42" stroke="currentColor" stroke-width="1.75" opacity="0.85" />
-              <path d="M18 8V28" stroke="currentColor" stroke-width="1.5" />
-            </svg>
-          </div>
+      <div class="p-5 border-b border-[#D9D4C7]/80 flex items-center justify-between bg-white/60">
+        <div class="flex items-center gap-3">
+          <svg
+            class="h-7 w-auto text-[#2F4A3A] shrink-0"
+            viewBox="0 0 32 40"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M4 38V17C4 8.5 16 2 16 2C16 2 28 8.5 28 17V38" />
+            <path d="M8 38V19C8 12.5 16 7 16 7C16 7 24 12.5 24 19V38" opacity="0.8" />
+            <path d="M16 7V25" />
+            <path d="M2 38H30" />
+          </svg>
           <div>
-            <div class="font-serif font-bold text-lg text-deep-ink leading-none">Grace Dieu Priory</div>
-            <div class="text-[10px] uppercase tracking-widest text-deep-ink-muted font-sans font-semibold mt-1">Navigation</div>
+            <div class="font-serif uppercase tracking-[0.16em] text-base font-semibold text-[#1E211E] leading-tight">
+              Grace Dieu Priory
+            </div>
+            <div class="text-[10px] tracking-[0.12em] uppercase text-[#3F4E4F] font-sans font-medium mt-0.5">
+              Menu & Navigation
+            </div>
           </div>
         </div>
 
         <button
           type="button"
-          id="mobile-menu-close"
-          class="p-2 rounded-md text-deep-ink-muted hover:text-deep-ink hover:bg-weathered-stone/50 focus:outline-none focus:ring-2 focus:ring-candle-gold transition-colors cursor-pointer"
-          aria-label="Close Navigation Menu"
+          id="mobile-drawer-close"
+          class="p-2 rounded-md text-[#2C3333] hover:text-[#1E211E] hover:bg-[#D9D4C7]/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B8923A] transition-colors cursor-pointer"
+          aria-label="Close navigation menu"
         >
           <X class="w-6 h-6" aria-hidden="true" />
         </button>
       </div>
 
-      {/* Drawer Nav Links List */}
-      <nav class="p-4 flex-1 space-y-1" aria-label="Mobile Navigation">
-        {
-          navLinks.map((item) => {
-            const active = isActive(item.href);
-            return (
-              <a
-                href={item.href}
-                class={`flex items-center justify-between px-4 py-3 rounded-lg text-base font-semibold transition-colors no-underline ${
-                  active
-                    ? 'bg-ivy-green/10 text-ivy-green font-bold border-l-4 border-l-ivy-green'
-                    : 'text-deep-ink hover:bg-weathered-stone/30 hover:text-heritage-burgundy'
-                }`}
-                aria-current={active ? 'page' : undefined}
-              >
-                <span>{item.label}</span>
-                <ChevronRight class={`w-4 h-4 ${active ? 'text-ivy-green' : 'text-weathered-stone'}`} />
-              </a>
-            );
-          })
-        }
-      </nav>
+      {/* Drawer Links Body */}
+      <div class="p-5 flex-1 space-y-6 overflow-y-auto">
+        {/* Core Links */}
+        <div class="space-y-1">
+          <a
+            href="/visit"
+            class={`flex items-center justify-between px-3.5 py-2.5 rounded-lg text-base font-medium transition-colors no-underline ${
+              isActive('/visit')
+                ? 'bg-white text-[#1E211E] font-semibold border border-[#D9D4C7] shadow-xs'
+                : 'text-[#2C3333] hover:bg-white/60 hover:text-[#7A2E3A]'
+            }`}
+          >
+            <span>Visit the Priory</span>
+            <ArrowRight class="w-4 h-4 text-[#B8923A]" />
+          </a>
+
+          <a
+            href="/history"
+            class={`flex items-center justify-between px-3.5 py-2.5 rounded-lg text-base font-medium transition-colors no-underline ${
+              isActive('/history')
+                ? 'bg-white text-[#1E211E] font-semibold border border-[#D9D4C7] shadow-xs'
+                : 'text-[#2C3333] hover:bg-white/60 hover:text-[#7A2E3A]'
+            }`}
+          >
+            <span>800-Year History</span>
+            <ArrowRight class="w-4 h-4 text-[#B8923A]" />
+          </a>
+        </div>
+
+        {/* Group 1: What's On */}
+        <div class="space-y-2 pt-2 border-t border-[#D9D4C7]/60">
+          <div class="text-xs uppercase font-mono font-bold tracking-wider text-[#3F4E4F] px-1">
+            What's On
+          </div>
+          <div class="space-y-1">
+            <a
+              href="/events"
+              class={`block px-3.5 py-2 rounded-lg text-sm transition-colors no-underline ${
+                isActive('/events')
+                  ? 'bg-white text-[#1E211E] font-semibold border border-[#D9D4C7] shadow-xs'
+                  : 'text-[#2C3333] hover:bg-white/60 hover:text-[#7A2E3A]'
+              }`}
+            >
+              <div class="font-medium text-sm">Events & Fairs</div>
+              <div class="text-[11px] text-[#3F4E4F]">Medieval fayres & carol concerts</div>
+            </a>
+            <a
+              href="/walks-and-talks"
+              class={`block px-3.5 py-2 rounded-lg text-sm transition-colors no-underline ${
+                isActive('/walks-and-talks')
+                  ? 'bg-white text-[#1E211E] font-semibold border border-[#D9D4C7] shadow-xs'
+                  : 'text-[#2C3333] hover:bg-white/60 hover:text-[#7A2E3A]'
+              }`}
+            >
+              <div class="font-medium text-sm">Guided Walks & School Talks</div>
+              <div class="text-[11px] text-[#3F4E4F]">Educational visits & tours</div>
+            </a>
+            <a
+              href="/news"
+              class={`block px-3.5 py-2 rounded-lg text-sm transition-colors no-underline ${
+                isActive('/news')
+                  ? 'bg-white text-[#1E211E] font-semibold border border-[#D9D4C7] shadow-xs'
+                  : 'text-[#2C3333] hover:bg-white/60 hover:text-[#7A2E3A]'
+              }`}
+            >
+              <div class="font-medium text-sm">Latest News</div>
+              <div class="text-[11px] text-[#3F4E4F]">Archaeological excavations & updates</div>
+            </a>
+          </div>
+        </div>
+
+        {/* Group 2: Explore */}
+        <div class="space-y-2 pt-2 border-t border-[#D9D4C7]/60">
+          <div class="text-xs uppercase font-mono font-bold tracking-wider text-[#3F4E4F] px-1">
+            Explore
+          </div>
+          <div class="space-y-1">
+            <a
+              href="/gallery"
+              class={`block px-3.5 py-2 rounded-lg text-sm transition-colors no-underline ${
+                isActive('/gallery')
+                  ? 'bg-white text-[#1E211E] font-semibold border border-[#D9D4C7] shadow-xs'
+                  : 'text-[#2C3333] hover:bg-white/60 hover:text-[#7A2E3A]'
+              }`}
+            >
+              <div class="font-medium text-sm">Photo Gallery</div>
+              <div class="text-[11px] text-[#3F4E4F]">Aerial drone shots & masonry archive</div>
+            </a>
+            <a
+              href="/shop"
+              class={`block px-3.5 py-2 rounded-lg text-sm transition-colors no-underline ${
+                isActive('/shop')
+                  ? 'bg-white text-[#1E211E] font-semibold border border-[#D9D4C7] shadow-xs'
+                  : 'text-[#2C3333] hover:bg-white/60 hover:text-[#7A2E3A]'
+              }`}
+            >
+              <div class="font-medium text-sm">Publications & Books</div>
+              <div class="text-[11px] text-[#3F4E4F]">Official guides & account book</div>
+            </a>
+          </div>
+        </div>
+
+        {/* Group 3: About & Contact */}
+        <div class="space-y-2 pt-2 border-t border-[#D9D4C7]/60">
+          <div class="text-xs uppercase font-mono font-bold tracking-wider text-[#3F4E4F] px-1">
+            About & Contact
+          </div>
+          <div class="space-y-1">
+            <a
+              href="/about"
+              class={`block px-3.5 py-2 rounded-lg text-sm transition-colors no-underline ${
+                isActive('/about')
+                  ? 'bg-white text-[#1E211E] font-semibold border border-[#D9D4C7] shadow-xs'
+                  : 'text-[#2C3333] hover:bg-white/60 hover:text-[#7A2E3A]'
+              }`}
+            >
+              <div class="font-medium text-sm">The Trust & Friends</div>
+              <div class="text-[11px] text-[#3F4E4F]">Charity governance & Geopark partner</div>
+            </a>
+            <a
+              href="/contact"
+              class={`block px-3.5 py-2 rounded-lg text-sm transition-colors no-underline ${
+                isActive('/contact')
+                  ? 'bg-white text-[#1E211E] font-semibold border border-[#D9D4C7] shadow-xs'
+                  : 'text-[#2C3333] hover:bg-white/60 hover:text-[#7A2E3A]'
+              }`}
+            >
+              <div class="font-medium text-sm">Contact Us</div>
+              <div class="text-[11px] text-[#3F4E4F]">Role-based volunteer directory</div>
+            </a>
+          </div>
+        </div>
+      </div>
 
       {/* Drawer Footer Actions */}
-      <div class="p-5 border-t border-weathered-stone/80 bg-parchment-light/60 space-y-4">
-        <Button
-          variant="primary"
-          size="md"
+      <div class="p-5 border-t border-[#D9D4C7]/80 bg-white/60 space-y-3">
+        <a
           href="/get-involved"
-          fullWidth
-          class="shadow-sm font-semibold justify-center py-3"
+          class="flex items-center justify-center gap-2 w-full h-11 px-5 rounded-md bg-[#2F4A3A] hover:bg-[#1E3025] text-[#F6F1E7] text-sm font-medium transition-colors no-underline shadow-sm"
         >
-          <Heart class="w-4 h-4 text-candle-gold fill-candle-gold/20" slot="icon-left" />
+          <Heart class="w-4 h-4 text-[#B8923A] fill-[#B8923A]/20" aria-hidden="true" />
           <span>Support Us / Become a Friend</span>
-        </Button>
+        </a>
 
-        <div class="text-xs text-center text-deep-ink-muted leading-relaxed">
-          <p class="m-0 font-medium">Registered Charity No. 1117921</p>
-          <p class="m-0 text-[11px] text-deep-ink-light">Open daily dawn to dusk · Free admission</p>
+        <div class="text-center text-[11px] text-[#3F4E4F]">
+          Registered Charity No. 1117921 · Open daily dawn to dusk
         </div>
       </div>
     </div>
@@ -228,68 +444,86 @@ const isActive = (href: string) => {
 </header>
 
 <script>
-  function setupMobileDrawer() {
-    const trigger = document.getElementById('mobile-menu-trigger');
-    const closeBtn = document.getElementById('mobile-menu-close');
+  function setupHeader() {
+    // 1. Mobile Drawer
+    const toggleBtn = document.getElementById('mobile-drawer-toggle');
+    const closeBtn = document.getElementById('mobile-drawer-close');
     const drawer = document.getElementById('mobile-nav-drawer');
     const backdrop = document.getElementById('drawer-backdrop');
     const panel = document.getElementById('drawer-panel');
 
-    if (!trigger || !closeBtn || !drawer || !backdrop || !panel) return;
+    if (toggleBtn && closeBtn && drawer && backdrop && panel) {
+      let isOpen = false;
 
-    let isOpen = false;
+      function openDrawer() {
+        isOpen = true;
+        toggleBtn?.setAttribute('aria-expanded', 'true');
+        drawer?.classList.remove('invisible', 'pointer-events-none');
+        drawer?.classList.add('visible', 'pointer-events-auto');
 
-    function openDrawer() {
-      isOpen = true;
-      trigger?.setAttribute('aria-expanded', 'true');
-      drawer?.classList.remove('invisible', 'pointer-events-none');
-      drawer?.classList.add('visible', 'pointer-events-auto');
+        setTimeout(() => {
+          backdrop?.classList.remove('opacity-0');
+          backdrop?.classList.add('opacity-100');
+          panel?.classList.remove('translate-x-full');
+          panel?.classList.add('translate-x-0');
+          closeBtn?.focus();
+        }, 10);
 
-      setTimeout(() => {
-        backdrop?.classList.remove('opacity-0');
-        backdrop?.classList.add('opacity-100');
-        panel?.classList.remove('translate-x-full');
-        panel?.classList.add('translate-x-0');
-        closeBtn?.focus();
-      }, 10);
-
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeDrawer() {
-      isOpen = false;
-      trigger?.setAttribute('aria-expanded', 'false');
-      backdrop?.classList.remove('opacity-100');
-      backdrop?.classList.add('opacity-0');
-      panel?.classList.remove('translate-x-0');
-      panel?.classList.add('translate-x-full');
-
-      setTimeout(() => {
-        drawer?.classList.remove('visible', 'pointer-events-auto');
-        drawer?.classList.add('invisible', 'pointer-events-none');
-        trigger?.focus();
-      }, 300);
-
-      document.body.style.overflow = '';
-    }
-
-    trigger.addEventListener('click', openDrawer);
-    closeBtn.addEventListener('click', closeDrawer);
-    backdrop.addEventListener('click', closeDrawer);
-
-    // Close on Escape key press
-    document.addEventListener('keydown', (e) => {
-      if (isOpen && e.key === 'Escape') {
-        closeDrawer();
+        document.body.style.overflow = 'hidden';
       }
-    });
 
-    // Close when navigating via drawer link
-    panel.querySelectorAll('a').forEach((link) => {
-      link.addEventListener('click', closeDrawer);
+      function closeDrawer() {
+        isOpen = false;
+        toggleBtn?.setAttribute('aria-expanded', 'false');
+        backdrop?.classList.remove('opacity-100');
+        backdrop?.classList.add('opacity-0');
+        panel?.classList.remove('translate-x-0');
+        panel?.classList.add('translate-x-full');
+
+        setTimeout(() => {
+          drawer?.classList.remove('visible', 'pointer-events-auto');
+          drawer?.classList.add('invisible', 'pointer-events-none');
+          toggleBtn?.focus();
+        }, 300);
+
+        document.body.style.overflow = '';
+      }
+
+      toggleBtn.addEventListener('click', openDrawer);
+      closeBtn.addEventListener('click', closeDrawer);
+      backdrop.addEventListener('click', closeDrawer);
+
+      document.addEventListener('keydown', (e) => {
+        if (isOpen && e.key === 'Escape') closeDrawer();
+      });
+
+      panel.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', closeDrawer);
+      });
+    }
+
+    // 2. Desktop Dropdown Keyboard & Click Accessibility
+    document.querySelectorAll('.dropdown-container').forEach((container) => {
+      const trigger = container.querySelector('.dropdown-trigger');
+      const menu = container.querySelector('.dropdown-menu');
+
+      if (trigger && menu) {
+        // Toggle on click/keyboard Enter/Space
+        trigger.addEventListener('click', (e) => {
+          const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
+          trigger.setAttribute('aria-expanded', isExpanded ? 'false' : 'true');
+        });
+
+        // Close when clicking outside
+        document.addEventListener('click', (e) => {
+          if (!container.contains(e.target as Node)) {
+            trigger.setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
     });
   }
 
-  setupMobileDrawer();
-  document.addEventListener('astro:page-load', setupMobileDrawer);
+  setupHeader();
+  document.addEventListener('astro:page-load', setupHeader);
 </script>

@@ -32,19 +32,12 @@ const paddingClasses = {
 
 // Hover animations and elevation
 const hoverClasses = hover
-  ? 'transition-all duration-300 hover:-translate-y-1 hover:shadow-stone-hover hover:border-weathered-stone/90'
+  ? 'hover:shadow-[0_8px_24px_rgba(0,0,0,0.06)] hover:border-[#D9D4C7] hover:-translate-y-0.5 transition-all duration-200'
   : '';
 
-// Accent top border (heritage detailing)
-const accentClasses = {
-  none: '',
-  ivy: 'border-t-4 border-t-ivy-green',
-  burgundy: 'border-t-4 border-t-heritage-burgundy',
-  gold: 'border-t-4 border-t-candle-gold',
-}[borderAccent];
-
+// Uniform, natural perimeter baseline
 const baseClasses =
-  'block relative bg-card-surface rounded-xl border border-weathered-stone/70 shadow-stone text-deep-ink overflow-hidden';
+  'block relative bg-white rounded-xl border border-[#D9D4C7]/60 shadow-[0_2px_8px_rgba(0,0,0,0.03)] text-[#1E211E] overflow-hidden';
 
 const clickableClasses = href ? 'no-underline cursor-pointer group' : '';
 
@@ -52,7 +45,6 @@ const computedClasses = [
   baseClasses,
   paddingClasses,
   hoverClasses,
-  accentClasses,
   clickableClasses,
   className,
 ]

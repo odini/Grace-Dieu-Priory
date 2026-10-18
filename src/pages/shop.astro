@@ -97,8 +97,7 @@ const publications = await getCollection('publications');
             return (
               <Card
                 padding="none"
-                borderAccent={book.data.featured ? 'gold' : 'none'}
-                class="flex flex-col justify-between h-full bg-card-surface border-2 border-weathered-stone shadow-stone overflow-hidden group"
+                class="flex flex-col justify-between h-full bg-white overflow-hidden group"
               >
                 <div>
                   {/* Book Cover Image */}
@@ -115,7 +114,7 @@ const publications = await getCollection('publications');
                     )}
 
                     {book.data.featured && (
-                      <span class="absolute top-3 right-3 px-2.5 py-1 rounded-md text-xs font-bold uppercase tracking-wider bg-candle-gold text-deep-ink shadow-xs">
+                      <span class="absolute top-3 right-3 text-[11px] font-medium tracking-[0.12em] uppercase px-2.5 py-0.5 rounded-md bg-[#F4F1EA] text-[#3F4E4F] border border-[#E5E0D5] shadow-xs">
                         Featured Work
                       </span>
                     )}

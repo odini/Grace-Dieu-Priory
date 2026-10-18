@@ -115,15 +115,14 @@ const roleCards = [
             return (
               <Card
                 padding="md"
-                borderAccent={card.variant as 'ivy' | 'burgundy' | 'gold'}
-                class="flex flex-col justify-between h-full bg-card-surface border-2 border-weathered-stone shadow-sm hover:shadow-stone-hover transition-all"
+                class="flex flex-col justify-between h-full bg-white"
               >
                 <div class="space-y-3.5">
                   <div class="flex items-start justify-between gap-2">
                     <div class="w-12 h-12 rounded-xl bg-parchment-light border border-weathered-stone/80 flex items-center justify-center text-ivy-green">
                       <Icon class="w-6 h-6 text-ivy-green" />
                     </div>
-                    <span class="px-2.5 py-0.5 rounded text-[11px] font-bold uppercase tracking-wider bg-weathered-stone/40 text-deep-ink-muted border border-weathered-stone">
+                    <span class="text-[11px] font-medium tracking-[0.12em] uppercase px-2.5 py-0.5 rounded-md bg-[#F4F1EA] text-[#3F4E4F] border border-[#E5E0D5]">
                       {card.tag}
                     </span>
                   </div>
@@ -174,7 +173,7 @@ const roleCards = [
         subtitle="Fill in the fields below. Inquiries are automatically screened for spam and dispatched directly to the volunteer coordinator."
       />
 
-      <Card padding="lg" class="max-w-3xl mx-auto border-2 border-weathered-stone shadow-xl">
+      <Card padding="lg" class="max-w-3xl mx-auto bg-white">
         <form id="contact-form" class="space-y-6">
           {/* Department Selection */}
           <div class="space-y-1.5">

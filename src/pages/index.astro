@@ -43,131 +43,127 @@ const upcomingEvents = allEvents
   description="A 13th-century Augustinian nunnery and woodland parkland near Thringstone, Leicestershire. Free to visit, preserved by the local community for over 20 years."
 >
   {/* 1. HERO SECTION */}
-  <section class="relative bg-ivy-green-dark text-parchment-light overflow-hidden border-b border-weathered-stone/60">
+  <section class="relative min-h-[620px] lg:min-h-[720px] flex items-center overflow-hidden bg-[#1E2B22]">
     {/* Atmospheric Background Image with Heritage Stone Arch Layers */}
     <div class="absolute inset-0 z-0">
       <picture>
-        <source srcset="/images/grace dieu2.avif" type="image/avif" />
-        <source srcset="/images/grace dieu2.webp" type="image/webp" />
+        <source srcset="/images/priory ruins.avif" type="image/avif" />
+        <source srcset="/images/priory ruins.webp" type="image/webp" />
         <img
-          src="/images/grace dieu2.webp"
-          alt="Ancient stone arches of Grace Dieu Priory cloisters veiled in ivy"
-          width="1024"
-          height="768"
-          class="w-full h-full object-cover object-center scale-105 transition-transform duration-1000 ease-out"
+          src="/images/priory ruins.jpg"
+          alt="Ancient standing stone arches of Grace Dieu Priory against the sky"
+          width="2016"
+          height="1134"
+          class="absolute inset-0 w-full h-full object-cover object-[center_right] lg:object-right scale-100"
           loading="eager"
           decoding="async"
         />
       </picture>
-      {/* Multi-stop gradient overlay preserving atmospheric stone depth while exceeding contrast requirements */}
-      <div class="absolute inset-0 bg-gradient-to-r from-ivy-green-dark/95 via-ivy-green-dark/85 to-ivy-green-dark/60"></div>
-      <div class="absolute inset-0 bg-gradient-to-t from-ivy-green-dark via-transparent to-black/30"></div>
+      {/* Dual Gradient Masks: left-to-right mask keeps left text area legible while leaving stone arch crisp; bottom fade blends cleanly into quick-bar */}
+      <div class="absolute inset-0 bg-gradient-to-r from-[#141C16]/95 via-[#141C16]/65 to-transparent"></div>
+      <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#141C16]/90 via-[#141C16]/30 to-transparent"></div>
     </div>
 
-    {/* Hero Content Container */}
-    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-36 flex flex-col items-start">
-      {/* Heritage Identity Eyebrow */}
-      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-semibold uppercase tracking-wider bg-candle-gold/20 text-candle-gold border border-candle-gold/40 mb-6 backdrop-blur-xs shadow-xs">
-        <Sparkles class="w-4 h-4 text-candle-gold" aria-hidden="true" />
-        <span>Augustinian Nunnery · Founded c. 1239</span>
-      </div>
+    {/* Hero Content Container (Left-aligned) */}
+    <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-20 w-full">
+      <div class="max-w-2xl">
+        {/* Eyebrow Badge */}
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#B8923A]/20 border border-[#B8923A]/40 text-[#E6C673] text-xs uppercase tracking-[0.16em] font-medium backdrop-blur-sm mb-6">
+          <Sparkles class="w-3.5 h-3.5 text-[#E6C673]" aria-hidden="true" />
+          <span>AUGUSTINIAN NUNNERY · FOUNDED C. 1240</span>
+        </div>
 
-      {/* Main Headline */}
-      <h1 class="font-serif font-bold text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.12] text-white max-w-3xl mb-6">
-        800 Years of Stories Among the Ivy
-      </h1>
+        {/* Main Heading */}
+        <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-normal text-[#F6F1E7] tracking-tight leading-[1.1]">
+          800 Years of Stories<br />Among the Ivy
+        </h1>
 
-      {/* Subhead */}
-      <p class="text-lg sm:text-xl lg:text-2xl text-parchment/95 max-w-2xl leading-relaxed mb-10 font-normal">
-        A 13th-century Augustinian nunnery and woodland parkland. Free to visit, preserved by the local community.
-      </p>
+        {/* Subheading */}
+        <p class="text-base sm:text-lg text-[#D9D4C7] font-normal leading-relaxed mt-4 max-w-xl">
+          A 13th-century Augustinian priory and peaceful woodland parkland in Charnwood Forest. Free to visit, protected and cared for by volunteers.
+        </p>
 
-      {/* Dual CTAs */}
-      <div class="flex flex-wrap items-center gap-4">
-        <Button
-          variant="primary"
-          size="lg"
-          href="/visit"
-          class="bg-candle-gold hover:bg-candle-gold-dark text-deep-ink border-candle-gold font-bold shadow-lg text-base sm:text-lg"
-        >
-          <Compass class="w-5 h-5 text-deep-ink" slot="icon-left" />
-          <span>Plan Your Visit</span>
-        </Button>
+        {/* High-Contrast CTA Buttons */}
+        <div class="flex flex-wrap items-center gap-4 mt-8">
+          <a
+            href="/visit"
+            class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-lg bg-[#B8923A] hover:bg-[#A37F2E] text-[#1E211E] font-semibold text-sm transition-all duration-200 shadow-md hover:-translate-y-0.5 no-underline select-none"
+          >
+            <Compass class="w-4 h-4 text-[#1E211E]" aria-hidden="true" />
+            <span>Plan Your Visit</span>
+          </a>
 
-        <Button
-          variant="outline"
-          size="lg"
-          href="/history"
-          class="text-white border-white/80 hover:bg-white hover:text-deep-ink font-semibold backdrop-blur-xs text-base sm:text-lg"
-        >
-          <BookOpen class="w-5 h-5" slot="icon-left" />
-          <span>Explore Our History</span>
-        </Button>
+          <a
+            href="/history"
+            class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-lg bg-white/10 hover:bg-white/20 text-[#F6F1E7] border border-white/20 font-medium text-sm backdrop-blur-sm transition-all duration-200 no-underline select-none"
+          >
+            <BookOpen class="w-4 h-4" aria-hidden="true" />
+            <span>Explore Our History</span>
+          </a>
+        </div>
       </div>
     </div>
   </section>
 
   {/* 2. VISITOR QUICK-BAR */}
-  <section class="relative z-20 -mt-8 sm:-mt-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="bg-card-surface rounded-2xl border-2 border-weathered-stone shadow-stone p-4 sm:p-6 lg:py-5">
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 divide-y sm:divide-y-0 sm:divide-x divide-weathered-stone/70">
-        {/* Metric 1 */}
-        <div class="flex items-center gap-3.5 pt-3 sm:pt-0 sm:px-3">
-          <div class="w-11 h-11 rounded-xl bg-ivy-green/10 flex items-center justify-center shrink-0 text-ivy-green">
-            <Ticket class="w-5 h-5 text-ivy-green" aria-hidden="true" />
+  <section class="relative -mt-10 z-20 max-w-6xl mx-auto px-4">
+    <div class="bg-[#FDFBF7] border border-[#E5E0D5] rounded-2xl shadow-[0_12px_32px_rgba(0,0,0,0.08)] py-5 px-6 grid grid-cols-2 md:grid-cols-4 gap-6 divide-y md:divide-y-0 md:divide-x divide-[#E5E0D5]/80">
+      {/* Metric 1 */}
+      <div class="flex items-center gap-3.5">
+        <div class="w-10 h-10 rounded-xl bg-[#F0EBE1] text-[#2F4A3A] flex items-center justify-center shrink-0">
+          <Ticket class="w-5 h-5 text-[#2F4A3A]" aria-hidden="true" />
+        </div>
+        <div>
+          <div class="text-sm font-semibold text-[#1E211E] font-serif tracking-wide leading-tight">
+            Free Admission
           </div>
-          <div>
-            <div class="font-serif font-bold text-base sm:text-lg text-deep-ink leading-tight">
-              Free Admission
-            </div>
-            <div class="text-xs text-deep-ink-muted mt-0.5">
-              No tickets or booking required
-            </div>
+          <div class="text-xs text-[#5C645E] mt-0.5">
+            No tickets or booking required
           </div>
         </div>
+      </div>
 
-        {/* Metric 2 */}
-        <div class="flex items-center gap-3.5 pt-3 sm:pt-0 sm:px-4">
-          <div class="w-11 h-11 rounded-xl bg-candle-gold/15 flex items-center justify-center shrink-0 text-candle-gold-dark">
-            <Clock class="w-5 h-5 text-[#8C6B1C]" aria-hidden="true" />
+      {/* Metric 2 */}
+      <div class="flex items-center gap-3.5 border-t-0 md:pl-6">
+        <div class="w-10 h-10 rounded-xl bg-[#F0EBE1] text-[#2F4A3A] flex items-center justify-center shrink-0">
+          <Clock class="w-5 h-5 text-[#2F4A3A]" aria-hidden="true" />
+        </div>
+        <div>
+          <div class="text-sm font-semibold text-[#1E211E] font-serif tracking-wide leading-tight">
+            Open Daily
           </div>
-          <div>
-            <div class="font-serif font-bold text-base sm:text-lg text-deep-ink leading-tight">
-              Open Daily
-            </div>
-            <div class="text-xs text-deep-ink-muted mt-0.5">
-              Dawn to dusk, 365 days a year
-            </div>
+          <div class="text-xs text-[#5C645E] mt-0.5">
+            Dawn to dusk, 365 days a year
           </div>
         </div>
+      </div>
 
-        {/* Metric 3 */}
-        <div class="flex items-center gap-3.5 pt-3 sm:pt-0 sm:px-4">
-          <div class="w-11 h-11 rounded-xl bg-ivy-green/10 flex items-center justify-center shrink-0 text-ivy-green">
-            <MapPin class="w-5 h-5 text-ivy-green" aria-hidden="true" />
+      {/* Metric 3 */}
+      <div class="flex items-center gap-3.5 pt-4 md:pt-0 md:pl-6">
+        <div class="w-10 h-10 rounded-xl bg-[#F0EBE1] text-[#2F4A3A] flex items-center justify-center shrink-0">
+          <MapPin class="w-5 h-5 text-[#2F4A3A]" aria-hidden="true" />
+        </div>
+        <div>
+          <div class="text-sm font-semibold text-[#1E211E] font-serif tracking-wide leading-tight">
+            Bull’s Head Parking
           </div>
-          <div>
-            <div class="font-serif font-bold text-base sm:text-lg text-deep-ink leading-tight">
-              Bull’s Head Parking
-            </div>
-            <div class="text-xs text-deep-ink-muted mt-0.5">
-              Thringstone (LE67 8NR)
-            </div>
+          <div class="text-xs text-[#5C645E] mt-0.5">
+            Thringstone (LE67 8NR)
           </div>
         </div>
+      </div>
 
-        {/* Metric 4 */}
-        <div class="flex items-center gap-3.5 pt-3 sm:pt-0 sm:px-4">
-          <div class="w-11 h-11 rounded-xl bg-heritage-burgundy/10 flex items-center justify-center shrink-0 text-heritage-burgundy">
-            <Dog class="w-5 h-5 text-heritage-burgundy" aria-hidden="true" />
+      {/* Metric 4 */}
+      <div class="flex items-center gap-3.5 pt-4 md:pt-0 md:pl-6">
+        <div class="w-10 h-10 rounded-xl bg-[#F0EBE1] text-[#2F4A3A] flex items-center justify-center shrink-0">
+          <Dog class="w-5 h-5 text-[#2F4A3A]" aria-hidden="true" />
+        </div>
+        <div>
+          <div class="text-sm font-semibold text-[#1E211E] font-serif tracking-wide leading-tight">
+            Dogs on Leads
           </div>
-          <div>
-            <div class="font-serif font-bold text-base sm:text-lg text-deep-ink leading-tight">
-              Dogs on Leads
-            </div>
-            <div class="text-xs text-deep-ink-muted mt-0.5">
-              Bin located at Bull's Head pub
-            </div>
+          <div class="text-xs text-[#5C645E] mt-0.5">
+            Bin located at Bull's Head pub
           </div>
         </div>
       </div>
@@ -194,14 +190,9 @@ const upcomingEvents = allEvents
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {
           upcomingEvents.map((event) => {
-            const isMeeting = event.data.category === 'meeting';
-            const isSeasonal = event.data.category === 'seasonal';
-            const variant = isMeeting ? 'ivy' : isSeasonal ? 'burgundy' : 'gold';
-
             return (
               <Card
                 padding="md"
-                borderAccent={variant}
                 class="flex flex-col justify-between h-full"
               >
                 <div>
@@ -210,19 +201,18 @@ const upcomingEvents = allEvents
                     <DateBadge
                       date={event.data.eventDate}
                       size="md"
-                      variant={variant}
                       showYear={true}
                     />
 
                     <div class="flex flex-col items-end gap-1.5">
-                      <span class="inline-block px-2.5 py-0.5 rounded text-xs font-semibold uppercase tracking-wider bg-weathered-stone/40 text-deep-ink-muted border border-weathered-stone">
+                      <span class="text-[11px] font-medium tracking-[0.12em] uppercase px-2.5 py-0.5 rounded-md bg-[#F4F1EA] text-[#3F4E4F] border border-[#E5E0D5]">
                         {event.data.category}
                       </span>
 
                       {/* Required "Volunteers Needed" indicator tag */}
                       {event.data.volunteersNeeded && (
-                        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-bold uppercase tracking-wider bg-heritage-burgundy/10 text-heritage-burgundy border border-heritage-burgundy/30">
-                          <Users class="w-3 h-3 text-heritage-burgundy" />
+                        <span class="inline-flex items-center gap-1.5 text-[11px] font-medium tracking-wide px-2.5 py-0.5 rounded-md bg-[#7A2E3A]/8 text-[#7A2E3A] border border-[#7A2E3A]/20">
+                          <Users class="w-3 h-3 text-[#7A2E3A]" />
                           Volunteers Needed
                         </span>
                       )}
@@ -518,7 +508,7 @@ const upcomingEvents = allEvents
         subtitle="Experience the full sweep of the cloister garth, Tudor kitchen ruins, and Charnwood woodlands through aerial videography kindly provided by Richard Taylor."
       />
 
-      <Card padding="none" class="overflow-hidden border-2 border-weathered-stone shadow-xl">
+      <Card padding="none" class="overflow-hidden bg-white">
         {/* Facade Container */}
         <div
           id="video-facade-container"

@@ -179,7 +179,7 @@ const routeSteps = [
         </Card>
 
         {/* Visual Map Overview & Download Card */}
-        <Card padding="md" borderAccent="gold" class="lg:col-span-7 flex flex-col justify-between space-y-6">
+        <Card padding="md" class="lg:col-span-7 flex flex-col justify-between space-y-6">
           <div class="space-y-4">
             <div class="flex items-center justify-between">
               <span class="text-xs font-mono font-semibold uppercase text-candle-gold-dark tracking-wider">
@@ -235,7 +235,7 @@ const routeSteps = [
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
         {
           routeSteps.map((step) => (
-            <Card padding="sm" class="flex flex-col justify-between h-full bg-card-surface border-weathered-stone">
+            <Card padding="sm" class="flex flex-col justify-between h-full bg-white">
               <div class="space-y-2.5">
                 <div class="flex items-center justify-between">
                   <span class="font-serif font-bold text-3xl text-candle-gold-dark leading-none">
@@ -282,7 +282,7 @@ const routeSteps = [
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Rule 1: Litter Free */}
-        <Card padding="md" borderAccent="ivy" class="space-y-3">
+        <Card padding="md" class="space-y-3">
           <div class="w-10 h-10 rounded-lg bg-ivy-green/10 flex items-center justify-center text-ivy-green">
             <Trash2 class="w-5 h-5" />
           </div>
@@ -293,7 +293,7 @@ const routeSteps = [
         </Card>
 
         {/* Rule 2: Livestock & Countryside Code */}
-        <Card padding="md" borderAccent="gold" class="space-y-3">
+        <Card padding="md" class="space-y-3">
           <div class="w-10 h-10 rounded-lg bg-candle-gold/20 flex items-center justify-center text-candle-gold-dark">
             <Trees class="w-5 h-5" />
           </div>
@@ -304,7 +304,7 @@ const routeSteps = [
         </Card>
 
         {/* Rule 3: Dog Walkers Policy */}
-        <Card padding="md" borderAccent="burgundy" class="space-y-3">
+        <Card padding="md" class="space-y-3">
           <div class="w-10 h-10 rounded-lg bg-heritage-burgundy/10 flex items-center justify-center text-heritage-burgundy">
             <Dog class="w-5 h-5" />
           </div>
@@ -347,8 +347,8 @@ const routeSteps = [
           </Card>
 
           {/* New Bridge Project Highlight */}
-          <Card padding="md" borderAccent="ivy" class="bg-gradient-to-r from-parchment-light to-white space-y-3">
-            <span class="text-xs uppercase font-mono font-semibold text-ivy-green tracking-wider">
+          <Card padding="md" class="space-y-3 bg-white">
+            <span class="inline-block text-[11px] font-medium tracking-[0.12em] uppercase px-2.5 py-0.5 rounded-md bg-[#F4F1EA] text-[#3F4E4F] border border-[#E5E0D5]">
               Capital Project in Progress
             </span>
             <h3 class="font-serif font-bold text-xl text-deep-ink m-0">
