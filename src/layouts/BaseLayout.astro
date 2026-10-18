@@ -1,0 +1,160 @@
+---
+import '../styles/global.css';
+import SiteNotice from '../components/SiteNotice.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  canonicalUrl?: string;
+  schema?: Record<string, any> | Array<Record<string, any>>;
+}
+
+const {
+  title = 'Grace Dieu Priory | Augustinian Ruins & Heritage in Charnwood Forest',
+  description = 'Explore the conserved 13th-century ruins of Grace Dieu Priory in Thringstone, Leicestershire. Free admission, guided walks, historical talks, and living history events.',
+  ogImage = '/images/dji_fly_20261017_114542_0082_1792234392781_photo.webp',
+  canonicalUrl = Astro.url.href,
+  schema,
+} = Astro.props;
+
+const siteTitle = title.includes('Grace Dieu Priory')
+  ? title
+  : `${title} | Friends of Grace Dieu Priory`;
+
+// Base JSON-LD graph with TouristAttraction and NGO (Charity 1117921)
+const baseGraph: Array<Record<string, any>> = [
+  {
+    '@type': ['TouristAttraction', 'HistoricalLandmark'],
+    '@id': 'https://gracedieupriory.org.uk/#attraction',
+    name: 'Grace Dieu Priory',
+    url: 'https://gracedieupriory.org.uk',
+    description:
+      'Conserved 13th-century Augustinian nunnery ruins, woodland parkland, and historic Charnwood Forest trails. Free admission, open daily dawn to dusk.',
+    isAccessibleForFree: true,
+    publicAccess: true,
+    image: 'https://gracedieupriory.org.uk/images/dji_fly_20261017_114148_0073_1792234397332_photo.webp',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: "Warren Hills Road / Loughborough Road (Visitor Parking at The Bull's Head)",
+      addressLocality: 'Thringstone, Coalville',
+      addressRegion: 'Leicestershire',
+      postalCode: 'LE67 8NR',
+      addressCountry: 'GB',
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: 52.7686,
+      longitude: -1.3533,
+    },
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+        opens: '07:00',
+        closes: '21:00',
+      },
+    ],
+    sameAs: [
+      'https://www.facebook.com/gracedieupriory',
+      'https://en.wikipedia.org/wiki/Grace_Dieu_Priory',
+    ],
+  },
+  {
+    '@type': ['NGO', 'NonprofitOrganization'],
+    '@id': 'https://gracedieupriory.org.uk/#ngo',
+    name: 'The Friends of Grace Dieu Priory',
+    legalName: 'The Friends of Grace Dieu Priory',
+    taxID: '1117921',
+    url: 'https://gracedieupriory.org.uk',
+    logo: 'https://gracedieupriory.org.uk/images/Charnwood%20Forest%20Geopark%20Logo.webp',
+    email: 'info@gracedieupriory.org.uk',
+    telephone: '+44 1530 833632',
+    parentOrganization: {
+      '@type': 'Organization',
+      name: 'The Grace Dieu Priory Trust',
+    },
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Thringstone Members Club, Loughborough Road',
+      addressLocality: 'Thringstone',
+      addressRegion: 'Leicestershire',
+      postalCode: 'LE67 8LR',
+      addressCountry: 'GB',
+    },
+  },
+];
+
+// Combine custom page-specific schema if provided
+const extraSchemas = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
+const jsonLdData = {
+  '@context': 'https://schema.org',
+  '@graph': [...baseGraph, ...extraSchemas],
+};
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    {/* Primary SEO Meta Tags */}
+    <title>{siteTitle}</title>
+    <meta name="title" content={siteTitle} />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    {/* Open Graph / Social Media */}
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={siteTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content="Friends of Grace Dieu Priory" />
+    <meta property="og:locale" content="en_GB" />
+
+    {/* Twitter Cards */}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalUrl} />
+    <meta name="twitter:title" content={siteTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    {/* Favicon / Icons */}
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    {/* Preconnect to Google Fonts CDN */}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    {/* Structured JSON-LD Data (TouristAttraction, NGO, Events) */}
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLdData)} />
+  </head>
+  <body class="min-h-screen bg-parchment text-deep-ink flex flex-col selection:bg-candle-gold/30 selection:text-deep-ink antialiased">
+    {/* Accessible Skip-to-Content Link for Screen Readers and Keyboard Navigation */}
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-100 focus:px-5 focus:py-2.5 focus:bg-ivy-green focus:text-parchment-light focus:font-semibold focus:rounded-md focus:shadow-xl focus:outline-none focus:ring-2 focus:ring-candle-gold focus:ring-offset-2 no-underline"
+    >
+      Skip to main content
+    </a>
+
+    {/* 1. Site-wide Notice Banner (Above Header, driven by collection date expiry) */}
+    <SiteNotice />
+
+    {/* 2. Primary Header & Navigation */}
+    <Header currentPath={Astro.url.pathname} />
+
+    {/* 3. Main Content Landmark */}
+    <main id="main-content" class="flex-1 w-full focus:outline-none" tabindex="-1">
+      <slot />
+    </main>
+
+    {/* 4. Heritage Footer */}
+    <Footer />
+  </body>
+</html>

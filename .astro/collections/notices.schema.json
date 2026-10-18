@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "severity": {
+      "default": "info",
+      "type": "string",
+      "enum": [
+        "info",
+        "warning",
+        "critical"
+      ]
+    },
+    "pinned": {
+      "default": false,
+      "type": "boolean"
+    },
+    "active": {
+      "default": true,
+      "type": "boolean"
+    },
+    "targetRoutes": {
+      "default": [
+        "/"
+      ],
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "startDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expiresOn": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expiresAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "shortNotice": {
+      "type": "string"
+    },
+    "actionLink": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "url",
+        "text"
+      ]
+    },
+    "dismissible": {
+      "default": true,
+      "type": "boolean"
+    },
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "title"
+  ]
+}

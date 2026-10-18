@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "author": {
+      "type": "string"
+    },
+    "price": {
+      "type": "number"
+    },
+    "postage": {
+      "type": "number"
+    },
+    "format": {
+      "default": "Paperback",
+      "type": "string"
+    },
+    "pages": {
+      "type": "number"
+    },
+    "edition": {
+      "type": "string"
+    },
+    "coverImage": {
+      "type": "string"
+    },
+    "coverImageAlt": {
+      "type": "string"
+    },
+    "featured": {
+      "default": false,
+      "type": "boolean"
+    },
+    "supplier": {
+      "default": "Ann Petty",
+      "type": "string"
+    },
+    "supplierEmail": {
+      "default": "annpetty1948@yahoo.co.uk",
+      "type": "string"
+    },
+    "supplierPhone": {
+      "default": "01530 831895",
+      "type": "string"
+    },
+    "paymentInstructions": {
+      "default": "Cheques payable to Grace Dieu Priory Trust",
+      "type": "string"
+    },
+    "stockStatus": {
+      "default": "in_stock",
+      "type": "string",
+      "enum": [
+        "in_stock",
+        "low_stock",
+        "out_of_stock",
+        "confirm_status"
+      ]
+    },
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "title",
+    "author",
+    "price"
+  ]
+}

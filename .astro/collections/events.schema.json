@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "eventDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "endDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "time": {
+      "type": "string"
+    },
+    "location": {
+      "default": "Grace Dieu Priory Ruins, Thringstone",
+      "type": "string"
+    },
+    "admission": {
+      "default": "Free",
+      "type": "string"
+    },
+    "category": {
+      "default": "heritage",
+      "type": "string",
+      "enum": [
+        "heritage",
+        "walk",
+        "talk",
+        "seasonal",
+        "meeting",
+        "community"
+      ]
+    },
+    "featured": {
+      "default": false,
+      "type": "boolean"
+    },
+    "image": {
+      "type": "string"
+    },
+    "imageAlt": {
+      "type": "string"
+    },
+    "bookingRequired": {
+      "default": false,
+      "type": "boolean"
+    },
+    "contactPerson": {
+      "type": "string"
+    },
+    "contactEmail": {
+      "type": "string"
+    },
+    "contactPhone": {
+      "type": "string"
+    },
+    "volunteersNeeded": {
+      "default": false,
+      "type": "boolean"
+    },
+    "archived": {
+      "default": false,
+      "type": "boolean"
+    },
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "title",
+    "description",
+    "eventDate",
+    "time"
+  ]
+}

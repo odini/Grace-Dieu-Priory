@@ -1,0 +1,609 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
+import Button from '../components/ui/Button.astro';
+import Card from '../components/ui/Card.astro';
+import DateBadge from '../components/ui/DateBadge.astro';
+import NoticeBanner from '../components/ui/NoticeBanner.astro';
+import {
+  Compass,
+  BookOpen,
+  Calendar,
+  Heart,
+  ShieldCheck,
+  ArrowRight,
+  MapPin,
+  Clock,
+  Ticket,
+  Dog,
+  Sparkles,
+  Play,
+  Trees,
+  Crown,
+  Layers,
+  Users,
+  CheckCircle2,
+  ExternalLink,
+} from 'lucide-astro';
+
+// 1. Fetch upcoming events from content collections
+const allEvents = await getCollection('events');
+const now = new Date();
+
+// Filter for non-archived events and sort chronologically
+const upcomingEvents = allEvents
+  .filter((event) => !event.data.archived && new Date(event.data.eventDate).getTime() >= now.getTime() - 86400000)
+  .sort((a, b) => new Date(a.data.eventDate).getTime() - new Date(b.data.eventDate).getTime())
+  .slice(0, 3);
+---
+
+<BaseLayout
+  title="800 Years of Stories Among the Ivy | Grace Dieu Priory"
+  description="A 13th-century Augustinian nunnery and woodland parkland near Thringstone, Leicestershire. Free to visit, preserved by the local community for over 20 years."
+>
+  {/* 1. HERO SECTION */}
+  <section class="relative bg-ivy-green-dark text-parchment-light overflow-hidden border-b border-weathered-stone/60">
+    {/* Atmospheric Background Image with Heritage Stone Arch Layers */}
+    <div class="absolute inset-0 z-0">
+      <picture>
+        <source srcset="/images/grace dieu2.avif" type="image/avif" />
+        <source srcset="/images/grace dieu2.webp" type="image/webp" />
+        <img
+          src="/images/grace dieu2.webp"
+          alt="Ancient stone arches of Grace Dieu Priory cloisters veiled in ivy"
+          width="1024"
+          height="768"
+          class="w-full h-full object-cover object-center scale-105 transition-transform duration-1000 ease-out"
+          loading="eager"
+          decoding="async"
+        />
+      </picture>
+      {/* Multi-stop gradient overlay preserving atmospheric stone depth while exceeding contrast requirements */}
+      <div class="absolute inset-0 bg-gradient-to-r from-ivy-green-dark/95 via-ivy-green-dark/85 to-ivy-green-dark/60"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-ivy-green-dark via-transparent to-black/30"></div>
+    </div>
+
+    {/* Hero Content Container */}
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-36 flex flex-col items-start">
+      {/* Heritage Identity Eyebrow */}
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-semibold uppercase tracking-wider bg-candle-gold/20 text-candle-gold border border-candle-gold/40 mb-6 backdrop-blur-xs shadow-xs">
+        <Sparkles class="w-4 h-4 text-candle-gold" aria-hidden="true" />
+        <span>Augustinian Nunnery · Founded c. 1239</span>
+      </div>
+
+      {/* Main Headline */}
+      <h1 class="font-serif font-bold text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.12] text-white max-w-3xl mb-6">
+        800 Years of Stories Among the Ivy
+      </h1>
+
+      {/* Subhead */}
+      <p class="text-lg sm:text-xl lg:text-2xl text-parchment/95 max-w-2xl leading-relaxed mb-10 font-normal">
+        A 13th-century Augustinian nunnery and woodland parkland. Free to visit, preserved by the local community.
+      </p>
+
+      {/* Dual CTAs */}
+      <div class="flex flex-wrap items-center gap-4">
+        <Button
+          variant="primary"
+          size="lg"
+          href="/visit"
+          class="bg-candle-gold hover:bg-candle-gold-dark text-deep-ink border-candle-gold font-bold shadow-lg text-base sm:text-lg"
+        >
+          <Compass class="w-5 h-5 text-deep-ink" slot="icon-left" />
+          <span>Plan Your Visit</span>
+        </Button>
+
+        <Button
+          variant="outline"
+          size="lg"
+          href="/history"
+          class="text-white border-white/80 hover:bg-white hover:text-deep-ink font-semibold backdrop-blur-xs text-base sm:text-lg"
+        >
+          <BookOpen class="w-5 h-5" slot="icon-left" />
+          <span>Explore Our History</span>
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  {/* 2. VISITOR QUICK-BAR */}
+  <section class="relative z-20 -mt-8 sm:-mt-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="bg-card-surface rounded-2xl border-2 border-weathered-stone shadow-stone p-4 sm:p-6 lg:py-5">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 divide-y sm:divide-y-0 sm:divide-x divide-weathered-stone/70">
+        {/* Metric 1 */}
+        <div class="flex items-center gap-3.5 pt-3 sm:pt-0 sm:px-3">
+          <div class="w-11 h-11 rounded-xl bg-ivy-green/10 flex items-center justify-center shrink-0 text-ivy-green">
+            <Ticket class="w-5 h-5 text-ivy-green" aria-hidden="true" />
+          </div>
+          <div>
+            <div class="font-serif font-bold text-base sm:text-lg text-deep-ink leading-tight">
+              Free Admission
+            </div>
+            <div class="text-xs text-deep-ink-muted mt-0.5">
+              No tickets or booking required
+            </div>
+          </div>
+        </div>
+
+        {/* Metric 2 */}
+        <div class="flex items-center gap-3.5 pt-3 sm:pt-0 sm:px-4">
+          <div class="w-11 h-11 rounded-xl bg-candle-gold/15 flex items-center justify-center shrink-0 text-candle-gold-dark">
+            <Clock class="w-5 h-5 text-[#8C6B1C]" aria-hidden="true" />
+          </div>
+          <div>
+            <div class="font-serif font-bold text-base sm:text-lg text-deep-ink leading-tight">
+              Open Daily
+            </div>
+            <div class="text-xs text-deep-ink-muted mt-0.5">
+              Dawn to dusk, 365 days a year
+            </div>
+          </div>
+        </div>
+
+        {/* Metric 3 */}
+        <div class="flex items-center gap-3.5 pt-3 sm:pt-0 sm:px-4">
+          <div class="w-11 h-11 rounded-xl bg-ivy-green/10 flex items-center justify-center shrink-0 text-ivy-green">
+            <MapPin class="w-5 h-5 text-ivy-green" aria-hidden="true" />
+          </div>
+          <div>
+            <div class="font-serif font-bold text-base sm:text-lg text-deep-ink leading-tight">
+              Bull’s Head Parking
+            </div>
+            <div class="text-xs text-deep-ink-muted mt-0.5">
+              Thringstone (LE67 8NR)
+            </div>
+          </div>
+        </div>
+
+        {/* Metric 4 */}
+        <div class="flex items-center gap-3.5 pt-3 sm:pt-0 sm:px-4">
+          <div class="w-11 h-11 rounded-xl bg-heritage-burgundy/10 flex items-center justify-center shrink-0 text-heritage-burgundy">
+            <Dog class="w-5 h-5 text-heritage-burgundy" aria-hidden="true" />
+          </div>
+          <div>
+            <div class="font-serif font-bold text-base sm:text-lg text-deep-ink leading-tight">
+              Dogs on Leads
+            </div>
+            <div class="text-xs text-deep-ink-muted mt-0.5">
+              Bin located at Bull's Head pub
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* MAIN CONTENT BODY */}
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 space-y-24">
+    {/* 3. UPCOMING EVENTS MODULE */}
+    <section class="space-y-8">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <SectionHeading
+          tag="h2"
+          eyebrow="Calendar"
+          title="Upcoming Events & Gatherings"
+          subtitle="Join our community for seasonal acoustic singing, scholarly history talks, and guided walks across the ancient precinct."
+        />
+        <Button variant="ghost" href="/events" class="shrink-0 text-heritage-burgundy font-semibold">
+          <span>View All Events</span>
+          <ArrowRight class="w-4 h-4 ml-1" slot="icon-right" />
+        </Button>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {
+          upcomingEvents.map((event) => {
+            const isMeeting = event.data.category === 'meeting';
+            const isSeasonal = event.data.category === 'seasonal';
+            const variant = isMeeting ? 'ivy' : isSeasonal ? 'burgundy' : 'gold';
+
+            return (
+              <Card
+                padding="md"
+                borderAccent={variant}
+                class="flex flex-col justify-between h-full"
+              >
+                <div>
+                  {/* Top Bar: DateBadge + Volunteer Indicator */}
+                  <div class="flex items-start justify-between gap-3 mb-4">
+                    <DateBadge
+                      date={event.data.eventDate}
+                      size="md"
+                      variant={variant}
+                      showYear={true}
+                    />
+
+                    <div class="flex flex-col items-end gap-1.5">
+                      <span class="inline-block px-2.5 py-0.5 rounded text-xs font-semibold uppercase tracking-wider bg-weathered-stone/40 text-deep-ink-muted border border-weathered-stone">
+                        {event.data.category}
+                      </span>
+
+                      {/* Required "Volunteers Needed" indicator tag */}
+                      {event.data.volunteersNeeded && (
+                        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-bold uppercase tracking-wider bg-heritage-burgundy/10 text-heritage-burgundy border border-heritage-burgundy/30">
+                          <Users class="w-3 h-3 text-heritage-burgundy" />
+                          Volunteers Needed
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Title */}
+                  <h3 class="font-serif font-bold text-xl sm:text-2xl text-deep-ink mb-2">
+                    {event.data.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p class="text-sm text-deep-ink-muted leading-relaxed mb-4">
+                    {event.data.description}
+                  </p>
+                </div>
+
+                {/* Footer details */}
+                <div class="pt-4 border-t border-weathered-stone/60 space-y-2 text-xs text-deep-ink-muted mt-auto">
+                  <div class="flex items-center justify-between">
+                    <span class="font-semibold text-deep-ink">{event.data.time}</span>
+                    <span class="text-candle-gold-dark font-medium">{event.data.admission}</span>
+                  </div>
+                  <div class="truncate text-deep-ink-light">
+                    {event.data.location}
+                  </div>
+                </div>
+              </Card>
+            );
+          })
+        }
+      </div>
+    </section>
+
+    {/* 4. EDITORIAL DISCOVERY CARDS */}
+    <section class="space-y-8">
+      <SectionHeading
+        tag="h2"
+        eyebrow="Discover Grace Dieu"
+        title="Three Facets of an Extraordinary Monument"
+        subtitle="Step beyond the ruins to uncover ancient woodland biodiversity, female aristocratic courage, and world-class regional geology."
+      />
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Card 1: Explore the Trails */}
+        <Card padding="none" class="flex flex-col justify-between group overflow-hidden">
+          <div class="relative h-56 overflow-hidden">
+            <picture>
+              <source srcset="/images/dji_fly_20261017_114148_0073_1792234397332_photo.avif" type="image/avif" />
+              <source srcset="/images/dji_fly_20261017_114148_0073_1792234397332_photo.webp" type="image/webp" />
+              <img
+                src="/images/dji_fly_20261017_114148_0073_1792234397332_photo.webp"
+                alt="Woodland trails weaving through Charnwood Forest near the priory ruins"
+                width="2000"
+                height="1500"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
+            <div class="absolute top-3 left-3">
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-semibold uppercase tracking-wider bg-card-surface/90 text-ivy-green backdrop-blur-xs border border-white/40 shadow-xs">
+                <Trees class="w-3.5 h-3.5 text-ivy-green" />
+                Nature & Parkland
+              </span>
+            </div>
+          </div>
+
+          <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+            <div>
+              <h3 class="font-serif font-bold text-2xl text-deep-ink mb-2 group-hover:text-ivy-green transition-colors">
+                Explore the Trails
+              </h3>
+              <p class="text-sm text-deep-ink-muted leading-relaxed m-0">
+                Wander through ancient woodland alongside Grace Dieu Brook. Discover the towering arches of the disused railway viaduct and the remnants of the historic Charnwood Forest canal bed.
+              </p>
+            </div>
+
+            <div class="pt-3 border-t border-weathered-stone/60">
+              <a
+                href="/visit#trails"
+                class="inline-flex items-center gap-1.5 text-sm font-semibold text-heritage-burgundy group-hover:underline no-underline"
+              >
+                <span>Walking Routes & Route Map</span>
+                <ArrowRight class="w-4 h-4 ml-0.5 group-hover:translate-x-1 transition-transform" />
+              </a>
+            </div>
+          </div>
+        </Card>
+
+        {/* Card 2: Roesia's Legacy */}
+        <Card padding="none" class="flex flex-col justify-between group overflow-hidden">
+          <div class="relative h-56 overflow-hidden">
+            <picture>
+              <source srcset="/images/GDP Stone.avif" type="image/avif" />
+              <source srcset="/images/GDP Stone.webp" type="image/webp" />
+              <img
+                src="/images/GDP Stone.webp"
+                alt="Carved medieval stonework preserved at Grace Dieu Priory"
+                width="2000"
+                height="1500"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
+            <div class="absolute top-3 left-3">
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-semibold uppercase tracking-wider bg-card-surface/90 text-heritage-burgundy backdrop-blur-xs border border-white/40 shadow-xs">
+                <Crown class="w-3.5 h-3.5 text-heritage-burgundy" />
+                Monastic Founder
+              </span>
+            </div>
+          </div>
+
+          <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+            <div>
+              <h3 class="font-serif font-bold text-2xl text-deep-ink mb-2 group-hover:text-heritage-burgundy transition-colors">
+                Roesia’s Legacy
+              </h3>
+              <p class="text-sm text-deep-ink-muted leading-relaxed m-0">
+                Founded c. 1239 by the formidable Roesia de Verdun, an independent Norman-Irish noblewoman praised by King Henry III. Her tomb still rests in neighbouring Belton church.
+              </p>
+            </div>
+
+            <div class="pt-3 border-t border-weathered-stone/60">
+              <a
+                href="/history"
+                class="inline-flex items-center gap-1.5 text-sm font-semibold text-heritage-burgundy group-hover:underline no-underline"
+              >
+                <span>Read the Historical Chronicle</span>
+                <ArrowRight class="w-4 h-4 ml-0.5 group-hover:translate-x-1 transition-transform" />
+              </a>
+            </div>
+          </div>
+        </Card>
+
+        {/* Card 3: Charnwood Geopark Partner */}
+        <Card padding="none" class="flex flex-col justify-between group overflow-hidden">
+          <div class="relative h-56 overflow-hidden">
+            <picture>
+              <source srcset="/images/2024 BBC - Priory Wall exposed.avif" type="image/avif" />
+              <source srcset="/images/2024 BBC - Priory Wall exposed.webp" type="image/webp" />
+              <img
+                src="/images/2024 BBC - Priory Wall exposed.webp"
+                alt="Volunteers exposing the 800-year-old priory boundary wall"
+                width="690"
+                height="360"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
+            <div class="absolute top-3 left-3">
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-semibold uppercase tracking-wider bg-card-surface/90 text-[#8C6B1C] backdrop-blur-xs border border-white/40 shadow-xs">
+                <Layers class="w-3.5 h-3.5 text-[#8C6B1C]" />
+                UNESCO Aspiration
+              </span>
+            </div>
+          </div>
+
+          <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+            <div>
+              <h3 class="font-serif font-bold text-2xl text-deep-ink mb-2 group-hover:text-ivy-green transition-colors">
+                Charnwood Geopark Partner
+              </h3>
+              <p class="text-sm text-deep-ink-muted leading-relaxed m-0">
+                As proud partners in the Charnwood Forest Geopark network, our joint working parties recently exposed an 800-year-old boundary wall, supporting the regional UNESCO bid.
+              </p>
+            </div>
+
+            <div class="pt-3 border-t border-weathered-stone/60">
+              <a
+                href="/news/charnwood-geopark-partnership"
+                class="inline-flex items-center gap-1.5 text-sm font-semibold text-heritage-burgundy group-hover:underline no-underline"
+              >
+                <span>Discover the Partnership</span>
+                <ArrowRight class="w-4 h-4 ml-0.5 group-hover:translate-x-1 transition-transform" />
+              </a>
+            </div>
+          </div>
+        </Card>
+      </div>
+    </section>
+
+    {/* 5. MILESTONE CALLOUT (Site Freehold Purchase Nov 2024) */}
+    <section class="rounded-2xl border-2 border-candle-gold/40 bg-gradient-to-r from-parchment-light via-card-surface to-parchment-light p-6 sm:p-10 shadow-stone">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        {/* Text Details */}
+        <div class="lg:col-span-8 space-y-4">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-ivy-green/10 text-ivy-green border border-ivy-green/20">
+            <ShieldCheck class="w-4 h-4" />
+            <span>Landmark Milestone · November 2024</span>
+          </div>
+
+          <h2 class="font-serif font-bold text-2xl sm:text-3xl lg:text-4xl text-deep-ink leading-tight">
+            Permanent Ownership Secured by the Grace Dieu Priory Trust
+          </h2>
+
+          <p class="text-deep-ink-muted text-base leading-relaxed m-0">
+            After two years of detailed negotiations with private landowners, our parent organisation, <strong>The Grace Dieu Priory Trust</strong>, purchased the freehold title to the ruins and Rusty Mary’s field. Having previously looked after the ancient monument as tenants, freehold ownership secures its preservation for generations to come, unlocking opportunities for scheduled archaeological excavations and a permanent footbridge.
+          </p>
+
+          <div class="pt-2 flex flex-wrap items-center gap-4">
+            <Button variant="outline" size="sm" href="/news/freehold-purchase-bbc">
+              Read the BBC News Report
+              <ExternalLink class="w-3.5 h-3.5 ml-1" slot="icon-right" />
+            </Button>
+            <span class="text-xs text-deep-ink-light">
+              Coverage originally broadcast by BBC East Midlands
+            </span>
+          </div>
+        </div>
+
+        {/* Thumbnail Preview */}
+        <div class="lg:col-span-4 flex justify-center">
+          <div class="relative rounded-xl overflow-hidden border border-weathered-stone shadow-md max-w-xs group">
+            <picture>
+              <source srcset="/images/2024 BBC - Priory Sold.avif" type="image/avif" />
+              <source srcset="/images/2024 BBC - Priory Sold.webp" type="image/webp" />
+              <img
+                src="/images/2024 BBC - Priory Sold.webp"
+                alt="BBC News headline announcing Grace Dieu Priory sold to charitable trust"
+                width="690"
+                height="360"
+                class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* 6. VOLUNTEER RECRUITMENT PANEL */}
+    <section class="rounded-2xl bg-ivy-green text-parchment-light p-8 sm:p-12 lg:p-14 border border-candle-gold/40 shadow-xl relative overflow-hidden">
+      {/* Decorative Arch Tracery in Background */}
+      <div class="absolute -right-12 -bottom-12 w-64 h-64 text-white/5 pointer-events-none select-none" aria-hidden="true">
+        <svg viewBox="0 0 36 44" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+          <path d="M4 42V20C4 10 18 2 18 2C18 2 32 10 32 20V42" stroke="currentColor" stroke-width="2.5" />
+          <path d="M9 42V22C9 14 18 8 18 8C18 8 27 14 27 22V42" stroke="currentColor" stroke-width="1.75" />
+          <path d="M18 8V28" stroke="currentColor" stroke-width="1.5" />
+        </svg>
+      </div>
+
+      <div class="relative z-10 max-w-3xl space-y-6">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-semibold uppercase tracking-wider bg-candle-gold/20 text-candle-gold border border-candle-gold/30">
+          <Heart class="w-3.5 h-3.5" />
+          Community Volunteer Appeal
+        </span>
+
+        <h2 class="font-serif font-bold text-3xl sm:text-4xl lg:text-4.5xl text-white tracking-tight leading-tight">
+          A few hours a year keeps the Priory open.
+        </h2>
+
+        <p class="text-parchment/95 text-base sm:text-lg leading-relaxed font-sans m-0">
+          Whether you have office and secretarial skills, digital know-how, or can help raise a gazebo and steward parking during our summer fayre, we need your help.
+        </p>
+
+        <p class="text-sm text-parchment/80 leading-relaxed font-sans m-0">
+          The founding volunteer committee is aging and struggling to maintain the necessary activity levels. We are not locking the gates tomorrow, but without new volunteer blood, the future of this public sanctuary is at risk. You will be warmly welcomed!
+        </p>
+
+        <div class="flex flex-wrap items-center gap-4 pt-3">
+          <Button
+            variant="primary"
+            size="lg"
+            href="/get-involved"
+            class="bg-candle-gold hover:bg-candle-gold-dark text-deep-ink border-candle-gold font-bold shadow-md"
+          >
+            <Heart class="w-5 h-5 fill-current text-deep-ink" slot="icon-left" />
+            <span>Become a Friend</span>
+          </Button>
+
+          <Button
+            variant="outline"
+            size="lg"
+            href="/contact?inquiry=volunteering"
+            class="text-white border-white/80 hover:bg-white hover:text-deep-ink font-semibold"
+          >
+            <span>Speak to Our Volunteer Team</span>
+          </Button>
+        </div>
+      </div>
+    </section>
+
+    {/* 7. PRIVACY-FRIENDLY VIDEO EMBED (Richard Taylor Drone Aerial Flight) */}
+    <section class="space-y-6">
+      <SectionHeading
+        tag="h2"
+        eyebrow="Aerial Perspective"
+        title="View Grace Dieu Priory from Above"
+        subtitle="Experience the full sweep of the cloister garth, Tudor kitchen ruins, and Charnwood woodlands through aerial videography kindly provided by Richard Taylor."
+      />
+
+      <Card padding="none" class="overflow-hidden border-2 border-weathered-stone shadow-xl">
+        {/* Facade Container */}
+        <div
+          id="video-facade-container"
+          class="relative w-full aspect-video bg-deep-ink cursor-pointer group select-none"
+          data-video-id="G1_f6ZzcZ2k"
+          role="region"
+          aria-label="Aerial video player"
+        >
+          {/* Static High-Res Video Poster Image */}
+          <img
+            src="/images/dji_fly_20261017_121424_0089_1792305669278_photo.jpg"
+            alt="Aerial view of Grace Dieu Priory ruins"
+            class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500 opacity-80"
+            loading="lazy"
+          />
+
+          {/* Vignette Overlay */}
+          <div class="absolute inset-0 bg-gradient-to-t from-deep-ink/90 via-deep-ink/30 to-deep-ink/50 group-hover:opacity-75 transition-opacity"></div>
+
+          {/* Central Play Button */}
+          <div class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
+            <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-candle-gold/90 group-hover:bg-candle-gold group-hover:scale-110 flex items-center justify-center text-deep-ink shadow-2xl transition-all duration-300 mb-4 border-2 border-white/40">
+              <Play class="w-7 h-7 sm:w-9 sm:h-9 fill-current ml-1" />
+            </div>
+
+            <div class="font-serif font-bold text-xl sm:text-2xl text-white drop-shadow-md">
+              Grace Dieu Priory: Aerial Flight
+            </div>
+
+            <div class="text-xs sm:text-sm text-parchment/90 mt-1 max-w-md">
+              Aerial videography kindly provided by Richard Taylor
+            </div>
+
+            {/* Privacy Badge */}
+            <div class="mt-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-black/60 text-candle-gold-light border border-white/20 backdrop-blur-md">
+              <ShieldCheck class="w-3.5 h-3.5 text-candle-gold" />
+              <span>Click to load video · Privacy-enhanced (no tracking cookies before play)</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Caption Bar Below Video */}
+        <div class="p-4 sm:p-5 bg-card-surface border-t border-weathered-stone/80 flex flex-wrap items-center justify-between gap-3 text-xs sm:text-sm text-deep-ink-muted">
+          <div>
+            <strong>Drone Footage:</strong> High-definition flight over the Augustinian ruins, Charnwood Forest canopy, and Grace Dieu brook.
+          </div>
+          <a
+            href="https://youtu.be/G1_f6ZzcZ2k"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="font-semibold text-heritage-burgundy hover:underline inline-flex items-center gap-1 no-underline shrink-0"
+          >
+            <span>Watch directly on YouTube</span>
+            <ExternalLink class="w-3.5 h-3.5" />
+          </a>
+        </div>
+      </Card>
+    </section>
+  </div>
+</BaseLayout>
+
+{/* Privacy-Friendly Click-to-Load Script */}
+<script>
+  function setupVideoFacade() {
+    const container = document.getElementById('video-facade-container');
+    if (!container) return;
+
+    container.addEventListener('click', () => {
+      const videoId = container.dataset.videoId;
+      if (!videoId) return;
+
+      // Replace facade with privacy-enhanced YouTube iframe
+      container.innerHTML = `
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1"
+          title="Grace Dieu Priory Aerial Flight by Richard Taylor"
+          class="w-full h-full border-0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      `;
+      container.classList.remove('cursor-pointer');
+    });
+  }
+
+  setupVideoFacade();
+  document.addEventListener('astro:page-load', setupVideoFacade);
+</script>

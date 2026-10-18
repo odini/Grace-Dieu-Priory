@@ -1,0 +1,304 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
+import Card from '../components/ui/Card.astro';
+import Button from '../components/ui/Button.astro';
+import ContactCard from '../components/ui/ContactCard.astro';
+import {
+  ShieldCheck,
+  Heart,
+  Users,
+  Building,
+  Sparkles,
+  ExternalLink,
+  Award,
+  Calendar,
+  CheckCircle2,
+  Layers,
+  ArrowRight,
+  HandHeart,
+  Globe,
+} from 'lucide-astro';
+---
+
+<BaseLayout
+  title="About the Charity & Trust Governance | Grace Dieu Priory"
+  description="Learn about the governance of Grace Dieu Priory: The Grace Dieu Priory Trust (site owners) and The Friends of Grace Dieu Priory (Registered Charity 1117921), plus our Charnwood Geopark partnership."
+>
+  {/* Page Hero Header */}
+  <section class="bg-ivy-green-dark text-parchment-light py-16 sm:py-20 border-b border-weathered-stone/60 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-20">
+      <img
+        src="/images/header.jpg"
+        alt="Stone ruins of Grace Dieu Priory surrounded by green woodland"
+        class="w-full h-full object-cover"
+      />
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-candle-gold/20 text-candle-gold border border-candle-gold/40 mb-4 backdrop-blur-xs">
+        <ShieldCheck class="w-3.5 h-3.5 text-candle-gold" />
+        <span>Charity Governance & Custodianship</span>
+      </span>
+
+      <h1 class="font-serif font-bold text-4xl sm:text-5xl lg:text-6xl text-white tracking-tight leading-tight max-w-3xl mb-4">
+        About the Charity & Trust
+      </h1>
+
+      <p class="text-lg sm:text-xl text-parchment/90 max-w-2xl leading-relaxed font-normal">
+        Preserved entirely through voluntary devotion. Discover how two dedicated complementary bodies safeguard the monument’s physical fabric and welcome the community.
+      </p>
+    </div>
+  </section>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 space-y-20">
+    {/* Section 1: Governance Breakdown (The Trust vs The Friends) */}
+    <section class="space-y-8">
+      <SectionHeading
+        tag="h2"
+        eyebrow="Structure Explained"
+        title="Understanding Our Dual Entity Governance"
+        subtitle="To ensure legal integrity and long-term conservation, the management of Grace Dieu Priory is divided into two distinct, cooperative bodies."
+      />
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+        {/* Entity 1: The Grace Dieu Priory Trust */}
+        <Card padding="lg" borderAccent="gold" class="flex flex-col justify-between h-full bg-card-surface border-2 border-weathered-stone shadow-md">
+          <div class="space-y-5">
+            <div class="flex items-center justify-between gap-2">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-bold uppercase tracking-wider bg-candle-gold/15 text-[#735412] border border-candle-gold/30">
+                <Building class="w-3.5 h-3.5" />
+                Property Holding Body
+              </span>
+              <span class="text-xs text-deep-ink-muted font-mono">Formed 1995</span>
+            </div>
+
+            <div>
+              <h3 class="font-serif font-bold text-2xl sm:text-3xl text-deep-ink mb-1">
+                The Grace Dieu Priory Trust
+              </h3>
+              <p class="text-xs font-semibold text-candle-gold-dark uppercase tracking-wider">
+                Site Owners & Conservation Custodians
+              </p>
+            </div>
+
+            <p class="text-sm text-deep-ink leading-relaxed">
+              Formed in 1995 to rescue the collapsing, ivy-strangled masonry, the Trust is a registered charitable trust company that holds the legal freehold property title to the priory monument and Rusty Mary’s field.
+            </p>
+
+            <div class="space-y-2.5 text-xs sm:text-sm text-deep-ink-muted pt-2 border-t border-weathered-stone/60">
+              <strong class="text-deep-ink block font-sans">Core Responsibilities:</strong>
+              <ul class="space-y-2 list-none p-0 m-0">
+                <li class="flex items-start gap-2">
+                  <CheckCircle2 class="w-4 h-4 text-candle-gold-dark shrink-0 mt-0.5" />
+                  <span>Holds the permanent freehold ownership of the site (purchased in Nov 2024).</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <CheckCircle2 class="w-4 h-4 text-candle-gold-dark shrink-0 mt-0.5" />
+                  <span>Oversees major capital conservation, structural masonry stabilization, and statutory consents.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <CheckCircle2 class="w-4 h-4 text-candle-gold-dark shrink-0 mt-0.5" />
+                  <span>Manages future capital developments, including the planned pedestrian footbridge.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <CheckCircle2 class="w-4 h-4 text-candle-gold-dark shrink-0 mt-0.5" />
+                  <span>Enforces site protection bylaws, including the strict ban on paranormal investigations.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="pt-6 border-t border-weathered-stone/60 text-xs text-deep-ink-muted">
+            <em>Governed by volunteer trustees including local historians and chartered professionals.</em>
+          </div>
+        </Card>
+
+        {/* Entity 2: The Friends of Grace Dieu Priory */}
+        <Card padding="lg" borderAccent="ivy" class="flex flex-col justify-between h-full bg-card-surface border-2 border-weathered-stone shadow-md">
+          <div class="space-y-5">
+            <div class="flex items-center justify-between gap-2">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-bold uppercase tracking-wider bg-ivy-green/10 text-ivy-green border border-ivy-green/20">
+                <Heart class="w-3.5 h-3.5" />
+                Operational Charity
+              </span>
+              <span class="text-xs text-deep-ink-muted font-mono">Formed 2006</span>
+            </div>
+
+            <div>
+              <h3 class="font-serif font-bold text-2xl sm:text-3xl text-deep-ink mb-1">
+                The Friends of Grace Dieu Priory
+              </h3>
+              <p class="text-xs font-semibold text-ivy-green uppercase tracking-wider">
+                Registered Charity No. 1117921
+              </p>
+            </div>
+
+            <p class="text-sm text-deep-ink leading-relaxed">
+              Established when the restored ruins officially opened to the public in 2006, the Friends are the active community association responsible for running day-to-day operations and community engagement.
+            </p>
+
+            <div class="space-y-2.5 text-xs sm:text-sm text-deep-ink-muted pt-2 border-t border-weathered-stone/60">
+              <strong class="text-deep-ink block font-sans">Core Responsibilities:</strong>
+              <ul class="space-y-2 list-none p-0 m-0">
+                <li class="flex items-start gap-2">
+                  <CheckCircle2 class="w-4 h-4 text-ivy-green shrink-0 mt-0.5" />
+                  <span>Keeps the ruins open to the public free of charge 365 days a year from dawn to dusk.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <CheckCircle2 class="w-4 h-4 text-ivy-green shrink-0 mt-0.5" />
+                  <span>Organizes volunteer working parties for grounds maintenance, litter clearance, and path care.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <CheckCircle2 class="w-4 h-4 text-ivy-green shrink-0 mt-0.5" />
+                  <span>Delivers public events, including the Medieval Fayre, Carols in the Cloisters, and guided walks.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <CheckCircle2 class="w-4 h-4 text-ivy-green shrink-0 mt-0.5" />
+                  <span>Provides tailored school visits and educational tours with local historians.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="pt-6 border-t border-weathered-stone/60 text-xs text-deep-ink-muted">
+            <em>Funded 100% by member subscriptions, publication sales, and community donations. No statutory funding.</em>
+          </div>
+        </Card>
+      </div>
+    </section>
+
+    {/* Section 2: Charnwood Forest Geopark Partnership Profile */}
+    <section class="rounded-2xl border-2 border-weathered-stone bg-card-surface overflow-hidden shadow-stone">
+      <div class="grid grid-cols-1 lg:grid-cols-12">
+        {/* Content (7 cols) */}
+        <div class="lg:col-span-7 p-6 sm:p-10 lg:p-12 space-y-6 flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-candle-gold/20 text-[#735412] border border-candle-gold/30">
+              <Globe class="w-3.5 h-3.5" />
+              <span>International Heritage Alliance</span>
+            </div>
+
+            <h2 class="font-serif font-bold text-3xl sm:text-4xl text-deep-ink leading-tight">
+              Official Partners of Charnwood Forest Geopark
+            </h2>
+
+            <p class="text-deep-ink leading-relaxed text-sm sm:text-base">
+              The Friends of Grace Dieu Priory are proud official partners of the <strong>Charnwood Forest Geopark</strong>, an ambitious regional initiative celebrating the ancient Precambrian geology, unique wildlife, and rich cultural heritage of Leicestershire as it strives toward prestigious <strong>UNESCO Global Geopark</strong> designation.
+            </p>
+
+            <p class="text-deep-ink-muted leading-relaxed text-sm">
+              The Geopark team and their volunteer working parties have provided vital hands-on support to Grace Dieu over recent years—assisting with path clearances, maintaining woodland biodiversity, and helping expose our intact 800-year-old medieval priory boundary wall during joint working sessions.
+            </p>
+          </div>
+
+          <div class="pt-4 border-t border-weathered-stone/70 flex flex-wrap items-center gap-4">
+            <Button
+              variant="outline"
+              size="sm"
+              href="https://www.charnwoodforest.org/meet-the-geopartner-network/"
+              target="_blank"
+              class="font-semibold text-xs sm:text-sm"
+            >
+              <span>Explore the Charnwood Geopartner Network</span>
+              <ExternalLink class="w-3.5 h-3.5 ml-1" slot="icon-right" />
+            </Button>
+            <span class="text-xs text-deep-ink-muted">
+              Working towards UNESCO Global Geopark status
+            </span>
+          </div>
+        </div>
+
+        {/* Certificate Presentation Image (5 cols) */}
+        <div class="lg:col-span-5 bg-parchment-light relative min-h-[300px] lg:min-h-full border-t lg:border-t-0 lg:border-l border-weathered-stone/80 overflow-hidden">
+          <img
+            src="/images/Geopark presentation 2025-02-19.jpg"
+            alt="Presentation of official Geopark partner certificate to the Friends of Grace Dieu Priory on 19 February 2025"
+            class="w-full h-full object-cover"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-deep-ink/80 via-transparent to-transparent flex flex-col justify-end p-6 text-white">
+            <span class="text-xs uppercase font-mono tracking-widest text-candle-gold">19 February 2025</span>
+            <div class="font-serif font-bold text-lg">Official Partnership Presentation</div>
+            <p class="text-xs text-parchment/80 m-0">FOGDP trustees formally receiving official Geopark partner recognition.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* Section 3: 20-Year Milestone Retrospective */}
+    <section class="rounded-2xl bg-gradient-to-br from-ivy-green via-ivy-green to-ivy-green-dark text-parchment-light p-8 sm:p-12 border border-candle-gold/40 shadow-xl space-y-6">
+      <div class="max-w-3xl space-y-3">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-semibold uppercase tracking-wider bg-candle-gold/20 text-candle-gold border border-candle-gold/30">
+          <Award class="w-3.5 h-3.5" />
+          Anniversary Milestone · 2006–2026
+        </span>
+        <h2 class="font-serif font-bold text-3xl sm:text-4xl text-white tracking-tight">
+          Celebrating 20 Years of Open Public Access
+        </h2>
+        <p class="text-parchment/90 text-base sm:text-lg leading-relaxed font-sans m-0">
+          When the conserved priory was formally opened to the public in 2006, few imagined how vibrant this volunteer sanctuary would become. Over two decades, our small group has hosted tens of thousands of school children, families, living history reenactors, and local walkers.
+        </p>
+        <p class="text-sm text-parchment/80 leading-relaxed font-sans m-0">
+          Every penny raised from our book sales and membership dues goes directly into the stonework and grounds. No paid staff, no corporate bureaucracy—just neighbors keeping history alive.
+        </p>
+      </div>
+    </section>
+
+    {/* Section 4: Trustees & Committee Directory */}
+    <section class="space-y-8">
+      <SectionHeading
+        tag="h2"
+        eyebrow="Leadership"
+        title="Key Officers & Committee"
+        subtitle="Meet the volunteer officers who manage charity operations, school bookings, publications, and grounds maintenance."
+      />
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <ContactCard
+          role="Treasurer & School Tours"
+          name="Malcolm Allsop"
+          description="Oversees charity finances, accounts, and manages school visit bookings and educational tour presentations."
+          phone="01530 833 632"
+          email="mjandfmallsop4346@sky.com"
+          inquiryType="schools"
+          featured={true}
+        />
+
+        <ContactCard
+          role="Publications Officer"
+          name="Ann Petty"
+          description="Handles mail order book sales, author liaisons, and sole distribution of the 1414 Account Book and guides."
+          phone="01530 831895"
+          email="annpetty1948@yahoo.co.uk"
+          inquiryType="shop"
+        />
+
+        <ContactCard
+          role="Events & Volunteering"
+          name="David Whitt [CONFIRM]"
+          description="Coordinates event marshals, car park logistics, re-enactment groups, and prospective volunteer inquiries."
+          email="events@gracedieupriory.org.uk"
+          inquiryType="volunteering"
+        />
+      </div>
+    </section>
+
+    {/* Section 5: Call to Action */}
+    <section class="rounded-2xl bg-parchment-light border-2 border-weathered-stone p-8 sm:p-10 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
+      <div class="space-y-2">
+        <div class="font-serif font-bold text-2xl text-deep-ink">
+          Become a Friend of Grace Dieu Priory
+        </div>
+        <p class="text-sm text-deep-ink-muted max-w-xl m-0 leading-relaxed">
+          Support our work with an annual subscription. Receive priority updates, attend our AGM, and help safeguard Leicestershire’s finest Augustinian ruin.
+        </p>
+      </div>
+
+      <Button variant="primary" size="lg" href="/get-involved" class="shrink-0 font-bold">
+        <Heart class="w-4 h-4" slot="icon-left" />
+        <span>Join the Charity Today</span>
+      </Button>
+    </section>
+  </div>
+</BaseLayout>

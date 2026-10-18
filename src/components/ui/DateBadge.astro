@@ -1,0 +1,102 @@
+---
+interface Props {
+  date: Date | string;
+  size?: 'sm' | 'md' | 'lg';
+  variant?: 'ivy' | 'burgundy' | 'gold';
+  showYear?: boolean;
+  showWeekday?: boolean;
+  class?: string;
+}
+
+const {
+  date,
+  size = 'md',
+  variant = 'ivy',
+  showYear = false,
+  showWeekday = false,
+  class: className = '',
+} = Astro.props;
+
+const dateObj = typeof date === 'string' ? new Date(date) : date;
+
+// Safe date formatting helpers
+const monthName = dateObj.toLocaleDateString('en-GB', { month: 'short' }).toUpperCase();
+const dayNum = dateObj.toLocaleDateString('en-GB', { day: 'numeric' });
+const yearNum = dateObj.toLocaleDateString('en-GB', { year: 'numeric' });
+const weekdayName = dateObj.toLocaleDateString('en-GB', { weekday: 'short' });
+
+// Sizing metrics
+const sizeConfig = {
+  sm: {
+    container: 'w-12 min-w-[48px]',
+    header: 'text-[10px] py-0.5',
+    day: 'text-lg font-serif py-1',
+    footer: 'text-[9px] py-0.5',
+  },
+  md: {
+    container: 'w-16 min-w-[64px]',
+    header: 'text-xs py-1',
+    day: 'text-2xl font-serif py-1.5',
+    footer: 'text-[10px] py-0.5',
+  },
+  lg: {
+    container: 'w-20 min-w-[80px]',
+    header: 'text-sm py-1.5 tracking-wider',
+    day: 'text-3xl font-serif py-2',
+    footer: 'text-xs py-1',
+  },
+}[size];
+
+// Header color themes matching heritage specifications
+const variantConfig = {
+  ivy: {
+    headerBg: 'bg-ivy-green text-parchment-light',
+    border: 'border-ivy-green/40',
+  },
+  burgundy: {
+    headerBg: 'bg-heritage-burgundy text-white',
+    border: 'border-heritage-burgundy/40',
+  },
+  gold: {
+    headerBg: 'bg-candle-gold text-deep-ink font-bold',
+    border: 'border-candle-gold/50',
+  },
+}[variant];
+---
+
+<div
+  class={`inline-flex flex-col items-center justify-center overflow-hidden rounded-lg border bg-card-surface shadow-xs text-center select-none ${variantConfig.border} ${sizeConfig.container} ${className}`}
+  datetime={dateObj.toISOString()}
+>
+  {/* Weekday badge (optional) */}
+  {
+    showWeekday && (
+      <span class="w-full bg-weathered-stone/40 text-[10px] uppercase font-semibold text-deep-ink-muted py-0.5">
+        {weekdayName}
+      </span>
+    )
+  }
+
+  {/* Month Header Banner */}
+  <span
+    class={`w-full font-sans font-bold uppercase tracking-wider text-center leading-none ${variantConfig.headerBg} ${sizeConfig.header}`}
+  >
+    {monthName}
+  </span>
+
+  {/* Big Day Number */}
+  <span class={`font-bold text-deep-ink leading-none ${sizeConfig.day}`}>
+    {dayNum}
+  </span>
+
+  {/* Year Footer (optional) */}
+  {
+    showYear && (
+      <span
+        class={`w-full border-t border-weathered-stone/50 bg-parchment-light text-deep-ink-muted font-medium ${sizeConfig.footer}`}
+      >
+        {yearNum}
+      </span>
+    )
+  }
+</div>

@@ -1,0 +1,155 @@
+---
+import { User, Phone, Mail, ShieldCheck, ArrowRight, Copy } from 'lucide-astro';
+import Card from './Card.astro';
+import Button from './Button.astro';
+
+interface Props {
+  role: string;
+  name: string;
+  description?: string;
+  email?: string;
+  phone?: string;
+  inquiryType?: string;
+  featured?: boolean;
+  class?: string;
+}
+
+const {
+  role,
+  name,
+  description,
+  email,
+  phone,
+  inquiryType = 'general',
+  featured = false,
+  class: className = '',
+} = Astro.props;
+
+// Basic obfuscation: encode email address into parts for client-side rendering
+const emailParts = email ? email.split('@') : null;
+const emailUser = emailParts ? emailParts[0] : '';
+const emailDomain = emailParts ? emailParts[1] : '';
+---
+
+<Card
+  padding="md"
+  borderAccent={featured ? 'ivy' : 'none'}
+  class={`relative flex flex-col justify-between h-full ${className}`}
+>
+  <div>
+    {/* Role Header Badge */}
+    <div class="flex items-center justify-between gap-2 mb-3">
+      <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-semibold tracking-wider uppercase bg-ivy-green/10 text-ivy-green border border-ivy-green/20">
+        <ShieldCheck class="w-3.5 h-3.5 text-ivy-green" />
+        {role}
+      </span>
+      {featured && (
+        <span class="text-xs font-medium text-candle-gold-dark font-sans uppercase tracking-widest">
+          Lead Officer
+        </span>
+      )}
+    </div>
+
+    {/* Officer Name */}
+    <h3 class="font-serif font-bold text-xl sm:text-2xl text-deep-ink mb-2">
+      {name}
+    </h3>
+
+    {/* Description of responsibilities */}
+    {
+      description && (
+        <p class="text-sm sm:text-base text-deep-ink-muted leading-relaxed mb-6 font-normal">
+          {description}
+        </p>
+      )
+    }
+  </div>
+
+  {/* Contact Information & Action Channels */}
+  <div class="pt-4 border-t border-weathered-stone/60 space-y-3 mt-auto">
+    {/* Telephone direct link (if available) */}
+    {
+      phone && (
+        <div class="flex items-center justify-between text-sm">
+          <span class="text-deep-ink-muted flex items-center gap-2">
+            <Phone class="w-4 h-4 text-heritage-burgundy" />
+            Telephone:
+          </span>
+          <a
+            href={`tel:${phone.replace(/\s+/g, '')}`}
+            class="font-semibold text-deep-ink hover:text-heritage-burgundy transition-colors no-underline"
+          >
+            {phone}
+          </a>
+        </div>
+      )
+    }
+
+    {/* Protected Email Channel */}
+    {
+      email && (
+        <div
+          class="protected-email-container flex items-center justify-between text-sm"
+          data-user={emailUser}
+          data-domain={emailDomain}
+        >
+          <span class="text-deep-ink-muted flex items-center gap-2">
+            <Mail class="w-4 h-4 text-ivy-green" />
+            Direct Email:
+          </span>
+          <button
+            type="button"
+            class="reveal-email-btn text-xs font-semibold px-2.5 py-1 rounded border border-weathered-stone/80 bg-parchment-light hover:bg-parchment text-deep-ink hover:text-heritage-burgundy cursor-pointer transition-colors"
+            title="Click to reveal email or send message"
+          >
+            Click to Reveal
+          </button>
+        </div>
+      )
+    }
+
+    {/* General Inquiry Fallback */}
+    <div class="pt-2">
+      <Button
+        variant="ghost"
+        size="sm"
+        href={`/contact?inquiry=${encodeURIComponent(inquiryType)}`}
+        fullWidth
+        class="text-xs sm:text-sm font-semibold justify-between border-weathered-stone/50 hover:bg-parchment"
+      >
+        <span>Send Inquiry via Secure Form</span>
+        <ArrowRight class="w-3.5 h-3.5 ml-1 text-heritage-burgundy" slot="icon-right" />
+      </Button>
+    </div>
+  </div>
+</Card>
+
+<script>
+  // Obfuscated email handler: prevents harvester scraping while allowing easy human contact
+  function initEmailProtection() {
+    document.querySelectorAll<HTMLElement>('.protected-email-container').forEach((container) => {
+      const btn = container.querySelector<HTMLButtonElement>('.reveal-email-btn');
+      if (!btn) return;
+
+      btn.addEventListener('click', () => {
+        const user = container.dataset.user;
+        const domain = container.dataset.domain;
+        if (user && domain) {
+          const email = `${user}@${domain}`;
+          container.innerHTML = `
+            <span class="text-deep-ink-muted flex items-center gap-2 text-sm">
+              <svg class="w-4 h-4 text-ivy-green" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              Direct Email:
+            </span>
+            <a href="mailto:${email}" class="font-semibold text-xs sm:text-sm text-heritage-burgundy hover:underline truncate max-w-[200px]" title="Send email to ${email}">
+              ${email}
+            </a>
+          `;
+        }
+      });
+    });
+  }
+
+  initEmailProtection();
+  document.addEventListener('astro:page-load', initEmailProtection);
+</script>

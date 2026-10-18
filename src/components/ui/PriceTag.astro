@@ -1,0 +1,119 @@
+---
+import { Truck, Check, AlertCircle } from 'lucide-astro';
+
+interface Props {
+  price: number;
+  originalPrice?: number;
+  postage?: number;
+  postageLabel?: string;
+  size?: 'sm' | 'md' | 'lg';
+  stockStatus?: 'in_stock' | 'low_stock' | 'out_of_stock' | 'confirm_status';
+  class?: string;
+}
+
+const {
+  price,
+  originalPrice,
+  postage,
+  postageLabel,
+  size = 'md',
+  stockStatus,
+  class: className = '',
+} = Astro.props;
+
+// Formatting currency in British Pounds (GBP)
+const formatPrice = (val: number) => `£${val.toFixed(2)}`;
+
+const sizeConfig = {
+  sm: {
+    container: 'gap-2',
+    priceText: 'text-xl',
+    currencySymbol: 'text-sm',
+    badgeText: 'text-xs px-2 py-0.5',
+    strikethrough: 'text-xs',
+  },
+  md: {
+    container: 'gap-2.5',
+    priceText: 'text-2xl sm:text-3xl',
+    currencySymbol: 'text-lg',
+    badgeText: 'text-xs px-2.5 py-1',
+    strikethrough: 'text-sm',
+  },
+  lg: {
+    container: 'gap-3',
+    priceText: 'text-3xl sm:text-4xl',
+    currencySymbol: 'text-xl',
+    badgeText: 'text-sm px-3 py-1',
+    strikethrough: 'text-base',
+  },
+}[size];
+
+// Calculated P&P badge text
+const computedPostageText =
+  postageLabel ||
+  (postage !== undefined
+    ? postage === 0
+      ? 'Free P&P'
+      : `+ ${formatPrice(postage)} P&P`
+    : undefined);
+
+// Stock badge display
+const stockConfig = {
+  in_stock: { text: 'In Stock', class: 'text-ivy-green bg-ivy-green/10 border-ivy-green/20' },
+  low_stock: { text: 'Limited Stock', class: 'text-[#8C6B1C] bg-candle-gold/15 border-candle-gold/30' },
+  out_of_stock: { text: 'Out of Stock', class: 'text-heritage-burgundy bg-heritage-burgundy/10 border-heritage-burgundy/20' },
+  confirm_status: { text: 'Confirm Availability', class: 'text-deep-ink-muted bg-weathered-stone/40 border-weathered-stone' },
+};
+---
+
+<div class={`inline-flex flex-col items-start ${className}`}>
+  {/* Main Price Line */}
+  <div class={`flex items-baseline flex-wrap ${sizeConfig.container}`}>
+    <div class="flex items-baseline font-serif font-bold text-deep-ink">
+      <span class={`font-sans font-medium text-candle-gold-dark mr-0.5 ${sizeConfig.currencySymbol}`}>
+        £
+      </span>
+      <span class={sizeConfig.priceText}>
+        {price.toFixed(2).replace('£', '')}
+      </span>
+    </div>
+
+    {/* Original Price Strikethrough if reduced */}
+    {
+      originalPrice && originalPrice > price && (
+        <span
+          class={`line-through text-deep-ink-light font-medium font-sans ${sizeConfig.strikethrough}`}
+          title={`Originally ${formatPrice(originalPrice)}`}
+        >
+          {formatPrice(originalPrice)}
+        </span>
+      )
+    }
+
+    {/* P&P Badge */}
+    {
+      computedPostageText && (
+        <span
+          class={`inline-flex items-center gap-1 font-sans font-semibold rounded-full border border-weathered-stone/80 bg-parchment-light text-deep-ink-muted ${sizeConfig.badgeText}`}
+        >
+          <Truck class="w-3.5 h-3.5 text-candle-gold-dark" />
+          <span>{computedPostageText}</span>
+        </span>
+      )
+    }
+  </div>
+
+  {/* Optional Stock Availability Status */}
+  {
+    stockStatus && (
+      <div class="mt-1.5 flex items-center gap-1.5">
+        <span
+          class={`inline-flex items-center gap-1 text-[11px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded border ${stockConfig[stockStatus].class}`}
+        >
+          <span class="w-1.5 h-1.5 rounded-full bg-current"></span>
+          {stockConfig[stockStatus].text}
+        </span>
+      </div>
+    )
+  }
+</div>

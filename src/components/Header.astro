@@ -1,0 +1,295 @@
+---
+import Button from './ui/Button.astro';
+import { Menu, X, Heart, Shield, ChevronRight } from 'lucide-astro';
+
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = Astro.url.pathname } = Astro.props;
+
+// Canonical navigation items - strictly adhering to the 9 authorized routes (NO ghostly links)
+const navLinks = [
+  { label: 'Visit', href: '/visit' },
+  { label: 'History', href: '/history' },
+  { label: 'Walks & Talks', href: '/walks-and-talks' },
+  { label: 'Events', href: '/events' },
+  { label: 'News', href: '/news' },
+  { label: 'Gallery', href: '/gallery' },
+  { label: 'Shop', href: '/shop' },
+  { label: 'Get Involved', href: '/get-involved' },
+  { label: 'About', href: '/about' },
+  { label: 'Contact', href: '/contact' },
+];
+
+const isActive = (href: string) => {
+  if (href === '/') return currentPath === '/';
+  return currentPath.startsWith(href);
+};
+---
+
+<header class="sticky top-0 z-40 bg-card-surface/95 backdrop-blur-md border-b border-weathered-stone/80 transition-shadow duration-200 shadow-xs">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20 gap-4">
+      {/* Brand Identity / Left: Vector Arch Mark + Wordmark */}
+      <a
+        href="/"
+        class="flex items-center gap-3 group no-underline text-deep-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-candle-gold rounded-lg p-1 -ml-1 transition-opacity hover:opacity-90"
+        aria-label="Grace Dieu Priory Home"
+      >
+        {/* Minimalist Vector Augustinian Arch Mark */}
+        <div class="w-9 h-11 shrink-0 text-ivy-green group-hover:text-ivy-green-hover transition-colors" aria-hidden="true">
+          <svg viewBox="0 0 36 44" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full drop-shadow-xs">
+            {/* Outer Gothic Pointed Arch */}
+            <path
+              d="M4 42V20C4 10 18 2 18 2C18 2 32 10 32 20V42"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            {/* Inner Sub-Arch & Tracery */}
+            <path
+              d="M9 42V22C9 14 18 8 18 8C18 8 27 14 27 22V42"
+              stroke="currentColor"
+              stroke-width="1.75"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              opacity="0.85"
+            />
+            {/* Center Lancet Mullion */}
+            <path d="M18 8V28" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+            <circle cx="18" cy="28" r="1.5" fill="currentColor" />
+            {/* Base Plinth Rule */}
+            <path d="M2 42H34" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          </svg>
+        </div>
+
+        {/* Wordmark */}
+        <div class="flex flex-col">
+          <span class="font-serif font-bold text-xl sm:text-2xl tracking-[0.06em] uppercase text-deep-ink leading-tight group-hover:text-ivy-green transition-colors">
+            Grace Dieu Priory
+          </span>
+          <span class="text-[10px] sm:text-[11px] font-sans font-semibold uppercase tracking-[0.16em] text-deep-ink-muted">
+            Augustinian Ruins · Charity 1117921
+          </span>
+        </div>
+      </a>
+
+      {/* Desktop Navigation (large screens) */}
+      <nav class="hidden xl:flex items-center gap-1 2xl:gap-2" aria-label="Main Navigation">
+        {
+          navLinks.map((item) => {
+            const active = isActive(item.href);
+            return (
+              <a
+                href={item.href}
+                class={`px-3 py-1.5 rounded-md text-sm font-semibold transition-all duration-150 no-underline whitespace-nowrap ${
+                  active
+                    ? 'text-ivy-green bg-ivy-green/10 border-b-2 border-ivy-green font-bold'
+                    : 'text-deep-ink hover:text-heritage-burgundy hover:bg-weathered-stone/30'
+                }`}
+                aria-current={active ? 'page' : undefined}
+              >
+                {item.label}
+              </a>
+            );
+          })
+        }
+      </nav>
+
+      {/* Primary CTA Button (Desktop) */}
+      <div class="hidden lg:flex items-center gap-3">
+        <Button
+          variant="primary"
+          size="sm"
+          href="/get-involved"
+          class="shadow-xs font-semibold px-4 py-2"
+        >
+          <Heart class="w-4 h-4 text-candle-gold-light fill-candle-gold/20" slot="icon-left" />
+          <span>Support Us</span>
+        </Button>
+      </div>
+
+      {/* Mobile Drawer Trigger (Tablet / Phone) */}
+      <div class="flex items-center gap-2 xl:hidden">
+        <Button
+          variant="primary"
+          size="sm"
+          href="/get-involved"
+          class="hidden sm:inline-flex text-xs px-3 py-1.5"
+        >
+          Support Us
+        </Button>
+
+        <button
+          type="button"
+          id="mobile-menu-trigger"
+          class="p-2.5 rounded-lg text-deep-ink hover:text-ivy-green hover:bg-weathered-stone/40 focus:outline-none focus:ring-2 focus:ring-candle-gold transition-colors cursor-pointer"
+          aria-expanded="false"
+          aria-controls="mobile-nav-drawer"
+          aria-label="Open Navigation Menu"
+        >
+          <Menu class="w-6 h-6" aria-hidden="true" />
+        </button>
+      </div>
+    </div>
+  </div>
+
+  {/* Mobile Navigation Drawer Modal */}
+  <div
+    id="mobile-nav-drawer"
+    class="fixed inset-0 z-50 invisible opacity-0 transition-all duration-300 pointer-events-none xl:hidden"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Site Navigation Menu"
+  >
+    {/* Darkened Backdrop Overlay */}
+    <div
+      id="drawer-backdrop"
+      class="fixed inset-0 bg-deep-ink/50 backdrop-blur-xs transition-opacity duration-300 opacity-0"
+      aria-hidden="true"
+    ></div>
+
+    {/* Off-canvas Drawer Panel */}
+    <div
+      id="drawer-panel"
+      class="fixed top-0 right-0 bottom-0 w-full max-w-sm bg-card-surface border-l border-weathered-stone shadow-2xl flex flex-col justify-between translate-x-full transition-transform duration-300 ease-out z-10 overflow-y-auto"
+    >
+      {/* Drawer Header */}
+      <div class="p-5 border-b border-weathered-stone/80 flex items-center justify-between bg-parchment-light/60">
+        <div class="flex items-center gap-2.5">
+          <div class="w-7 h-9 text-ivy-green">
+            <svg viewBox="0 0 36 44" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+              <path d="M4 42V20C4 10 18 2 18 2C18 2 32 10 32 20V42" stroke="currentColor" stroke-width="2.5" />
+              <path d="M9 42V22C9 14 18 8 18 8C18 8 27 14 27 22V42" stroke="currentColor" stroke-width="1.75" opacity="0.85" />
+              <path d="M18 8V28" stroke="currentColor" stroke-width="1.5" />
+            </svg>
+          </div>
+          <div>
+            <div class="font-serif font-bold text-lg text-deep-ink leading-none">Grace Dieu Priory</div>
+            <div class="text-[10px] uppercase tracking-widest text-deep-ink-muted font-sans font-semibold mt-1">Navigation</div>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          id="mobile-menu-close"
+          class="p-2 rounded-md text-deep-ink-muted hover:text-deep-ink hover:bg-weathered-stone/50 focus:outline-none focus:ring-2 focus:ring-candle-gold transition-colors cursor-pointer"
+          aria-label="Close Navigation Menu"
+        >
+          <X class="w-6 h-6" aria-hidden="true" />
+        </button>
+      </div>
+
+      {/* Drawer Nav Links List */}
+      <nav class="p-4 flex-1 space-y-1" aria-label="Mobile Navigation">
+        {
+          navLinks.map((item) => {
+            const active = isActive(item.href);
+            return (
+              <a
+                href={item.href}
+                class={`flex items-center justify-between px-4 py-3 rounded-lg text-base font-semibold transition-colors no-underline ${
+                  active
+                    ? 'bg-ivy-green/10 text-ivy-green font-bold border-l-4 border-l-ivy-green'
+                    : 'text-deep-ink hover:bg-weathered-stone/30 hover:text-heritage-burgundy'
+                }`}
+                aria-current={active ? 'page' : undefined}
+              >
+                <span>{item.label}</span>
+                <ChevronRight class={`w-4 h-4 ${active ? 'text-ivy-green' : 'text-weathered-stone'}`} />
+              </a>
+            );
+          })
+        }
+      </nav>
+
+      {/* Drawer Footer Actions */}
+      <div class="p-5 border-t border-weathered-stone/80 bg-parchment-light/60 space-y-4">
+        <Button
+          variant="primary"
+          size="md"
+          href="/get-involved"
+          fullWidth
+          class="shadow-sm font-semibold justify-center py-3"
+        >
+          <Heart class="w-4 h-4 text-candle-gold fill-candle-gold/20" slot="icon-left" />
+          <span>Support Us / Become a Friend</span>
+        </Button>
+
+        <div class="text-xs text-center text-deep-ink-muted leading-relaxed">
+          <p class="m-0 font-medium">Registered Charity No. 1117921</p>
+          <p class="m-0 text-[11px] text-deep-ink-light">Open daily dawn to dusk · Free admission</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  function setupMobileDrawer() {
+    const trigger = document.getElementById('mobile-menu-trigger');
+    const closeBtn = document.getElementById('mobile-menu-close');
+    const drawer = document.getElementById('mobile-nav-drawer');
+    const backdrop = document.getElementById('drawer-backdrop');
+    const panel = document.getElementById('drawer-panel');
+
+    if (!trigger || !closeBtn || !drawer || !backdrop || !panel) return;
+
+    let isOpen = false;
+
+    function openDrawer() {
+      isOpen = true;
+      trigger?.setAttribute('aria-expanded', 'true');
+      drawer?.classList.remove('invisible', 'pointer-events-none');
+      drawer?.classList.add('visible', 'pointer-events-auto');
+
+      setTimeout(() => {
+        backdrop?.classList.remove('opacity-0');
+        backdrop?.classList.add('opacity-100');
+        panel?.classList.remove('translate-x-full');
+        panel?.classList.add('translate-x-0');
+        closeBtn?.focus();
+      }, 10);
+
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDrawer() {
+      isOpen = false;
+      trigger?.setAttribute('aria-expanded', 'false');
+      backdrop?.classList.remove('opacity-100');
+      backdrop?.classList.add('opacity-0');
+      panel?.classList.remove('translate-x-0');
+      panel?.classList.add('translate-x-full');
+
+      setTimeout(() => {
+        drawer?.classList.remove('visible', 'pointer-events-auto');
+        drawer?.classList.add('invisible', 'pointer-events-none');
+        trigger?.focus();
+      }, 300);
+
+      document.body.style.overflow = '';
+    }
+
+    trigger.addEventListener('click', openDrawer);
+    closeBtn.addEventListener('click', closeDrawer);
+    backdrop.addEventListener('click', closeDrawer);
+
+    // Close on Escape key press
+    document.addEventListener('keydown', (e) => {
+      if (isOpen && e.key === 'Escape') {
+        closeDrawer();
+      }
+    });
+
+    // Close when navigating via drawer link
+    panel.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', closeDrawer);
+    });
+  }
+
+  setupMobileDrawer();
+  document.addEventListener('astro:page-load', setupMobileDrawer);
+</script>

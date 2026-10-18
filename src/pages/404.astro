@@ -1,0 +1,113 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/ui/Button.astro';
+import {
+  Compass,
+  ArrowLeft,
+  MapPin,
+  BookOpen,
+  Calendar,
+  Camera,
+  Mail,
+  Home,
+} from 'lucide-astro';
+---
+
+<BaseLayout
+  title="404: Lost in the Woodland | Grace Dieu Priory"
+  description="The requested page could not be found. Return to the cloisters of Grace Dieu Priory or explore our visitor routes."
+>
+  <section class="relative min-h-[75vh] flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-ivy-green-dark text-parchment-light border-b border-weathered-stone/60">
+    {/* Atmospheric Background Image */}
+    <div class="absolute inset-0 opacity-20 pointer-events-none">
+      <img
+        src="/images/header.jpg"
+        alt="Standing stone arches of Grace Dieu Priory at dusk"
+        class="w-full h-full object-cover"
+      />
+    </div>
+
+    {/* Content Card */}
+    <div class="relative z-10 max-w-2xl mx-auto text-center space-y-8">
+      {/* 404 Eyebrow */}
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-bold uppercase tracking-widest bg-candle-gold/20 text-candle-gold border border-candle-gold/40 backdrop-blur-xs">
+        <Compass class="w-4 h-4 text-candle-gold animate-spin-slow" />
+        <span>Error 404 · Pathway Not Found</span>
+      </div>
+
+      <div class="space-y-4">
+        <h1 class="font-serif font-bold text-4xl sm:text-6xl text-white tracking-tight leading-tight m-0">
+          Lost in the Woodland?
+        </h1>
+
+        <p class="text-base sm:text-xl text-parchment/90 leading-relaxed font-normal max-w-lg mx-auto">
+          The stone pathway you sought has vanished into eight centuries of history. Like parts of our medieval cloisters, some ancient routes no longer exist.
+        </p>
+      </div>
+
+      {/* Primary CTA Button */}
+      <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <Button
+          variant="primary"
+          size="lg"
+          href="/"
+          class="font-bold py-3.5 px-6 shadow-lg bg-candle-gold text-deep-ink hover:bg-candle-gold-light border-candle-gold"
+        >
+          <Home class="w-4 h-4 mr-1.5" slot="icon-left" />
+          <span>Back to the Cloisters</span>
+        </Button>
+
+        <Button
+          variant="outline"
+          size="lg"
+          href="/visit"
+          class="font-bold py-3.5 px-6 text-parchment-light border-parchment-light/40 hover:bg-white/10"
+        >
+          <MapPin class="w-4 h-4 mr-1.5" slot="icon-left" />
+          <span>Plan Your Visit</span>
+        </Button>
+      </div>
+
+      {/* Helpful Directory of Routes */}
+      <div class="pt-8 border-t border-white/15">
+        <div class="text-xs font-mono uppercase tracking-wider text-candle-gold mb-4">
+          Or follow one of these active paths:
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs sm:text-sm">
+          <a
+            href="/history"
+            class="p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-parchment transition-colors no-underline block space-y-1 group"
+          >
+            <BookOpen class="w-4 h-4 text-candle-gold mx-auto group-hover:scale-110 transition-transform" />
+            <span class="block font-semibold">Priory History</span>
+          </a>
+
+          <a
+            href="/walks-and-talks"
+            class="p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-parchment transition-colors no-underline block space-y-1 group"
+          >
+            <Compass class="w-4 h-4 text-candle-gold mx-auto group-hover:scale-110 transition-transform" />
+            <span class="block font-semibold">Walks & Talks</span>
+          </a>
+
+          <a
+            href="/gallery"
+            class="p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-parchment transition-colors no-underline block space-y-1 group"
+          >
+            <Camera class="w-4 h-4 text-candle-gold mx-auto group-hover:scale-110 transition-transform" />
+            <span class="block font-semibold">Photo Gallery</span>
+          </a>
+
+          <a
+            href="/contact"
+            class="p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-parchment transition-colors no-underline block space-y-1 group"
+          >
+            <Mail class="w-4 h-4 text-candle-gold mx-auto group-hover:scale-110 transition-transform" />
+            <span class="block font-semibold">Contact Us</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

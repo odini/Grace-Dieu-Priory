@@ -1,0 +1,426 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
+import Card from '../components/ui/Card.astro';
+import Button from '../components/ui/Button.astro';
+import {
+  Heart,
+  Users,
+  Tent,
+  Trees,
+  BookOpen,
+  Briefcase,
+  CheckCircle2,
+  Send,
+  Calendar,
+  Sparkles,
+  ShieldCheck,
+  Award,
+} from 'lucide-astro';
+
+const volunteerRoles = [
+  {
+    title: 'Event Marshals & Gazebo Setup',
+    icon: Tent,
+    tag: 'Hands-on Logistics',
+    variant: 'gold',
+    desc: 'Support our major flagship gatherings including the Summer Medieval Fayre and winter Carols in the Cloisters. Help erect heavy-duty gazebos, mark out trader pitches, direct pedestrian flow, and marshal vehicle parking in Rusty Mary’s field.',
+    commitment: '2–3 days per year during major events.',
+  },
+  {
+    title: 'Trail Maintenance & Conservation',
+    icon: Trees,
+    tag: 'Outdoor Green Team',
+    variant: 'ivy',
+    desc: 'Work in the open air keeping footpaths accessible, clearing encroaching brambles, and tidying stone precincts alongside our Charnwood Forest Geopark partners. Help maintain the woodland canopy and discover buried medieval wall fabric.',
+    commitment: 'Monthly Saturday morning working parties.',
+  },
+  {
+    title: 'Archival Research & Education',
+    icon: BookOpen,
+    tag: 'Heritage & History',
+    variant: 'burgundy',
+    desc: 'Passionate about local history? Help lead guided walking tours for visiting primary schools, local history societies, and rambling clubs. Assist in transcribing local lore and cataloguing historic relics from the Beaumont era.',
+    commitment: 'Flexible occasional weekday or weekend tours.',
+  },
+  {
+    title: 'Committee Governance & Administration',
+    icon: Briefcase,
+    tag: 'Office & Digital Skills',
+    variant: 'ivy',
+    desc: 'Help ensure the charity stays organized and resilient. We welcome individuals with office skills, secretarial experience, web/social media know-how, grant application writing, and accounting support to assist our Treasurer and trustees.',
+    commitment: 'A few hours per month from home or at meetings.',
+  },
+];
+---
+
+<BaseLayout
+  title="Volunteer & Become a Friend | Grace Dieu Priory"
+  description="Join the Friends of Grace Dieu Priory. Volunteer opportunities in event marshaling, trail maintenance, school tour guiding, and charity governance."
+>
+  {/* Page Hero Header */}
+  <section class="bg-ivy-green-dark text-parchment-light py-16 sm:py-20 border-b border-weathered-stone/60 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-20">
+      <img
+        src="/images/img5.jpg"
+        alt="Volunteers and reenactors gathered at Grace Dieu Priory"
+        class="w-full h-full object-cover"
+      />
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-candle-gold/20 text-candle-gold border border-candle-gold/40 mb-4 backdrop-blur-xs">
+        <Heart class="w-3.5 h-3.5 text-candle-gold" />
+        <span>Community Stewardship</span>
+      </span>
+
+      <h1 class="font-serif font-bold text-4xl sm:text-5xl lg:text-6xl text-white tracking-tight leading-tight max-w-3xl mb-4">
+        Volunteer & Get Involved
+      </h1>
+
+      <p class="text-lg sm:text-xl text-parchment/90 max-w-2xl leading-relaxed font-normal">
+        Grace Dieu Priory is 100% volunteer-saved and volunteer-run. Whether you can give a few hours a month or just one weekend a year, your contribution keeps the gates open for everyone.
+      </p>
+    </div>
+  </section>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 space-y-20">
+    {/* Section 1: The Belton Maypole Community Appeal */}
+    <section class="rounded-2xl border-2 border-weathered-stone bg-card-surface p-6 sm:p-10 lg:p-12 shadow-stone">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-8 space-y-4">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-heritage-burgundy/10 text-heritage-burgundy border border-heritage-burgundy/20">
+            <Users class="w-3.5 h-3.5" />
+            <span>Community Appeal · Belton Maypole Magazine</span>
+          </div>
+
+          <h2 class="font-serif font-bold text-2xl sm:text-3xl lg:text-4xl text-deep-ink leading-tight">
+            "A few hours a year keeps the Priory going."
+          </h2>
+
+          <div class="space-y-3 text-sm sm:text-base text-deep-ink leading-relaxed">
+            <p class="text-xs sm:text-sm text-heritage-burgundy font-semibold italic">
+              From the urgent volunteer callout published in the Belton Maypole community magazine:
+            </p>
+            <p class="m-0">
+              Between 1996 and 2006, our founding committee spent a decade removing dense ivy and consolidating collapsing stonework to open Grace Dieu to the public. In the twenty years since, we have hosted thousands of visitors with zero direct funding from statutory bodies.
+            </p>
+            <p class="m-0 text-deep-ink-muted">
+              <strong>The initial group is now aging and struggling to maintain the necessary level of activity.</strong> The Priory is financially sound, but unless we can recruit some fresh hands to help with events, trail maintenance, and office tasks, our ability to keep the site open and thriving will be compromised.
+            </p>
+            <p class="m-0 text-deep-ink-muted">
+              Whether you have office skills or a bit of muscle to help erect gazebos, you would be made very welcome in The Friends of Grace Dieu Priory.
+            </p>
+          </div>
+        </div>
+
+        <div class="lg:col-span-4 p-6 rounded-xl bg-parchment-light border border-weathered-stone/80 space-y-3 text-center sm:text-left">
+          <Award class="w-8 h-8 text-candle-gold-dark" />
+          <div class="font-serif font-bold text-xl text-deep-ink">Why Join the Friends?</div>
+          <ul class="space-y-2 text-xs sm:text-sm text-deep-ink-muted list-none p-0 m-0">
+            <li class="flex items-start gap-2">
+              <CheckCircle2 class="w-4 h-4 text-ivy-green shrink-0 mt-0.5" />
+              <span>Preserve 800 years of English monastic heritage.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <CheckCircle2 class="w-4 h-4 text-ivy-green shrink-0 mt-0.5" />
+              <span>Enjoy friendly, welcoming community events.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <CheckCircle2 class="w-4 h-4 text-ivy-green shrink-0 mt-0.5" />
+              <span>Full flexibility: contribute as little or as much as you like.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    {/* Section 2: Four Specific Role Categories */}
+    <section class="space-y-8">
+      <SectionHeading
+        tag="h2"
+        eyebrow="Opportunities"
+        title="Where We Need Your Support"
+        subtitle="Explore our four primary volunteer activity teams. No previous historical experience is required—training and camaraderie provided!"
+      />
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {
+          volunteerRoles.map((role) => {
+            const Icon = role.icon;
+            return (
+              <Card
+                padding="md"
+                borderAccent={role.variant as 'ivy' | 'burgundy' | 'gold'}
+                class="flex flex-col justify-between h-full bg-card-surface border-2 border-weathered-stone shadow-sm"
+              >
+                <div class="space-y-4">
+                  <div class="flex items-start justify-between gap-3">
+                    <div class="w-12 h-12 rounded-xl bg-parchment-light flex items-center justify-center text-ivy-green border border-weathered-stone/80">
+                      <Icon class="w-6 h-6 text-ivy-green" />
+                    </div>
+                    <span class="inline-block px-2.5 py-0.5 rounded text-xs font-semibold uppercase tracking-wider bg-weathered-stone/40 text-deep-ink-muted border border-weathered-stone">
+                      {role.tag}
+                    </span>
+                  </div>
+
+                  <div>
+                    <h3 class="font-serif font-bold text-2xl text-deep-ink mb-2">
+                      {role.title}
+                    </h3>
+                    <p class="text-sm text-deep-ink-muted leading-relaxed m-0">
+                      {role.desc}
+                    </p>
+                  </div>
+                </div>
+
+                <div class="pt-4 border-t border-weathered-stone/60 flex items-center justify-between text-xs text-deep-ink-muted mt-6">
+                  <span class="font-medium">Time Commitment:</span>
+                  <span class="font-bold text-ivy-green">{role.commitment}</span>
+                </div>
+              </Card>
+            );
+          })
+        }
+      </div>
+    </section>
+
+    {/* Section 3: Volunteer Intake Form */}
+    <section id="intake-form" class="scroll-mt-24 space-y-8">
+      <SectionHeading
+        tag="h2"
+        eyebrow="Register Interest"
+        title="Volunteer Intake & Interest Form"
+        subtitle="Select the areas that match your skills and schedule. Inquiries route directly to David Whitt and our volunteer coordinators."
+      />
+
+      <Card padding="lg" class="max-w-3xl mx-auto border-2 border-weathered-stone shadow-xl">
+        <form id="volunteer-form" class="space-y-6">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div class="space-y-1.5">
+              <label for="vol-name" class="block text-sm font-semibold text-deep-ink">
+                Full Name <span class="text-heritage-burgundy">*</span>
+              </label>
+              <input
+                type="text"
+                id="vol-name"
+                name="name"
+                required
+                placeholder="e.g. Jane Walker"
+                class="w-full px-4 py-2.5 rounded-lg border border-weathered-stone bg-white text-deep-ink text-sm focus:outline-none focus:ring-2 focus:ring-candle-gold"
+              />
+            </div>
+
+            <div class="space-y-1.5">
+              <label for="vol-email" class="block text-sm font-semibold text-deep-ink">
+                Email Address <span class="text-heritage-burgundy">*</span>
+              </label>
+              <input
+                type="email"
+                id="vol-email"
+                name="email"
+                required
+                placeholder="jane@example.com"
+                class="w-full px-4 py-2.5 rounded-lg border border-weathered-stone bg-white text-deep-ink text-sm focus:outline-none focus:ring-2 focus:ring-candle-gold"
+              />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div class="space-y-1.5">
+              <label for="vol-phone" class="block text-sm font-semibold text-deep-ink">
+                Telephone Number
+              </label>
+              <input
+                type="tel"
+                id="vol-phone"
+                name="phone"
+                placeholder="01530 000 000"
+                class="w-full px-4 py-2.5 rounded-lg border border-weathered-stone bg-white text-deep-ink text-sm focus:outline-none focus:ring-2 focus:ring-candle-gold"
+              />
+            </div>
+
+            <div class="space-y-1.5">
+              <label for="vol-location" class="block text-sm font-semibold text-deep-ink">
+                Village / Town / Postcode
+              </label>
+              <input
+                type="text"
+                id="vol-location"
+                name="location"
+                placeholder="e.g. Thringstone, Belton, Coalville"
+                class="w-full px-4 py-2.5 rounded-lg border border-weathered-stone bg-white text-deep-ink text-sm focus:outline-none focus:ring-2 focus:ring-candle-gold"
+              />
+            </div>
+          </div>
+
+          {/* Interest Areas Checkboxes */}
+          <div class="space-y-3 pt-2">
+            <label class="block text-sm font-bold uppercase tracking-wider text-deep-ink">
+              Areas of Interest (Select all that apply) <span class="text-heritage-burgundy">*</span>
+            </label>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs sm:text-sm">
+              <label class="flex items-start gap-2.5 p-3 rounded-lg border border-weathered-stone bg-parchment-light/60 hover:bg-parchment-light cursor-pointer transition-colors">
+                <input type="checkbox" name="interests" value="Event Logistics & Gazebos" class="accent-ivy-green mt-0.5" />
+                <span><strong>Event Logistics & Gazebos</strong> (Pitch layout, banner erecting)</span>
+              </label>
+
+              <label class="flex items-start gap-2.5 p-3 rounded-lg border border-weathered-stone bg-parchment-light/60 hover:bg-parchment-light cursor-pointer transition-colors">
+                <input type="checkbox" name="interests" value="Car Parking Marshals" class="accent-ivy-green mt-0.5" />
+                <span><strong>Car Parking Stewards</strong> (Rusty Mary's field during events)</span>
+              </label>
+
+              <label class="flex items-start gap-2.5 p-3 rounded-lg border border-weathered-stone bg-parchment-light/60 hover:bg-parchment-light cursor-pointer transition-colors">
+                <input type="checkbox" name="interests" value="Trail Maintenance & Path Care" class="accent-ivy-green mt-0.5" />
+                <span><strong>Trail Clearance & Green Care</strong> (Monthly Saturday work parties)</span>
+              </label>
+
+              <label class="flex items-start gap-2.5 p-3 rounded-lg border border-weathered-stone bg-parchment-light/60 hover:bg-parchment-light cursor-pointer transition-colors">
+                <input type="checkbox" name="interests" value="Guided Walks & School Tours" class="accent-ivy-green mt-0.5" />
+                <span><strong>Guided Walks & School Tours</strong> (Guiding and outdoor education)</span>
+              </label>
+
+              <label class="flex items-start gap-2.5 p-3 rounded-lg border border-weathered-stone bg-parchment-light/60 hover:bg-parchment-light cursor-pointer transition-colors">
+                <input type="checkbox" name="interests" value="Office, Digital & Secretarial" class="accent-ivy-green mt-0.5" />
+                <span><strong>Office & Digital Skills</strong> (Secretarial, web, newsletters)</span>
+              </label>
+
+              <label class="flex items-start gap-2.5 p-3 rounded-lg border border-weathered-stone bg-parchment-light/60 hover:bg-parchment-light cursor-pointer transition-colors">
+                <input type="checkbox" name="interests" value="Historical Research & Archival" class="accent-ivy-green mt-0.5" />
+                <span><strong>Historical Research</strong> (Archiving relics and monastic texts)</span>
+              </label>
+            </div>
+          </div>
+
+          {/* Availability */}
+          <div class="space-y-1.5">
+            <label for="vol-availability" class="block text-sm font-semibold text-deep-ink">
+              General Availability
+            </label>
+            <input
+              type="text"
+              id="vol-availability"
+              name="availability"
+              placeholder="e.g. Weekends only, weekday mornings, or special event days only"
+              class="w-full px-4 py-2.5 rounded-lg border border-weathered-stone bg-white text-deep-ink text-sm focus:outline-none focus:ring-2 focus:ring-candle-gold"
+            />
+          </div>
+
+          {/* Message / Experience */}
+          <div class="space-y-1.5">
+            <label for="vol-message" class="block text-sm font-semibold text-deep-ink">
+              Brief Background or Message
+            </label>
+            <textarea
+              id="vol-message"
+              name="message"
+              rows="3"
+              placeholder="Tell us a little about your background, any practical skills, or what inspired you to get in touch..."
+              class="w-full px-4 py-2.5 rounded-lg border border-weathered-stone bg-white text-deep-ink text-sm focus:outline-none focus:ring-2 focus:ring-candle-gold"
+            ></textarea>
+          </div>
+
+          <div class="p-3.5 rounded-lg bg-ivy-green/5 border border-ivy-green/20 text-xs text-deep-ink-muted flex items-center gap-2.5">
+            <ShieldCheck class="w-4 h-4 text-ivy-green shrink-0" />
+            <span>
+              Your registration will be securely routed to <code class="font-bold text-deep-ink">events@gracedieupriory.org.uk</code>.
+            </span>
+          </div>
+
+          <Button variant="primary" size="lg" type="submit" fullWidth class="font-bold py-3.5 justify-center">
+            <Send class="w-4 h-4 mr-1" slot="icon-left" />
+            <span>Register as a Volunteer</span>
+          </Button>
+        </form>
+
+        <div id="vol-success-msg" class="hidden text-center py-8 space-y-3">
+          <div class="w-14 h-14 rounded-full bg-ivy-green/10 text-ivy-green flex items-center justify-center mx-auto">
+            <CheckCircle2 class="w-8 h-8" />
+          </div>
+          <h3 class="font-serif font-bold text-2xl text-deep-ink">Thank You for Offering to Help!</h3>
+          <p class="text-sm sm:text-base text-deep-ink-muted max-w-md mx-auto leading-relaxed">
+            Your interest has been logged with our coordinator team. We will be in touch shortly with upcoming working party dates and event plans.
+          </p>
+        </div>
+      </Card>
+    </section>
+
+    {/* Section 4: "Become a Friend" Annual Membership */}
+    <section class="rounded-2xl bg-parchment-light border-2 border-weathered-stone p-8 sm:p-12 shadow-stone">
+      <div class="max-w-3xl mx-auto space-y-6 text-center">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-candle-gold/20 text-candle-gold-dark border border-candle-gold/30">
+          <Award class="w-3.5 h-3.5" />
+          Annual Patronage
+        </span>
+
+        <h2 class="font-serif font-bold text-3xl sm:text-4xl text-deep-ink">
+          Become an Official "Friend of Grace Dieu Priory"
+        </h2>
+
+        <p class="text-deep-ink-muted text-base leading-relaxed m-0">
+          Even if you cannot volunteer physical hours, you can provide vital backing by joining our annual membership. Subscriptions directly finance lime-mortar masonry repairs, footpath drainage, and public educational resources.
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 text-left">
+          <div class="p-5 rounded-xl bg-card-surface border border-weathered-stone space-y-2">
+            <div class="font-serif font-bold text-lg text-deep-ink">Individual</div>
+            <div class="font-serif font-bold text-3xl text-ivy-green">£10 <span class="text-xs font-sans font-normal text-deep-ink-muted">/ year</span></div>
+            <p class="text-xs text-deep-ink-muted m-0">Single adult membership, newsletter, AGM voting.</p>
+          </div>
+
+          <div class="p-5 rounded-xl bg-card-surface border-2 border-candle-gold/60 space-y-2 relative shadow-xs">
+            <span class="absolute top-2 right-2 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-candle-gold text-deep-ink">Popular</span>
+            <div class="font-serif font-bold text-lg text-deep-ink">Family</div>
+            <div class="font-serif font-bold text-3xl text-candle-gold-dark">£15 <span class="text-xs font-sans font-normal text-deep-ink-muted">/ year</span></div>
+            <p class="text-xs text-deep-ink-muted m-0">Two adults & children at same address.</p>
+          </div>
+
+          <div class="p-5 rounded-xl bg-card-surface border border-weathered-stone space-y-2">
+            <div class="font-serif font-bold text-lg text-deep-ink">Life Patron</div>
+            <div class="font-serif font-bold text-3xl text-heritage-burgundy">£100 <span class="text-xs font-sans font-normal text-deep-ink-muted">one-off</span></div>
+            <p class="text-xs text-deep-ink-muted m-0">Permanent benefactor status for conservation.</p>
+          </div>
+        </div>
+
+        <div class="pt-4 text-xs text-deep-ink-muted">
+          To enroll by post, please send a cheque payable to <strong>"Grace Dieu Priory Trust"</strong> to our Treasurer, Malcolm Allsop (01530 833 632) or submit our <a href="#intake-form" class="font-semibold text-heritage-burgundy hover:underline">volunteer form above</a>.
+        </div>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<script>
+  function setupVolunteerForm() {
+    const form = document.getElementById('volunteer-form') as HTMLFormElement;
+    const successMsg = document.getElementById('vol-success-msg');
+
+    if (!form || !successMsg) return;
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const fd = new FormData(form);
+      const name = fd.get('name');
+      const email = fd.get('email');
+      const phone = fd.get('phone');
+      const location = fd.get('location');
+      const availability = fd.get('availability');
+      const message = fd.get('message');
+      const interests = fd.getAll('interests').join(', ');
+
+      const subject = encodeURIComponent(`Volunteer Interest: ${name}`);
+      const body = encodeURIComponent(
+        `Volunteer Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nLocation: ${location}\n\nInterests:\n${interests}\n\nAvailability: ${availability}\n\nMessage:\n${message}\n\nSubmitted via gracedieupriory.org.uk/get-involved`
+      );
+
+      form.style.display = 'none';
+      successMsg.classList.remove('hidden');
+
+      window.location.href = `mailto:events@gracedieupriory.org.uk?subject=${subject}&body=${body}`;
+    });
+  }
+
+  setupVolunteerForm();
+  document.addEventListener('astro:page-load', setupVolunteerForm);
+</script>

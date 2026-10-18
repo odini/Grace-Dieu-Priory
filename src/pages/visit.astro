@@ -1,0 +1,420 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
+import Card from '../components/ui/Card.astro';
+import Button from '../components/ui/Button.astro';
+import NoticeBanner from '../components/ui/NoticeBanner.astro';
+import {
+  MapPin,
+  Compass,
+  Footprints,
+  Download,
+  Trash2,
+  Dog,
+  ShieldAlert,
+  AlertTriangle,
+  Clock,
+  Car,
+  Trees,
+  Info,
+  CheckCircle2,
+  ExternalLink,
+  ChevronRight,
+  HelpCircle,
+  Accessibility,
+} from 'lucide-astro';
+
+const routeSteps = [
+  {
+    step: '01',
+    title: 'Park at the Bull’s Head',
+    desc: 'Park courtesy at the Bull’s Head car park on Warren Hills Road, Thringstone (postcode LE67 8NR). Dedicated dog waste disposal is located here.',
+    tip: 'Patron parking is available; please park considerately.',
+  },
+  {
+    step: '02',
+    title: 'Cross the Brook Footbridge',
+    desc: 'From the car park perimeter, follow the signposted public footpath across the timber footbridge over the Grace Dieu brook into the woodland tree-line.',
+    tip: 'Waymarked with yellow footpath arrows.',
+  },
+  {
+    step: '03',
+    title: 'Traverse Rusty Mary’s Field',
+    desc: 'Follow the well-trodden grass trail gently uphill through Rusty Mary’s field meadow. Keep dogs on leads around any grazing sheep.',
+    tip: 'Future home of our planned direct pedestrian footbridge.',
+  },
+  {
+    step: '04',
+    title: 'Kissing Gate & Woodland Path',
+    desc: 'Pass through the timber kissing gate into the dappled ancient woodland. Listen for birdsong and the burble of the brook.',
+    tip: 'Paths can be muddy after heavy rain; boots recommended.',
+  },
+  {
+    step: '05',
+    title: 'Arrive at the Cloister Arches',
+    desc: 'The imposing 13th-century stone arches and Tudor kitchen chimneystack appear through the foliage. Welcome to Grace Dieu Priory.',
+    tip: 'Free open admission dawn to dusk, 365 days a year.',
+  },
+];
+---
+
+<BaseLayout
+  title="Plan Your Visit | Location, Parking & Trails | Grace Dieu Priory"
+  description="Visitor guide to Grace Dieu Priory in Thringstone, Leicestershire. Parking at the Bull's Head (LE67 8NR), walking route map, site rules, accessibility, and opening times."
+>
+  {/* Page Hero Header */}
+  <section class="bg-ivy-green-dark text-parchment-light py-16 sm:py-20 border-b border-weathered-stone/60 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-20">
+      <img
+        src="/images/dji_fly_20261017_114542_0082_1792234392781_photo.jpg"
+        alt="Aerial vista of Grace Dieu Priory ruins"
+        class="w-full h-full object-cover"
+      />
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-candle-gold/20 text-candle-gold border border-candle-gold/40 mb-4 backdrop-blur-xs">
+        <Compass class="w-3.5 h-3.5 text-candle-gold" />
+        <span>Visitor Guide & Directions</span>
+      </span>
+
+      <h1 class="font-serif font-bold text-4xl sm:text-5xl lg:text-6xl text-white tracking-tight leading-tight max-w-3xl mb-4">
+        Plan Your Visit to Grace Dieu Priory
+      </h1>
+
+      <p class="text-lg sm:text-xl text-parchment/90 max-w-2xl leading-relaxed font-normal">
+        Nestled in an ancient Charnwood Forest valley, Grace Dieu is free to explore dawn to dusk every day of the year. Here is everything you need for a safe and memorable visit.
+      </p>
+    </div>
+  </section>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 space-y-16">
+    {/* At a Glance Info Bar */}
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <Card padding="sm" class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-lg bg-ivy-green/10 flex items-center justify-center shrink-0 text-ivy-green">
+          <Clock class="w-5 h-5" />
+        </div>
+        <div>
+          <div class="text-xs uppercase font-mono text-deep-ink-muted">Opening Hours</div>
+          <div class="font-serif font-bold text-base text-deep-ink">Dawn to Dusk Daily</div>
+        </div>
+      </Card>
+
+      <Card padding="sm" class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-lg bg-candle-gold/15 flex items-center justify-center shrink-0 text-candle-gold-dark">
+          <CheckCircle2 class="w-5 h-5 text-[#8C6B1C]" />
+        </div>
+        <div>
+          <div class="text-xs uppercase font-mono text-deep-ink-muted">Admission</div>
+          <div class="font-serif font-bold text-base text-deep-ink">Free (Open Access)</div>
+        </div>
+      </Card>
+
+      <Card padding="sm" class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-lg bg-ivy-green/10 flex items-center justify-center shrink-0 text-ivy-green">
+          <Car class="w-5 h-5" />
+        </div>
+        <div>
+          <div class="text-xs uppercase font-mono text-deep-ink-muted">Designated Parking</div>
+          <div class="font-serif font-bold text-base text-deep-ink">Bull’s Head Car Park</div>
+        </div>
+      </Card>
+
+      <Card padding="sm" class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-lg bg-heritage-burgundy/10 flex items-center justify-center shrink-0 text-heritage-burgundy">
+          <Dog class="w-5 h-5" />
+        </div>
+        <div>
+          <div class="text-xs uppercase font-mono text-deep-ink-muted">Dogs Welcome</div>
+          <div class="font-serif font-bold text-base text-deep-ink">On Leads (Livestock)</div>
+        </div>
+      </Card>
+    </div>
+
+    {/* Section 1: Location & Coordinates */}
+    <section class="space-y-6">
+      <SectionHeading
+        tag="h2"
+        eyebrow="Location"
+        title="Where to Find Us"
+        subtitle="Situated on the edge of the Charnwood Forest landscape in North West Leicestershire, equidistant between Coalville, Shepshed, and Loughborough."
+      />
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+        {/* Address & Navigation Card */}
+        <Card padding="md" class="lg:col-span-5 flex flex-col justify-between space-y-6">
+          <div class="space-y-4">
+            <span class="text-xs font-mono font-semibold uppercase text-ivy-green tracking-wider">
+              Navigation Coordinates
+            </span>
+
+            <div class="space-y-1">
+              <div class="font-serif font-bold text-2xl text-deep-ink">The Bull’s Head Pub</div>
+              <div class="text-base text-deep-ink-muted leading-relaxed">
+                Warren Hills Road / Loughborough Road<br />
+                Thringstone, Coalville<br />
+                Leicestershire, <strong>LE67 8NR</strong>
+              </div>
+            </div>
+
+            <p class="text-sm text-deep-ink-muted leading-relaxed">
+              The priory ruins themselves are situated off-road in a quiet meadow and woodland reserve. Visitors walk from the designated car park through Rusty Mary’s field along marked public rights of way.
+            </p>
+          </div>
+
+          <div class="pt-4 border-t border-weathered-stone/70 flex flex-col sm:flex-row gap-3">
+            <Button
+              variant="outline"
+              size="sm"
+              href="https://maps.google.com/?q=LE67+8NR"
+              target="_blank"
+              class="text-xs sm:text-sm font-semibold justify-center"
+            >
+              <MapPin class="w-4 h-4" slot="icon-left" />
+              <span>Google Maps Directions</span>
+              <ExternalLink class="w-3.5 h-3.5 ml-1" slot="icon-right" />
+            </Button>
+          </div>
+        </Card>
+
+        {/* Visual Map Overview & Download Card */}
+        <Card padding="md" borderAccent="gold" class="lg:col-span-7 flex flex-col justify-between space-y-6">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-mono font-semibold uppercase text-candle-gold-dark tracking-wider">
+                Printable Route Map
+              </span>
+              <span class="text-xs text-deep-ink-muted">PDF Document · 1.2 MB</span>
+            </div>
+
+            <div class="font-serif font-bold text-2xl text-deep-ink">
+              Download the Official Walking Route Map
+            </div>
+
+            <p class="text-sm sm:text-base text-deep-ink-muted leading-relaxed">
+              Our clear, printable route diagram traces the short 8-to-10 minute walk from the Bull’s Head pub car park, across the brook footbridge, through Rusty Mary’s field, and directly into the cloister ruins.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-parchment-light border border-weathered-stone/80 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-lg bg-candle-gold/20 flex items-center justify-center shrink-0 text-candle-gold-dark">
+                <Footprints class="w-5 h-5" />
+              </div>
+              <div class="text-xs sm:text-sm">
+                <div class="font-bold text-deep-ink">Grace Dieu Priory Walking Guide</div>
+                <div class="text-deep-ink-muted">Includes stiles, footpaths & woodland landmarks</div>
+              </div>
+            </div>
+
+            <Button
+              variant="primary"
+              size="sm"
+              href="/downloads/grace-dieu-priory-walking-route-map.pdf"
+              download="grace-dieu-priory-walking-route-map.pdf"
+              class="shrink-0 font-semibold"
+            >
+              <Download class="w-4 h-4" slot="icon-left" />
+              <span>Download Map (PDF)</span>
+            </Button>
+          </div>
+        </Card>
+      </div>
+    </section>
+
+    {/* Section 2: Interactive Step-by-Step Arrival Route */}
+    <section class="space-y-6">
+      <SectionHeading
+        tag="h2"
+        eyebrow="Step-by-Step Walk"
+        title="Arrival Guide from the Bull’s Head"
+        subtitle="Follow these simple waymarked stages to reach the secluded medieval ruins on foot."
+      />
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+        {
+          routeSteps.map((step) => (
+            <Card padding="sm" class="flex flex-col justify-between h-full bg-card-surface border-weathered-stone">
+              <div class="space-y-2.5">
+                <div class="flex items-center justify-between">
+                  <span class="font-serif font-bold text-3xl text-candle-gold-dark leading-none">
+                    {step.step}
+                  </span>
+                  <span class="w-2 h-2 rounded-full bg-candle-gold"></span>
+                </div>
+
+                <h3 class="font-serif font-bold text-lg text-deep-ink leading-snug">
+                  {step.title}
+                </h3>
+
+                <p class="text-xs sm:text-sm text-deep-ink-muted leading-relaxed">
+                  {step.desc}
+                </p>
+              </div>
+
+              <div class="mt-4 pt-3 border-t border-weathered-stone/60 text-[11px] text-ivy-green font-medium flex items-center gap-1">
+                <span>Tip: {step.tip}</span>
+              </div>
+            </Card>
+          ))
+        }
+      </div>
+    </section>
+
+    {/* Section 3: Respecting the Ruins (Code of Conduct & Critical Policies) */}
+    <section id="code-of-conduct" class="scroll-mt-24 space-y-6">
+      <SectionHeading
+        tag="h2"
+        eyebrow="Preservation Code"
+        title="Respecting the Ancient Monument"
+        subtitle="Grace Dieu Priory is an 800-year-old Scheduled Ancient Monument cared for by volunteers. Please help us safeguard these fragile stones."
+      />
+
+      {/* Critical Paranormal Ban Banner */}
+      <NoticeBanner
+        id="visit-paranormal-policy"
+        severity="critical"
+        title="Strict Policy: Paranormal Events & Ghost Walks Forbidden"
+        message="Please be aware that the Friends of Grace Dieu Priory no longer hold paranormal events or ghost walks. Paranormal events and commercial ghost hunts organized by 3rd parties are expressly forbidden across the entire priory site and surrounding lands by the Grace Dieu Priory Trust. Unauthorized night-time entry is treated as unlawful trespass."
+        dismissible={false}
+      />
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Rule 1: Litter Free */}
+        <Card padding="md" borderAccent="ivy" class="space-y-3">
+          <div class="w-10 h-10 rounded-lg bg-ivy-green/10 flex items-center justify-center text-ivy-green">
+            <Trash2 class="w-5 h-5" />
+          </div>
+          <h3 class="font-serif font-bold text-xl text-deep-ink">Leave No Trace</h3>
+          <p class="text-sm text-deep-ink-muted leading-relaxed m-0">
+            Please take all litter home with you. To protect the wildlife, prevent vermin, and preserve the medieval aesthetic, there are no public waste bins on the monument grounds.
+          </p>
+        </Card>
+
+        {/* Rule 2: Livestock & Countryside Code */}
+        <Card padding="md" borderAccent="gold" class="space-y-3">
+          <div class="w-10 h-10 rounded-lg bg-candle-gold/20 flex items-center justify-center text-candle-gold-dark">
+            <Trees class="w-5 h-5" />
+          </div>
+          <h3 class="font-serif font-bold text-xl text-deep-ink">Livestock & Countryside Code</h3>
+          <p class="text-sm text-deep-ink-muted leading-relaxed m-0">
+            Cattle and sheep frequently graze the surrounding meadows in Rusty Mary's field. Please close all gates behind you, stay strictly to marked public rights of way, and respect local farming wildlife.
+          </p>
+        </Card>
+
+        {/* Rule 3: Dog Walkers Policy */}
+        <Card padding="md" borderAccent="burgundy" class="space-y-3">
+          <div class="w-10 h-10 rounded-lg bg-heritage-burgundy/10 flex items-center justify-center text-heritage-burgundy">
+            <Dog class="w-5 h-5" />
+          </div>
+          <h3 class="font-serif font-bold text-xl text-deep-ink">Dogs on Leads</h3>
+          <p class="text-sm text-deep-ink-muted leading-relaxed m-0">
+            Dogs are very welcome on site but must be kept on short leads at all times around livestock and fragile masonry. A dedicated dog waste bin is located in the Bull’s Head car park.
+          </p>
+        </Card>
+      </div>
+    </section>
+
+    {/* Section 4: Facilities, Terrain & Accessibility */}
+    <section class="space-y-6">
+      <SectionHeading
+        tag="h2"
+        eyebrow="Accessibility"
+        title="Facilities, Terrain & Practical Realities"
+        subtitle="We believe in total transparency so all visitors can plan comfortably according to their personal mobility needs."
+      />
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        {/* Left: Detailed Honest Notes (7 cols) */}
+        <div class="lg:col-span-7 space-y-4">
+          <Card padding="md" class="space-y-4">
+            <div class="flex items-center gap-2.5 text-deep-ink font-serif font-bold text-xl">
+              <Accessibility class="w-5 h-5 text-ivy-green" />
+              <span>Ground Conditions & Footpaths</span>
+            </div>
+
+            <p class="text-sm sm:text-base text-deep-ink leading-relaxed m-0">
+              Grace Dieu Priory is a natural meadow and woodland setting. There are no tarmac or paved walkways within the ruins:
+            </p>
+
+            <ul class="space-y-2 text-sm text-deep-ink-muted list-disc pl-5">
+              <li><strong>Terrain:</strong> Paths consist of natural grass, packed dirt, and forest leaf-litter. Following periods of rain, paths can become wet and muddy.</li>
+              <li><strong>Masonry Thresholds:</strong> Historic door thresholds and wall footings feature raised, uneven stones that require care when stepping over.</li>
+              <li><strong>Rustic Stiles & Gates:</strong> The standard walking route currently crosses a timber footbridge and kissing gate.</li>
+              <li><strong>Wheelchairs & Pushchairs:</strong> All-terrain buggies and robust mobility chairs can navigate the trail in dry summer conditions, but standard narrow wheelchairs will encounter difficulty on wet ground and rustic stiles.</li>
+            </ul>
+          </Card>
+
+          {/* New Bridge Project Highlight */}
+          <Card padding="md" borderAccent="ivy" class="bg-gradient-to-r from-parchment-light to-white space-y-3">
+            <span class="text-xs uppercase font-mono font-semibold text-ivy-green tracking-wider">
+              Capital Project in Progress
+            </span>
+            <h3 class="font-serif font-bold text-xl text-deep-ink m-0">
+              The Rusty Mary’s Field Pedestrian Bridge
+            </h3>
+            <p class="text-sm text-deep-ink-muted leading-relaxed m-0">
+              Following the purchase of the site freehold in November 2024, the Grace Dieu Priory Trust is actively fundraising to construct a new dedicated footbridge connecting Rusty Mary’s field directly into the priory grounds. This will dramatically improve level accessibility for all visitors.
+            </p>
+            <div class="pt-1">
+              <a href="/get-involved" class="text-xs font-semibold text-heritage-burgundy hover:underline">
+                Read about the bridge project & support our campaign ›
+              </a>
+            </div>
+          </Card>
+        </div>
+
+        {/* Right: On-Site Amenities Summary (5 cols) */}
+        <div class="lg:col-span-5 space-y-4">
+          <Card padding="md" class="space-y-4">
+            <div class="font-serif font-bold text-xl text-deep-ink">
+              On-Site Amenities
+            </div>
+
+            <div class="space-y-3 text-sm text-deep-ink-muted divide-y divide-weathered-stone/60">
+              <div class="pt-2 flex items-start gap-3">
+                <span class="text-heritage-burgundy font-bold text-base leading-none">✕</span>
+                <div>
+                  <strong class="text-deep-ink block">No Public Toilets on the Monument</strong>
+                  <span>There are no toilet facilities at the ruins. The nearest facilities are available for patrons at the Bull's Head pub during opening hours.</span>
+                </div>
+              </div>
+
+              <div class="pt-3 flex items-start gap-3">
+                <span class="text-heritage-burgundy font-bold text-base leading-none">✕</span>
+                <div>
+                  <strong class="text-deep-ink block">No Permanent Café or Shop</strong>
+                  <span>Refreshment vans attend during special events (like the Medieval Fayre). We recommend bringing water on warm days.</span>
+                </div>
+              </div>
+
+              <div class="pt-3 flex items-start gap-3">
+                <span class="text-ivy-green font-bold text-base leading-none">✓</span>
+                <div>
+                  <strong class="text-deep-ink block">Local Refreshments Nearby</strong>
+                  <span>The Bull's Head in Thringstone offers traditional food, ales, and hospitality before or after your walk.</span>
+                </div>
+              </div>
+
+              <div class="pt-3 flex items-start gap-3">
+                <span class="text-ivy-green font-bold text-base leading-none">✓</span>
+                <div>
+                  <strong class="text-deep-ink block">Guided Educational Visits</strong>
+                  <span>Tours for schools, historical societies, and walking clubs can be arranged in advance with volunteer guides.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-3">
+              <Button variant="outline" size="sm" href="/walks-and-talks" fullWidth class="justify-center">
+                <span>Book a Guided Group or School Visit</span>
+                <ChevronRight class="w-4 h-4 ml-1" slot="icon-right" />
+              </Button>
+            </div>
+          </Card>
+        </div>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

@@ -1,0 +1,341 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
+import Card from '../components/ui/Card.astro';
+import Button from '../components/ui/Button.astro';
+import {
+  Crown,
+  BookOpen,
+  Calendar,
+  Sparkles,
+  ShieldCheck,
+  ArrowRight,
+  MapPin,
+  ExternalLink,
+  Layers,
+  Clock,
+  Compass,
+  Scroll,
+} from 'lucide-astro';
+
+const timelineEvents = [
+  {
+    era: '1235–1241',
+    title: 'Foundation of Gratia Dei (Grace of God)',
+    tag: 'Monastic Foundation',
+    tagVariant: 'ivy',
+    desc: 'Founded by the Norman-Irish noblewoman Roesia (Rose) de Verdun as an independent priory for Augustinian canonesses (nuns dedicated to St Mary and the Holy Trinity). The foundation charter was formally confirmed by the famous scholar-bishop Robert Grosseteste of Lincoln, granting the house freedom from diocesan taxation and monastic subordination.',
+    highlight: 'Named "Gratia Dei" (Grace of God) in recognition of divine favor.',
+    image: '/images/GDP Stone.jpg',
+    imageAlt: 'Preserved medieval stone carving at Grace Dieu Priory',
+  },
+  {
+    era: '1377',
+    title: 'Monastic Expansion & The Almonry Hospital',
+    tag: 'Community Care',
+    tagVariant: 'gold',
+    desc: 'By 1377, the priory had blossomed into a flourishing religious community of 16 canonesses. In addition to their daily monastic liturgy and agricultural estate duties, the nuns operated an almonry hospital within the precinct, providing daily food, hospice care, and shelter to 12 poor individuals from the surrounding Charnwood parishes.',
+    highlight: 'Demonstrating the priory’s pivotal role as a medical and social lifeline.',
+  },
+  {
+    era: '1414–1418',
+    title: 'Dame Petronella’s Monastic Account Book',
+    tag: 'Estate Chronicles',
+    tagVariant: 'burgundy',
+    desc: 'During the prioress-ship of Dame Petronella, clerks maintained a rare working draft account book. Unlike formal manorial accounts which were routinely discarded, this 348-page manuscript survived. It meticulously details tenant rents across Leicestershire, purchases of salted herrings, salmon, and beef, building maintenance wages, servant stipends, and expenses for celebrating holy feast days.',
+    highlight: 'An internationally celebrated window into early 15th-century everyday monastic life.',
+    action: {
+      text: 'View the Published Account Book in our Shop',
+      href: '/shop',
+    },
+    image: '/images/GDP Account Book cover.jpg',
+    imageAlt: 'Cover of Dame Petronella’s 1414-1418 Account Book',
+  },
+  {
+    era: '1538',
+    title: 'The Dissolution & The Beaumont Manor',
+    tag: 'Tudor Era',
+    tagVariant: 'gold',
+    desc: 'In October 1538, King Henry VIII’s commissioners dissolved Grace Dieu Priory. The site was purchased by John Beaumont, Master of the Rolls, who remodeled the cloister buildings into a magnificent Tudor mansion. The estate became the family seat and birthplace of his grandsons: Sir John Beaumont (the metaphysical poet) and Francis Beaumont (the renowned Jacobean dramatist who collaborated with John Fletcher).',
+    highlight: 'Transitioning from sacred cloister to literary Renaissance cradle.',
+  },
+  {
+    era: '1995–2006',
+    title: 'The Rescue: Ivy Removal to Public Reopening',
+    tag: 'Volunteer Salvation',
+    tagVariant: 'ivy',
+    desc: 'By the late 20th century, the abandoned mansion had collapsed into dangerous ruins enveloped in dense ivy and scrub. In 1995, local residents formed the Grace Dieu Priory Charitable Trust to prevent total loss. Over a ten-year conservation project (1996–2006), specialist stonemasons cleared tonnes of vegetation and stabilized surviving cloister arches, before officially reopening the site free of charge to the public in 2006.',
+    highlight: 'Over a decade of voluntary labor saved this ancient monument for the nation.',
+    image: '/images/grace dieu2.jpg',
+    imageAlt: 'Consolidated stonework arches of Grace Dieu Priory cloisters',
+  },
+  {
+    era: '2024',
+    title: 'Permanent Freehold Site Ownership Secured',
+    tag: 'Modern Milestone',
+    tagVariant: 'ivy',
+    desc: 'In November 2024, following two years of sensitive negotiations with private landowners, The Grace Dieu Priory Trust officially acquired the freehold of the entire monument and Rusty Mary’s field. No longer tenants, the Trust now possesses the permanent authority to initiate scheduled archaeological excavations and construct a new accessible footbridge for future generations.',
+    highlight: 'Securing the monument’s future under charity ownership.',
+    image: '/images/2024 BBC - Priory Sold.jpg',
+    imageAlt: 'BBC report on Grace Dieu Priory acquisition by the Trust',
+  },
+];
+---
+
+<BaseLayout
+  title="800-Year History & Timeline | Grace Dieu Priory"
+  description="Discover the 800-year timeline of Grace Dieu Priory from its 1239 foundation by Roesia de Verdun through Dame Petronella’s 1414 accounts to its 2024 freehold purchase."
+>
+  {/* Page Hero Header */}
+  <section class="bg-ivy-green-dark text-parchment-light py-16 sm:py-20 border-b border-weathered-stone/60 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-20">
+      <img
+        src="/images/dji_fly_20261017_114542_0082_1792234392781_photo.jpg"
+        alt="Aerial vista of the 13th-century Grace Dieu Priory ruins"
+        class="w-full h-full object-cover"
+      />
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-candle-gold/20 text-candle-gold border border-candle-gold/40 mb-4 backdrop-blur-xs">
+        <Clock class="w-3.5 h-3.5 text-candle-gold" />
+        <span>Chronicle of an 800-Year Landmark</span>
+      </span>
+
+      <h1 class="font-serif font-bold text-4xl sm:text-5xl lg:text-6xl text-white tracking-tight leading-tight max-w-3xl mb-4">
+        History of Grace Dieu Priory
+      </h1>
+
+      <p class="text-lg sm:text-xl text-parchment/90 max-w-2xl leading-relaxed font-normal">
+        Founded in 1239 by a remarkable feudal noblewoman and rescued from dereliction by volunteers in 1995. Explore eight centuries of monastic devotion, literary heritage, and community conservation.
+      </p>
+    </div>
+  </section>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 space-y-20">
+    {/* Featured Narrative Card: Roesia de Verdun */}
+    <section>
+      <Card padding="none" borderAccent="burgundy" class="overflow-hidden border-2 border-weathered-stone shadow-xl">
+        <div class="grid grid-cols-1 lg:grid-cols-12">
+          {/* Narrative Content (7 cols) */}
+          <div class="lg:col-span-7 p-6 sm:p-10 lg:p-12 space-y-5 flex flex-col justify-between">
+            <div>
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-heritage-burgundy/10 text-heritage-burgundy border border-heritage-burgundy/20 mb-3">
+                <Crown class="w-3.5 h-3.5 text-heritage-burgundy" />
+                <span>Founder Profile</span>
+              </div>
+
+              <h2 class="font-serif font-bold text-3xl sm:text-4xl text-deep-ink leading-tight mb-4">
+                The Remarkable Life of Roesia de Verdun
+              </h2>
+
+              <p class="text-deep-ink leading-relaxed font-normal text-base sm:text-lg">
+                In an era when medieval women rarely held autonomous feudal power, <strong>Roesia (Rose) de Verdun</strong> was an extraordinary exception. The de Verdun dynasty were influential Anglo-Norman nobles with extensive territories across England, Ireland, and the Welsh Marches.
+              </p>
+
+              <p class="text-deep-ink-muted leading-relaxed text-sm sm:text-base mt-3">
+                When no male heir survived to inherit the family lands, Roesia stepped forward to take direct control of the estates. She paid a substantial fine of 700 marks to King Henry III for the right to remain an unmarried widow and rule her properties in her own name. So formidable was her leadership that King Henry III commended her for defending and securing her borders in Ireland—a feat none of her male forebears had achieved.
+              </p>
+
+              <p class="text-deep-ink-muted leading-relaxed text-sm sm:text-base mt-3">
+                Between 1235 and 1241, Roesia established Grace Dieu Priory in the secluded Charnwood valley, dedicating it to the Augustinian canonesses. Upon her death in 1247, she was interred in the priory church. Following the 1538 Dissolution, local villagers re-interred her magnificent stone tomb inside <strong>St John the Baptist Church in Belton</strong>, where her sculpted effigy can still be admired today.
+              </p>
+            </div>
+
+            <div class="pt-5 border-t border-weathered-stone/70 flex flex-wrap items-center justify-between gap-4 text-xs sm:text-sm">
+              <div class="flex items-center gap-2 text-deep-ink font-semibold">
+                <MapPin class="w-4 h-4 text-heritage-burgundy shrink-0" />
+                <span>Tomb Location: St John the Baptist Church, Belton (2 miles from Priory)</span>
+              </div>
+              <a href="/walks-and-talks" class="text-heritage-burgundy font-bold hover:underline">
+                Explore Talks on Roesia’s Life ›
+              </a>
+            </div>
+          </div>
+
+          {/* Founder Imagery / Stone Carving (5 cols) */}
+          <div class="lg:col-span-5 bg-weathered-stone/30 relative min-h-[320px] lg:min-h-full overflow-hidden border-t lg:border-t-0 lg:border-l border-weathered-stone/80">
+            <img
+              src="/images/GDP Stone.jpg"
+              alt="Medieval stone carving preserved at Grace Dieu Priory"
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-deep-ink/80 via-transparent to-transparent flex flex-col justify-end p-6 text-white">
+              <span class="text-xs uppercase font-mono tracking-widest text-candle-gold">Historic Relic</span>
+              <div class="font-serif font-bold text-lg">Carved Masonry Fragment</div>
+              <p class="text-xs text-parchment/80 m-0 mt-0.5">Surviving Augustinian architectural stone from the 13th century.</p>
+            </div>
+          </div>
+        </div>
+      </Card>
+    </section>
+
+    {/* Section 2: Vertical Interactive Timeline */}
+    <section class="space-y-12">
+      <SectionHeading
+        tag="h2"
+        eyebrow="Chronicle"
+        title="Eight Centuries of History: 1235 to the Present"
+        subtitle="Step through the pivotal milestones that shaped Grace Dieu from an independent nunnery to a public sanctuary."
+      />
+
+      {/* Timeline Wrapper */}
+      <div class="relative max-w-4xl mx-auto">
+        {/* Central Vertical Spine Line (Candle Gold / Stone) */}
+        <div
+          class="absolute left-4 sm:left-1/2 top-4 bottom-4 w-0.5 bg-candle-gold/40 -translate-x-1/2 hidden sm:block"
+          aria-hidden="true"
+        ></div>
+        <div
+          class="absolute left-6 top-4 bottom-4 w-0.5 bg-candle-gold/40 -translate-x-1/2 sm:hidden"
+          aria-hidden="true"
+        ></div>
+
+        <div class="space-y-12 sm:space-y-16">
+          {
+            timelineEvents.map((item, index) => {
+              const isEven = index % 2 === 0;
+
+              return (
+                <div class="relative flex flex-col sm:flex-row items-start sm:items-center">
+                  {/* Timeline Node Icon in Center */}
+                  <div class="absolute left-6 sm:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-card-surface border-2 border-candle-gold flex items-center justify-center text-ivy-green shadow-md z-10">
+                    <span class="w-2.5 h-2.5 rounded-full bg-candle-gold"></span>
+                  </div>
+
+                  {/* Left Column Content (on even items on desktop) */}
+                  <div class={`w-full sm:w-1/2 pl-14 sm:pl-0 ${isEven ? 'sm:pr-10 sm:text-right' : 'sm:hidden'}`}>
+                    {isEven && (
+                      <Card padding="md" class="border-weathered-stone shadow-stone transition-all duration-300 hover:-translate-y-1 hover:shadow-stone-hover">
+                        <div class="space-y-3">
+                          <div class="flex items-center justify-between sm:justify-end gap-2">
+                            <span class="font-serif font-bold text-2xl text-candle-gold-dark">
+                              {item.era}
+                            </span>
+                            <span class="px-2.5 py-0.5 rounded text-xs font-semibold uppercase tracking-wider bg-ivy-green/10 text-ivy-green border border-ivy-green/20">
+                              {item.tag}
+                            </span>
+                          </div>
+
+                          <h3 class="font-serif font-bold text-xl sm:text-2xl text-deep-ink">
+                            {item.title}
+                          </h3>
+
+                          {item.image && (
+                            <div class="rounded-lg overflow-hidden h-44 border border-weathered-stone/80 my-2">
+                              <img src={item.image} alt={item.imageAlt} class="w-full h-full object-cover" loading="lazy" />
+                            </div>
+                          )}
+
+                          <p class="text-sm text-deep-ink-muted leading-relaxed m-0 text-left sm:text-right">
+                            {item.desc}
+                          </p>
+
+                          <div class="pt-2 text-xs font-semibold text-ivy-green text-left sm:text-right">
+                            ✦ {item.highlight}
+                          </div>
+
+                          {item.action && (
+                            <div class="pt-2 border-t border-weathered-stone/60">
+                              <a href={item.action.href} class="text-xs font-semibold text-heritage-burgundy hover:underline">
+                                {item.action.text} ›
+                              </a>
+                            </div>
+                          )}
+                        </div>
+                      </Card>
+                    )}
+                  </div>
+
+                  {/* Right Column Content (on odd items on desktop, or all on mobile) */}
+                  <div class={`w-full sm:w-1/2 pl-14 sm:pl-10 ${isEven ? 'hidden sm:block' : ''}`}>
+                    {!isEven && (
+                      <Card padding="md" class="border-weathered-stone shadow-stone transition-all duration-300 hover:-translate-y-1 hover:shadow-stone-hover">
+                        <div class="space-y-3">
+                          <div class="flex items-center justify-between sm:justify-start gap-2">
+                            <span class="font-serif font-bold text-2xl text-candle-gold-dark">
+                              {item.era}
+                            </span>
+                            <span class="px-2.5 py-0.5 rounded text-xs font-semibold uppercase tracking-wider bg-heritage-burgundy/10 text-heritage-burgundy border border-heritage-burgundy/20">
+                              {item.tag}
+                            </span>
+                          </div>
+
+                          <h3 class="font-serif font-bold text-xl sm:text-2xl text-deep-ink">
+                            {item.title}
+                          </h3>
+
+                          {item.image && (
+                            <div class="rounded-lg overflow-hidden h-44 border border-weathered-stone/80 my-2">
+                              <img src={item.image} alt={item.imageAlt} class="w-full h-full object-cover" loading="lazy" />
+                            </div>
+                          )}
+
+                          <p class="text-sm text-deep-ink-muted leading-relaxed m-0">
+                            {item.desc}
+                          </p>
+
+                          <div class="pt-2 text-xs font-semibold text-ivy-green">
+                            ✦ {item.highlight}
+                          </div>
+
+                          {item.action && (
+                            <div class="pt-2 border-t border-weathered-stone/60">
+                              <a href={item.action.href} class="text-xs font-semibold text-heritage-burgundy hover:underline">
+                                {item.action.text} ›
+                              </a>
+                            </div>
+                          )}
+                        </div>
+                      </Card>
+                    )}
+                  </div>
+                </div>
+              );
+            })
+          }
+        </div>
+      </div>
+    </section>
+
+    {/* Section 3: Next Steps & Exploration Callouts */}
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-6">
+      <Card padding="lg" borderAccent="ivy" class="flex flex-col justify-between space-y-4">
+        <div>
+          <span class="text-xs uppercase font-mono text-ivy-green font-semibold">Publications</span>
+          <h3 class="font-serif font-bold text-2xl text-deep-ink mt-1 mb-2">
+            Read Dame Petronella’s Account Book
+          </h3>
+          <p class="text-sm text-deep-ink-muted leading-relaxed m-0">
+            Own the complete 348-page scholarly transcription of the priory’s 1414–1418 accounts, featuring translations by Dominic Johnson and a preface by Professor Christopher Dyer.
+          </p>
+        </div>
+        <div class="pt-4 border-t border-weathered-stone/60">
+          <Button variant="outline" size="sm" href="/shop">
+            <span>Browse Bookstore (£15 Reduced)</span>
+            <ArrowRight class="w-4 h-4 ml-1" slot="icon-right" />
+          </Button>
+        </div>
+      </Card>
+
+      <Card padding="lg" borderAccent="gold" class="flex flex-col justify-between space-y-4">
+        <div>
+          <span class="text-xs uppercase font-mono text-candle-gold-dark font-semibold">Charity Governance</span>
+          <h3 class="font-serif font-bold text-2xl text-deep-ink mt-1 mb-2">
+            Who Looks After the Priory Today?
+          </h3>
+          <p class="text-sm text-deep-ink-muted leading-relaxed m-0">
+            Learn about the dual structure of <strong>The Grace Dieu Priory Trust</strong> (freehold property owners) and <strong>The Friends of Grace Dieu Priory</strong> (registered charity running community operations).
+          </p>
+        </div>
+        <div class="pt-4 border-t border-weathered-stone/60">
+          <Button variant="primary" size="sm" href="/about">
+            <span>Learn About the Charity Structure</span>
+            <ArrowRight class="w-4 h-4 ml-1" slot="icon-right" />
+          </Button>
+        </div>
+      </Card>
+    </section>
+  </div>
+</BaseLayout>

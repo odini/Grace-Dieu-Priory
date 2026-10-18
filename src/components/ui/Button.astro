@@ -1,0 +1,82 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props extends HTMLAttributes<'button'> {
+  variant?: 'primary' | 'outline' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
+  href?: string;
+  target?: string;
+  rel?: string;
+  fullWidth?: boolean;
+  disabled?: boolean;
+  class?: string;
+}
+
+const {
+  variant = 'primary',
+  size = 'md',
+  href,
+  target,
+  rel = target === '_blank' ? 'noopener noreferrer' : undefined,
+  fullWidth = false,
+  disabled = false,
+  class: className = '',
+  type = 'button',
+  ...rest
+} = Astro.props;
+
+// Base styles ensuring accessible tap targets, smooth transitions, and focus indicators
+const baseStyles =
+  'inline-flex items-center justify-center font-medium rounded-md tracking-normal transition-all duration-200 cursor-pointer select-none no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-candle-gold focus-visible:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed disabled:pointer-events-none active:scale-[0.99]';
+
+// Variant mapping matching Grace Dieu's historic heritage identity
+const variantStyles: Record<string, string> = {
+  primary:
+    'bg-ivy-green hover:bg-ivy-green-hover text-parchment-light shadow-sm hover:shadow-stone border border-ivy-green-dark/20 hover:border-ivy-green-dark',
+  outline:
+    'bg-transparent hover:bg-heritage-burgundy text-heritage-burgundy hover:text-white border-2 border-heritage-burgundy hover:border-heritage-burgundy shadow-none',
+  ghost:
+    'bg-transparent hover:bg-weathered-stone/40 text-deep-ink hover:text-heritage-burgundy border border-transparent',
+};
+
+// High-legibility sizing
+const sizeStyles: Record<string, string> = {
+  sm: 'text-sm px-3.5 py-1.5 gap-1.5 min-h-[38px]',
+  md: 'text-base px-5 py-2.5 gap-2 min-h-[46px]',
+  lg: 'text-lg px-7 py-3.5 gap-2.5 min-h-[52px]',
+};
+
+const widthStyles = fullWidth ? 'w-full' : 'w-auto';
+const computedClasses = [baseStyles, variantStyles[variant], sizeStyles[size], widthStyles, className]
+  .filter(Boolean)
+  .join(' ');
+---
+
+{
+  href ? (
+    <a
+      href={href}
+      target={target}
+      rel={rel}
+      class={computedClasses}
+      aria-disabled={disabled ? 'true' : undefined}
+      tabindex={disabled ? -1 : undefined}
+      {...(rest as HTMLAttributes<'a'>)}
+    >
+      <slot name="icon-left" />
+      <slot />
+      <slot name="icon-right" />
+    </a>
+  ) : (
+    <button
+      type={type}
+      disabled={disabled}
+      class={computedClasses}
+      {...(rest as HTMLAttributes<'button'>)}
+    >
+      <slot name="icon-left" />
+      <slot />
+      <slot name="icon-right" />
+    </button>
+  )
+}

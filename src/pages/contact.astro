@@ -1,0 +1,486 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
+import Card from '../components/ui/Card.astro';
+import Button from '../components/ui/Button.astro';
+import {
+  Mail,
+  GraduationCap,
+  BookOpen,
+  Heart,
+  Send,
+  MapPin,
+  Clock,
+  ShieldCheck,
+  CheckCircle2,
+  AlertCircle,
+  Building,
+  HelpCircle,
+  ExternalLink,
+} from 'lucide-astro';
+
+// Role-based directory replacing exposed personal phone numbers
+const roleCards = [
+  {
+    role: 'General Inquiries',
+    email: 'info@gracedieupriory.org.uk',
+    icon: Mail,
+    variant: 'ivy',
+    tag: 'Trustees & Secretary',
+    subjectVal: 'general',
+    description:
+      'For general questions regarding site conservation, media & filming permissions, trustee governance, AGM matters, and general charity communications.',
+    contactPerson: 'David Whitt & Board of Trustees',
+  },
+  {
+    role: 'School Visits & Guided Walks',
+    email: 'education@gracedieupriory.org.uk',
+    icon: GraduationCap,
+    variant: 'burgundy',
+    tag: 'Education & Guiding',
+    subjectVal: 'education',
+    description:
+      'To arrange tailored curriculum primary/secondary school field visits, community group presentations, or guided weekend historical walking tours.',
+    contactPerson: 'Malcolm Allsop · Walks & Education Lead',
+  },
+  {
+    role: 'Book Orders & Publications',
+    email: 'publications@gracedieupriory.org.uk',
+    icon: BookOpen,
+    variant: 'gold',
+    tag: 'Bookstore & Orders',
+    subjectVal: 'publications',
+    description:
+      'For ordering Dame Petronella’s Account Book, the Walk Around Guide, or Steve Woodward’s natural history book by post, and stock inquiries.',
+    contactPerson: 'Ann Petty · Publications Officer',
+  },
+  {
+    role: 'Volunteer Recruitment',
+    email: 'volunteer@gracedieupriory.org.uk',
+    icon: Heart,
+    variant: 'ivy',
+    tag: 'Community Support',
+    subjectVal: 'volunteer',
+    description:
+      'To join our monthly Saturday morning conservation working parties, assist with gazebo setup at major events, or support committee administration.',
+    contactPerson: 'Volunteer Stewardship Team',
+  },
+];
+---
+
+<BaseLayout
+  title="Contact Us & Trustee Directory | Grace Dieu Priory"
+  description="Contact The Friends of Grace Dieu Priory. Role-based inquiries for general questions, school visits, publication orders, and volunteer recruitment."
+>
+  {/* Hero Header */}
+  <section class="bg-ivy-green-dark text-parchment-light py-16 sm:py-20 border-b border-weathered-stone/60 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-20">
+      <img
+        src="/images/grace dieu2.jpg"
+        alt="Woodland path to Grace Dieu Priory"
+        class="w-full h-full object-cover"
+      />
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-candle-gold/20 text-candle-gold border border-candle-gold/40 mb-4 backdrop-blur-xs">
+        <Mail class="w-3.5 h-3.5 text-candle-gold" />
+        <span>Get in Touch With Charity Officers</span>
+      </span>
+
+      <h1 class="font-serif font-bold text-4xl sm:text-5xl lg:text-6xl text-white tracking-tight leading-tight max-w-3xl mb-4">
+        Contact the Friends
+      </h1>
+
+      <p class="text-lg sm:text-xl text-parchment/90 max-w-2xl leading-relaxed font-normal">
+        Have a question about visiting, arranging an educational tour, ordering a historical book, or volunteering? Connect directly with the appropriate officer below.
+      </p>
+    </div>
+  </section>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 space-y-20">
+    {/* Section 1: Role-Based Inquiry Cards */}
+    <section class="space-y-8">
+      <SectionHeading
+        tag="h2"
+        eyebrow="Directory"
+        title="Role-Based Department Inquiries"
+        subtitle="To ensure your message reaches the right volunteer swiftly, inquiries are organised by department with dedicated charity email routing."
+      />
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
+        {
+          roleCards.map((card) => {
+            const Icon = card.icon;
+            return (
+              <Card
+                padding="md"
+                borderAccent={card.variant as 'ivy' | 'burgundy' | 'gold'}
+                class="flex flex-col justify-between h-full bg-card-surface border-2 border-weathered-stone shadow-sm hover:shadow-stone-hover transition-all"
+              >
+                <div class="space-y-3.5">
+                  <div class="flex items-start justify-between gap-2">
+                    <div class="w-12 h-12 rounded-xl bg-parchment-light border border-weathered-stone/80 flex items-center justify-center text-ivy-green">
+                      <Icon class="w-6 h-6 text-ivy-green" />
+                    </div>
+                    <span class="px-2.5 py-0.5 rounded text-[11px] font-bold uppercase tracking-wider bg-weathered-stone/40 text-deep-ink-muted border border-weathered-stone">
+                      {card.tag}
+                    </span>
+                  </div>
+
+                  <div>
+                    <h3 class="font-serif font-bold text-xl text-deep-ink leading-snug">
+                      {card.role}
+                    </h3>
+                    <div class="text-xs text-deep-ink-light font-medium mt-0.5">
+                      {card.contactPerson}
+                    </div>
+                  </div>
+
+                  <p class="text-xs sm:text-sm text-deep-ink-muted leading-relaxed m-0">
+                    {card.description}
+                  </p>
+                </div>
+
+                <div class="pt-4 border-t border-weathered-stone/60 space-y-2.5 mt-5">
+                  <a
+                    href={`mailto:${card.email}`}
+                    class="block text-xs font-mono font-bold text-heritage-burgundy hover:underline truncate"
+                  >
+                    {card.email}
+                  </a>
+
+                  <button
+                    type="button"
+                    class="prefill-role-btn w-full px-3 py-2 rounded-lg bg-parchment-light hover:bg-weathered-stone/60 text-deep-ink font-semibold text-xs border border-weathered-stone transition-colors cursor-pointer text-center"
+                    data-subject={card.subjectVal}
+                  >
+                    Send Online Message ›
+                  </button>
+                </div>
+              </Card>
+            );
+          })
+        }
+      </div>
+    </section>
+
+    {/* Section 2: Anti-Spam Protected Web Contact Form */}
+    <section id="contact-form-section" class="scroll-mt-24 space-y-8">
+      <SectionHeading
+        tag="h2"
+        eyebrow="Online Message"
+        title="Send an Anti-Spam Protected Inquiry"
+        subtitle="Fill in the fields below. Inquiries are automatically screened for spam and dispatched directly to the volunteer coordinator."
+      />
+
+      <Card padding="lg" class="max-w-3xl mx-auto border-2 border-weathered-stone shadow-xl">
+        <form id="contact-form" class="space-y-6">
+          {/* Department Selection */}
+          <div class="space-y-1.5">
+            <label for="contact-subject" class="block text-sm font-semibold text-deep-ink">
+              Department / Purpose of Inquiry <span class="text-heritage-burgundy">*</span>
+            </label>
+            <select
+              id="contact-subject"
+              name="department"
+              required
+              class="w-full px-4 py-2.5 rounded-lg border border-weathered-stone bg-white text-deep-ink text-sm focus:outline-none focus:ring-2 focus:ring-candle-gold"
+            >
+              <option value="general">General Inquiries & Trust Matters (info@gracedieupriory.org.uk)</option>
+              <option value="education">School Visits & Guided Walks (education@gracedieupriory.org.uk)</option>
+              <option value="publications">Book Orders & Publications (publications@gracedieupriory.org.uk)</option>
+              <option value="volunteer">Volunteering & Working Parties (volunteer@gracedieupriory.org.uk)</option>
+            </select>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div class="space-y-1.5">
+              <label for="contact-name" class="block text-sm font-semibold text-deep-ink">
+                Full Name <span class="text-heritage-burgundy">*</span>
+              </label>
+              <input
+                type="text"
+                id="contact-name"
+                name="name"
+                required
+                placeholder="e.g. Eleanor Beaumont"
+                class="w-full px-4 py-2.5 rounded-lg border border-weathered-stone bg-white text-deep-ink text-sm focus:outline-none focus:ring-2 focus:ring-candle-gold"
+              />
+            </div>
+
+            <div class="space-y-1.5">
+              <label for="contact-email" class="block text-sm font-semibold text-deep-ink">
+                Email Address <span class="text-heritage-burgundy">*</span>
+              </label>
+              <input
+                type="email"
+                id="contact-email"
+                name="email"
+                required
+                placeholder="eleanor@example.co.uk"
+                class="w-full px-4 py-2.5 rounded-lg border border-weathered-stone bg-white text-deep-ink text-sm focus:outline-none focus:ring-2 focus:ring-candle-gold"
+              />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div class="space-y-1.5">
+              <label for="contact-phone" class="block text-sm font-semibold text-deep-ink">
+                Telephone Number (Optional)
+              </label>
+              <input
+                type="tel"
+                id="contact-phone"
+                name="phone"
+                placeholder="01530 000 000"
+                class="w-full px-4 py-2.5 rounded-lg border border-weathered-stone bg-white text-deep-ink text-sm focus:outline-none focus:ring-2 focus:ring-candle-gold"
+              />
+            </div>
+
+            <div class="space-y-1.5">
+              <label for="contact-location" class="block text-sm font-semibold text-deep-ink">
+                Town / Village (Optional)
+              </label>
+              <input
+                type="text"
+                id="contact-location"
+                name="location"
+                placeholder="e.g. Belton, Thringstone, Loughborough"
+                class="w-full px-4 py-2.5 rounded-lg border border-weathered-stone bg-white text-deep-ink text-sm focus:outline-none focus:ring-2 focus:ring-candle-gold"
+              />
+            </div>
+          </div>
+
+          {/* Message Area */}
+          <div class="space-y-1.5">
+            <label for="contact-message" class="block text-sm font-semibold text-deep-ink">
+              Your Message <span class="text-heritage-burgundy">*</span>
+            </label>
+            <textarea
+              id="contact-message"
+              name="message"
+              rows="5"
+              required
+              placeholder="Please provide details of your inquiry..."
+              class="w-full px-4 py-2.5 rounded-lg border border-weathered-stone bg-white text-deep-ink text-sm focus:outline-none focus:ring-2 focus:ring-candle-gold leading-relaxed"
+            ></textarea>
+          </div>
+
+          {/* Anti-Spam Protection Layer 1: Hidden Honeypot Field */}
+          <div class="hidden" aria-hidden="true" style="display:none !important;">
+            <label for="website_url">Leave this field empty</label>
+            <input
+              type="text"
+              id="website_url"
+              name="website_url"
+              tabindex="-1"
+              autocomplete="off"
+              value=""
+            />
+          </div>
+
+          {/* Anti-Spam Protection Layer 2: Accessible Verification Question */}
+          <div class="p-4 rounded-xl bg-parchment-light border border-weathered-stone space-y-2">
+            <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-deep-ink">
+              <ShieldCheck class="w-4 h-4 text-ivy-green" />
+              <span>Anti-Spam Security Question <span class="text-heritage-burgundy">*</span></span>
+            </div>
+            <div class="flex flex-col sm:flex-row sm:items-center gap-3">
+              <label for="spam-challenge" class="text-xs sm:text-sm text-deep-ink-muted">
+                What is <strong class="text-deep-ink">4 + 3</strong>? (Please enter the single digit number):
+              </label>
+              <input
+                type="text"
+                id="spam-challenge"
+                name="challenge"
+                required
+                maxlength="2"
+                placeholder="?"
+                class="w-20 px-3 py-1.5 rounded-lg border border-weathered-stone bg-white text-deep-ink text-sm font-mono text-center focus:outline-none focus:ring-2 focus:ring-candle-gold"
+              />
+            </div>
+            <p id="challenge-error" class="hidden text-xs text-heritage-burgundy font-semibold m-0">
+              Incorrect security answer. Please enter 7.
+            </p>
+          </div>
+
+          {/* Submit Action */}
+          <div class="pt-2">
+            <Button
+              variant="primary"
+              size="lg"
+              type="submit"
+              fullWidth
+              class="font-bold py-3.5 justify-center shadow-xs"
+            >
+              <Send class="w-4 h-4 mr-1.5" slot="icon-left" />
+              <span>Send Message to Charity</span>
+            </Button>
+          </div>
+        </form>
+
+        {/* Confirmation State */}
+        <div id="contact-success" class="hidden text-center py-10 space-y-4">
+          <div class="w-16 h-16 rounded-full bg-ivy-green/10 text-ivy-green flex items-center justify-center mx-auto">
+            <CheckCircle2 class="w-9 h-9" />
+          </div>
+
+          <h3 class="font-serif font-bold text-2xl sm:text-3xl text-deep-ink m-0">
+            Message Successfully Dispatched
+          </h3>
+
+          <p class="text-sm sm:text-base text-deep-ink-muted max-w-lg mx-auto leading-relaxed m-0">
+            Thank you for reaching out to the Friends of Grace Dieu Priory. Your inquiry has been routed to <strong id="success-target-role" class="text-deep-ink">the appropriate officer</strong>. We are a volunteer team and aim to reply within 2–3 business days.
+          </p>
+
+          <div class="pt-4">
+            <button
+              type="button"
+              id="reset-form-btn"
+              class="px-5 py-2.5 rounded-lg bg-ivy-green text-parchment-light font-semibold text-xs sm:text-sm hover:bg-ivy-green-hover transition-colors cursor-pointer"
+            >
+              Send Another Inquiry
+            </button>
+          </div>
+        </div>
+      </Card>
+    </section>
+
+    {/* Section 3: Physical Locations & Registered Office Information */}
+    <section class="rounded-2xl border-2 border-weathered-stone bg-card-surface p-6 sm:p-10 shadow-stone space-y-8">
+      <div class="border-b border-weathered-stone/80 pb-4">
+        <span class="text-xs uppercase font-mono font-bold text-candle-gold-dark tracking-wider">
+          Practical Details
+        </span>
+        <h2 class="font-serif font-bold text-2xl sm:text-3xl text-deep-ink mt-1">
+          Charity Governance & Venue Locations
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Card 1: Registered Charity Details */}
+        <div class="p-5 rounded-xl bg-parchment-light border border-weathered-stone/80 space-y-2.5">
+          <div class="w-10 h-10 rounded-lg bg-ivy-green/10 flex items-center justify-center text-ivy-green">
+            <Building class="w-5 h-5" />
+          </div>
+          <h3 class="font-serif font-bold text-lg text-deep-ink m-0">Registered Entity</h3>
+          <p class="text-xs sm:text-sm text-deep-ink-muted leading-relaxed m-0">
+            <strong>The Friends of Grace Dieu Priory</strong><br />
+            Registered Charity No. <strong>1117921</strong><br />
+            Operating under agreement with <strong>The Grace Dieu Priory Trust</strong> (freehold property owners).
+          </p>
+        </div>
+
+        {/* Card 2: Trustee Meeting Venue */}
+        <div class="p-5 rounded-xl bg-parchment-light border border-weathered-stone/80 space-y-2.5">
+          <div class="w-10 h-10 rounded-lg bg-heritage-burgundy/10 flex items-center justify-center text-heritage-burgundy">
+            <Clock class="w-5 h-5" />
+          </div>
+          <h3 class="font-serif font-bold text-lg text-deep-ink m-0">Meeting Venue</h3>
+          <p class="text-xs sm:text-sm text-deep-ink-muted leading-relaxed m-0">
+            <strong>Thringstone Members Club</strong><br />
+            Loughborough Road, Thringstone<br />
+            Leicestershire, LE67 8LR<br />
+            <span class="text-[11px] text-deep-ink-light">Host venue for our Annual General Meeting (AGM) and public talks.</span>
+          </p>
+        </div>
+
+        {/* Card 3: Visitor Parking Location */}
+        <div class="p-5 rounded-xl bg-parchment-light border border-weathered-stone/80 space-y-2.5">
+          <div class="w-10 h-10 rounded-lg bg-candle-gold/20 flex items-center justify-center text-candle-gold-dark">
+            <MapPin class="w-5 h-5" />
+          </div>
+          <h3 class="font-serif font-bold text-lg text-deep-ink m-0">Visitor Parking</h3>
+          <p class="text-xs sm:text-sm text-deep-ink-muted leading-relaxed m-0">
+            <strong>The Bull’s Head Car Park</strong><br />
+            Warren Hills Road / Ashby Road<br />
+            Thringstone, Coalville, <strong>LE67 8NR</strong><br />
+            <span class="text-[11px] text-deep-ink-light">Patron car park with pedestrian permissive trail to the priory ruins.</span>
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<script>
+  function setupContactForm() {
+    const form = document.getElementById('contact-form') as HTMLFormElement;
+    const successBox = document.getElementById('contact-success');
+    const resetBtn = document.getElementById('reset-form-btn');
+    const subjectSelect = document.getElementById('contact-subject') as HTMLSelectElement;
+    const challengeInput = document.getElementById('spam-challenge') as HTMLInputElement;
+    const challengeError = document.getElementById('challenge-error');
+    const honeypot = document.getElementById('website_url') as HTMLInputElement;
+    const successTarget = document.getElementById('success-target-role');
+
+    // Page load time-lock (anti-bot)
+    const loadTime = Date.now();
+
+    // Role card pre-fill triggers
+    document.querySelectorAll<HTMLButtonElement>('.prefill-role-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const val = btn.dataset.subject;
+        if (subjectSelect && val) {
+          subjectSelect.value = val;
+          const formSection = document.getElementById('contact-form-section');
+          if (formSection) {
+            formSection.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      });
+    });
+
+    if (form && successBox) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        // Check 1: Honeypot trap
+        if (honeypot && honeypot.value.trim() !== '') {
+          // Silent bot drop
+          form.reset();
+          return;
+        }
+
+        // Check 2: Time-lock (bots submit within < 1.5 seconds)
+        if (Date.now() - loadTime < 1500) {
+          return;
+        }
+
+        // Check 3: Math security challenge (4 + 3 = 7)
+        const answer = challengeInput ? challengeInput.value.trim() : '';
+        if (answer !== '7') {
+          if (challengeError) challengeError.classList.remove('hidden');
+          if (challengeInput) {
+            challengeInput.focus();
+            challengeInput.classList.add('border-heritage-burgundy');
+          }
+          return;
+        }
+
+        if (challengeError) challengeError.classList.add('hidden');
+
+        // Form valid! Display success confirmation
+        const selectedText = subjectSelect.options[subjectSelect.selectedIndex]?.text || '';
+        if (successTarget) {
+          successTarget.textContent = selectedText.split('(')[0].trim();
+        }
+
+        form.classList.add('hidden');
+        successBox.classList.remove('hidden');
+      });
+    }
+
+    if (resetBtn && form && successBox) {
+      resetBtn.addEventListener('click', () => {
+        form.reset();
+        successBox.classList.add('hidden');
+        form.classList.remove('hidden');
+      });
+    }
+  }
+
+  setupContactForm();
+  document.addEventListener('astro:page-load', setupContactForm);
+</script>
