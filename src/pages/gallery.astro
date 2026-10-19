@@ -15,6 +15,7 @@ import {
   Sparkles,
   Compass,
   CheckCircle2,
+  ExternalLink,
 } from 'lucide-astro';
 
 // Curated photo dataset with standardized aspect ratios, authentic photography, and zero baked-in banners
@@ -36,6 +37,29 @@ const galleryItems = [
     date: 'Summer 2026',
     description:
       'The monumental surviving Gothic south transept arch standing proudly in the Charnwood meadow, displaying eight centuries of resilient Augustinian stonework.',
+  },
+  {
+    id: 'dji-avata-360-flight',
+    title: 'DJI Avata 360° Aerial Tour Over the Priory',
+    category: 'aerial',
+    categoryLabel: 'Aerial Landscape',
+    tag: '360° VIDEO',
+    isVideo: true,
+    videoId: 'i1yJ6Nbw9q4',
+    videoUrl: 'https://www.youtube.com/watch?v=i1yJ6Nbw9q4',
+    embedUrl: 'https://www.youtube-nocookie.com/embed/i1yJ6Nbw9q4?autoplay=1',
+    image: '/images/dji-avata-360-thumb.jpg',
+    webp: '/images/dji-avata-360-thumb.jpg',
+    avif: '/images/dji-avata-360-thumb.jpg',
+    thumbnail: '/images/dji-avata-360-thumb.jpg',
+    width: 480,
+    height: 360,
+    alt: '360-degree aerial FPV drone flight navigating the cloister ruins of Grace Dieu Priory',
+    credit: 'JuggysTube (@justinwilliamson2487)',
+    creditUrl: 'https://www.youtube.com/@justinwilliamson2487',
+    date: '360° FPV Flight',
+    description:
+      'An immersive 360-degree aerial FPV drone tour soaring over the cloisters, surviving arches, and peaceful woodland of Grace Dieu Priory. Filmed with the DJI Avata by JuggysTube.',
   },
   {
     id: 'drone-cloisters',
@@ -293,9 +317,14 @@ const galleryItems = [
                 data-date={item.date}
                 data-category-label={item.categoryLabel}
                 data-description={item.description}
+                data-is-video={item.isVideo ? 'true' : 'false'}
+                data-video-id={item.videoId || ''}
+                data-video-url={item.videoUrl || ''}
+                data-embed-url={item.embedUrl || ''}
+                data-credit-url={item.creditUrl || ''}
                 role="button"
                 tabindex="0"
-                aria-label={`Open photo: ${item.title}`}
+                aria-label={`Open media: ${item.title}`}
               >
                 {/* Standardized 4:3 Image Container */}
                 <div class="relative w-full aspect-[4/3] overflow-hidden bg-[#EAE6DE]">
@@ -312,6 +341,15 @@ const galleryItems = [
                       decoding="async"
                     />
                   </picture>
+
+                  {/* Play Button Overlay for Videos */}
+                  {item.isVideo && (
+                    <div class="absolute inset-0 flex items-center justify-center bg-black/25 group-hover:bg-black/35 transition-colors">
+                      <div class="w-12 h-12 rounded-full bg-[#B8923A] text-[#1E211E] flex items-center justify-center shadow-xl group-hover:scale-110 group-hover:bg-[#E6C673] transition-all">
+                        <Play class="w-5 h-5 fill-current translate-x-0.5" />
+                      </div>
+                    </div>
+                  )}
 
                   {/* Clean Understated Tag Pill (Top-Left) */}
                   <span class="absolute top-3 left-3 bg-[#F6F1E7]/90 backdrop-blur-sm border border-[#D9D4C7] text-[#2F4A3A] text-[10px] uppercase tracking-[0.14em] font-medium px-2 py-0.5 rounded shadow-xs">
@@ -337,29 +375,42 @@ const galleryItems = [
     </div>
 
     {/* Section 2: Privacy-Preserving Aerial Drone Video Feature */}
-    {/* Section 2: Privacy-Preserving Aerial Drone Video Feature */}
     <section class="rounded-2xl border border-[#D9D4C7]/80 bg-white p-6 sm:p-10 shadow-sm space-y-6">
-      <div class="max-w-3xl space-y-2">
-        <span class="text-xs uppercase font-mono font-bold text-candle-gold-dark tracking-wider">
-          Moving Image Showcase
-        </span>
-        <h2 class="font-serif font-bold text-2xl sm:text-3xl text-deep-ink">
-          Aerial Flight Over the Cloisters
-        </h2>
-        <p class="text-sm sm:text-base text-deep-ink-muted leading-relaxed m-0">
-          Experience Richard Taylor’s renowned aerial drone flight capturing the ruined Augustinian cloisters, Beaumont Tudor chimney, and surrounding Grace Dieu Brook.
-        </p>
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div class="max-w-3xl space-y-2">
+          <span class="text-xs uppercase font-mono font-bold text-candle-gold-dark tracking-wider">
+            Moving Image Showcase
+          </span>
+          <h2 class="font-serif font-bold text-2xl sm:text-3xl text-deep-ink">
+            DJI Avata 360° Aerial Tour Over Grace Dieu Priory
+          </h2>
+          <p class="text-sm sm:text-base text-deep-ink-muted leading-relaxed m-0">
+            Experience an immersive 360-degree aerial FPV flight soaring through the cloister arches, Chapter House footings, and secluded woodland of Grace Dieu Priory.
+          </p>
+        </div>
+
+        <div class="shrink-0">
+          <a
+            href="https://www.youtube.com/watch?v=i1yJ6Nbw9q4"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#FAF8F5] border border-[#D9D4C7] hover:border-[#B8923A] text-xs font-semibold text-[#1E211E] hover:text-[#7A2E3A] transition-colors shadow-xs"
+          >
+            <span>Watch on YouTube</span>
+            <ExternalLink class="w-3.5 h-3.5 text-[#B8923A]" />
+          </a>
+        </div>
       </div>
 
       <div class="relative rounded-2xl overflow-hidden border border-[#D9D4C7]/80 shadow-md bg-deep-ink max-w-4xl mx-auto aspect-16/9">
         {/* Click-to-load video player facade protecting visitor privacy */}
         <div id="video-facade" class="absolute inset-0 cursor-pointer group">
           <img
-            src="/images/header.jpg"
-            alt="Grace Dieu Priory ruins aerial flight preview thumbnail"
-            class="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500 opacity-80"
+            src="/images/dji-avata-360-thumb.jpg"
+            alt="DJI Avata 360 Grace Dieu Priory flight preview thumbnail"
+            class="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500 opacity-90"
           />
-          <div class="absolute inset-0 bg-gradient-to-t from-deep-ink/80 via-deep-ink/30 to-deep-ink/40"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-deep-ink/80 via-deep-ink/20 to-deep-ink/40"></div>
 
           <div class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center text-white space-y-4">
             <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-candle-gold text-deep-ink flex items-center justify-center shadow-2xl group-hover:scale-110 group-hover:bg-candle-gold-light transition-all">
@@ -367,10 +418,10 @@ const galleryItems = [
             </div>
             <div>
               <div class="font-serif font-bold text-xl sm:text-2xl text-white">
-                Play Aerial Drone Flight (4K)
+                Play 360° Aerial Tour
               </div>
               <p class="text-xs sm:text-sm text-parchment/80 max-w-md mx-auto mt-1 m-0">
-                Click to load video. No tracking cookies are loaded until you press play.
+                Filmed with DJI Avata by JuggysTube · Click to load YouTube player
               </p>
             </div>
           </div>
@@ -378,6 +429,27 @@ const galleryItems = [
 
         {/* Video iframe injected on click */}
         <div id="video-container" class="hidden w-full h-full"></div>
+      </div>
+
+      {/* Attribution & Credits Bar */}
+      <div class="max-w-4xl mx-auto pt-3 border-t border-[#D9D4C7]/60 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-[#5C645E]">
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="font-semibold text-[#1E211E]">Credits:</span>
+          <span>Filmed and produced by</span>
+          <a
+            href="https://www.youtube.com/@justinwilliamson2487"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-[#1E211E] font-medium underline hover:text-[#7A2E3A] inline-flex items-center gap-0.5"
+          >
+            <span>JuggysTube (Justin Williamson)</span>
+            <ExternalLink class="w-3 h-3 text-[#B8923A]" />
+          </a>
+        </div>
+        <div class="flex items-center gap-2 font-mono text-[11px] text-[#5C645E]">
+          <span class="px-2 py-0.5 rounded bg-[#FAF8F5] border border-[#D9D4C7]">DJI Avata</span>
+          <span class="px-2 py-0.5 rounded bg-[#FAF8F5] border border-[#D9D4C7]">360° FPV</span>
+        </div>
       </div>
     </section>
 
@@ -446,8 +518,9 @@ const galleryItems = [
         </button>
       </div>
 
-      {/* Main Image View Area */}
+      {/* Main Media View Area */}
       <div class="relative bg-black flex items-center justify-center overflow-hidden min-h-[300px] max-h-[60vh]">
+        {/* Still Photo Element */}
         <img
           id="lightbox-image"
           src=""
@@ -455,11 +528,23 @@ const galleryItems = [
           class="max-h-[60vh] max-w-full object-contain mx-auto transition-opacity duration-200"
         />
 
+        {/* Video Player Container */}
+        <div id="lightbox-video-wrap" class="hidden w-full h-full aspect-video max-h-[60vh] flex items-center justify-center">
+          <iframe
+            id="lightbox-iframe"
+            class="w-full h-full max-h-[60vh] border-0"
+            src=""
+            title=""
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </div>
+
         {/* Previous Button */}
         <button
           type="button"
           id="lightbox-prev"
-          class="absolute left-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-[#1E211E]/80 hover:bg-[#1E211E] text-white transition-all cursor-pointer shadow-lg hover:scale-105 focus:outline-none focus:ring-2 focus:ring-candle-gold"
+          class="absolute left-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-[#1E211E]/80 hover:bg-[#1E211E] text-white transition-all cursor-pointer shadow-lg hover:scale-105 focus:outline-none focus:ring-2 focus:ring-candle-gold z-20"
           aria-label="Previous photograph (Left arrow)"
         >
           <ChevronLeft class="w-6 h-6" />
@@ -469,7 +554,7 @@ const galleryItems = [
         <button
           type="button"
           id="lightbox-next"
-          class="absolute right-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-[#1E211E]/80 hover:bg-[#1E211E] text-white transition-all cursor-pointer shadow-lg hover:scale-105 focus:outline-none focus:ring-2 focus:ring-candle-gold"
+          class="absolute right-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-[#1E211E]/80 hover:bg-[#1E211E] text-white transition-all cursor-pointer shadow-lg hover:scale-105 focus:outline-none focus:ring-2 focus:ring-candle-gold z-20"
           aria-label="Next photograph (Right arrow)"
         >
           <ChevronRight class="w-6 h-6" />
@@ -480,14 +565,39 @@ const galleryItems = [
       <div class="p-5 sm:p-6 bg-white border-t border-[#D9D4C7]/80 overflow-y-auto space-y-3">
         <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
           <h3 id="lightbox-title" class="font-serif font-bold text-xl sm:text-2xl text-[#1E211E] m-0"></h3>
-          <div class="flex items-center gap-3 text-xs text-[#5C645E] shrink-0">
+          <div class="flex flex-wrap items-center gap-2 text-xs text-[#5C645E] shrink-0">
             <span id="lightbox-date" class="font-medium"></span>
             <span>·</span>
-            <span id="lightbox-credit" class="font-medium"></span>
+            <span id="lightbox-credit-wrap" class="font-medium inline-flex items-center gap-1">
+              <span id="lightbox-credit"></span>
+              <a
+                id="lightbox-credit-link"
+                href=""
+                target="_blank"
+                rel="noopener noreferrer"
+                class="hidden underline hover:text-[#1E211E] ml-1 items-center gap-0.5 text-[#B8923A]"
+              >
+                <span>Channel</span>
+                <ExternalLink class="w-3 h-3" />
+              </a>
+            </span>
           </div>
         </div>
 
         <p id="lightbox-desc" class="text-xs sm:text-sm text-[#5C645E] leading-relaxed m-0 font-normal"></p>
+
+        <div id="lightbox-video-action" class="hidden pt-2">
+          <a
+            id="lightbox-youtube-btn"
+            href=""
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#FAF8F5] border border-[#D9D4C7] hover:border-[#B8923A] text-xs font-semibold text-[#1E211E] hover:text-[#7A2E3A] transition-colors"
+          >
+            <span>Watch Full 360° Video on YouTube</span>
+            <ExternalLink class="w-3.5 h-3.5 text-[#B8923A]" />
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -508,12 +618,17 @@ const galleryItems = [
     const nextBtn = document.getElementById('lightbox-next');
 
     const imgEl = document.getElementById('lightbox-image') as HTMLImageElement;
+    const videoWrap = document.getElementById('lightbox-video-wrap');
+    const iframeEl = document.getElementById('lightbox-iframe') as HTMLIFrameElement;
     const titleEl = document.getElementById('lightbox-title');
     const descEl = document.getElementById('lightbox-desc');
     const categoryEl = document.getElementById('lightbox-category');
     const creditEl = document.getElementById('lightbox-credit');
+    const creditLink = document.getElementById('lightbox-credit-link') as HTMLAnchorElement;
     const dateEl = document.getElementById('lightbox-date');
     const counterEl = document.getElementById('lightbox-counter');
+    const videoAction = document.getElementById('lightbox-video-action');
+    const youtubeBtn = document.getElementById('lightbox-youtube-btn') as HTMLAnchorElement;
 
     let currentIndex = 0;
     let visibleCards = [...cards];
@@ -547,25 +662,53 @@ const galleryItems = [
       });
     });
 
-    // Lightbox modal opener
+    // Lightbox modal updater
     function updateLightbox(index: number) {
       if (!visibleCards[index]) return;
       currentIndex = index;
       const card = visibleCards[currentIndex];
+      const isVideo = card.dataset.isVideo === 'true';
 
-      if (imgEl) {
-        imgEl.style.opacity = '0';
-        setTimeout(() => {
-          imgEl.src = card.dataset.image || '';
-          imgEl.alt = card.dataset.alt || '';
-          imgEl.style.opacity = '1';
-        }, 150);
+      if (isVideo) {
+        if (imgEl) imgEl.classList.add('hidden');
+        if (videoWrap) videoWrap.classList.remove('hidden');
+        if (iframeEl) {
+          iframeEl.src = card.dataset.embedUrl || '';
+          iframeEl.title = card.dataset.title || 'Grace Dieu Priory Video';
+        }
+        if (videoAction) videoAction.classList.remove('hidden');
+        if (youtubeBtn) youtubeBtn.href = card.dataset.videoUrl || '';
+      } else {
+        if (iframeEl) iframeEl.src = '';
+        if (videoWrap) videoWrap.classList.add('hidden');
+        if (videoAction) videoAction.classList.add('hidden');
+        if (imgEl) {
+          imgEl.classList.remove('hidden');
+          imgEl.style.opacity = '0';
+          setTimeout(() => {
+            imgEl.src = card.dataset.image || '';
+            imgEl.alt = card.dataset.alt || '';
+            imgEl.style.opacity = '1';
+          }, 150);
+        }
       }
 
       if (titleEl) titleEl.textContent = card.dataset.title || '';
       if (descEl) descEl.textContent = card.dataset.description || '';
       if (categoryEl) categoryEl.textContent = card.dataset.categoryLabel || '';
       if (creditEl) creditEl.textContent = `Credit: ${card.dataset.credit || 'Friends Archive'}`;
+
+      if (creditLink) {
+        if (card.dataset.creditUrl) {
+          creditLink.href = card.dataset.creditUrl;
+          creditLink.classList.remove('hidden');
+          creditLink.classList.add('inline-flex');
+        } else {
+          creditLink.classList.add('hidden');
+          creditLink.classList.remove('inline-flex');
+        }
+      }
+
       if (dateEl) dateEl.textContent = card.dataset.date || '';
       if (counterEl) counterEl.textContent = `${currentIndex + 1} of ${visibleCards.length}`;
     }
@@ -589,6 +732,10 @@ const galleryItems = [
 
     function closeLightbox() {
       if (!modal || !panel) return;
+
+      // Stop video playback immediately
+      if (iframeEl) iframeEl.src = '';
+
       modal.classList.remove('opacity-100');
       modal.classList.add('opacity-0');
       panel.classList.remove('scale-100');
@@ -641,7 +788,7 @@ const galleryItems = [
       if (e.key === 'ArrowLeft') showPrev();
     });
 
-    // Video facade setup
+    // Section 2 Video facade setup (privacy-friendly embed)
     const videoFacade = document.getElementById('video-facade');
     const videoContainer = document.getElementById('video-container');
 
@@ -651,10 +798,9 @@ const galleryItems = [
         videoContainer.classList.remove('hidden');
         videoContainer.innerHTML = `
           <iframe
-            class="w-full h-full"
-            src="https://www.youtube-nocookie.com/embed/G1_f6ZzcZ2k?autoplay=1"
-            title="Grace Dieu Priory Aerial Flight by Richard Taylor"
-            frameborder="0"
+            class="w-full h-full border-0"
+            src="https://www.youtube-nocookie.com/embed/i1yJ6Nbw9q4?autoplay=1"
+            title="DJI Avata 360 Grace Dieu Priory by JuggysTube"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen
           ></iframe>
