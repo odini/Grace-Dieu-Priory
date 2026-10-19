@@ -223,7 +223,7 @@ const navStructure = [
           id="mobile-drawer-toggle"
           class="lg:hidden p-2 rounded-md text-[#2C3333] hover:text-[#1E211E] hover:bg-[#D9D4C7]/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B8923A] transition-colors cursor-pointer"
           aria-expanded="false"
-          aria-controls="mobile-nav-panel"
+          aria-controls="mobile-nav-drawer"
           aria-label="Open mobile navigation menu"
         >
           <Menu class="w-6 h-6" aria-hidden="true" />
@@ -236,7 +236,7 @@ const navStructure = [
   {/* Accessible Mobile Slide-Out Drawer (Below lg screens) */}
   <div
     id="mobile-nav-drawer"
-    class="fixed inset-0 z-50 invisible opacity-0 transition-all duration-300 pointer-events-none lg:hidden"
+    class="fixed inset-0 z-50 invisible pointer-events-none lg:hidden"
     role="dialog"
     aria-modal="true"
     aria-label="Site Navigation Menu"
@@ -244,7 +244,7 @@ const navStructure = [
     {/* Backdrop Overlay */}
     <div
       id="drawer-backdrop"
-      class="fixed inset-0 bg-[#1E211E]/50 backdrop-blur-xs transition-opacity duration-300 opacity-0"
+      class="fixed inset-0 bg-[#1E211E]/60 backdrop-blur-sm transition-opacity duration-300 opacity-0"
       aria-hidden="true"
     ></div>
 
@@ -453,9 +453,13 @@ const navStructure = [
     const panel = document.getElementById('drawer-panel');
 
     if (toggleBtn && closeBtn && drawer && backdrop && panel) {
+      if (drawer.dataset.initialized === 'true') return;
+      drawer.dataset.initialized = 'true';
+
       let isOpen = false;
 
       function openDrawer() {
+        if (isOpen) return;
         isOpen = true;
         toggleBtn?.setAttribute('aria-expanded', 'true');
         drawer?.classList.remove('invisible', 'pointer-events-none');
@@ -467,38 +471,65 @@ const navStructure = [
           panel?.classList.remove('translate-x-full');
           panel?.classList.add('translate-x-0');
           closeBtn?.focus();
-        }, 10);
+        }, 20);
 
         document.body.style.overflow = 'hidden';
       }
 
       function closeDrawer() {
+        if (!isOpen) return;
         isOpen = false;
         toggleBtn?.setAttribute('aria-expanded', 'false');
         backdrop?.classList.remove('opacity-100');
         backdrop?.classList.add('opacity-0');
         panel?.classList.remove('translate-x-0');
         panel?.classList.add('translate-x-full');
+        document.body.style.overflow = '';
 
         setTimeout(() => {
-          drawer?.classList.remove('visible', 'pointer-events-auto');
-          drawer?.classList.add('invisible', 'pointer-events-none');
-          toggleBtn?.focus();
+          if (!isOpen) {
+            drawer?.classList.remove('visible', 'pointer-events-auto');
+            drawer?.classList.add('invisible', 'pointer-events-none');
+            toggleBtn?.focus();
+          }
         }, 300);
-
-        document.body.style.overflow = '';
       }
 
-      toggleBtn.addEventListener('click', openDrawer);
-      closeBtn.addEventListener('click', closeDrawer);
-      backdrop.addEventListener('click', closeDrawer);
+      toggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (isOpen) {
+          closeDrawer();
+        } else {
+          openDrawer();
+        }
+      });
+
+      closeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeDrawer();
+      });
+
+      backdrop.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeDrawer();
+      });
 
       document.addEventListener('keydown', (e) => {
         if (isOpen && e.key === 'Escape') closeDrawer();
       });
 
       panel.querySelectorAll('a').forEach((link) => {
-        link.addEventListener('click', closeDrawer);
+        link.addEventListener('click', () => {
+          closeDrawer();
+        });
+      });
+
+      // Close drawer if viewport is resized to desktop
+      const mql = window.matchMedia('(min-width: 1024px)');
+      mql.addEventListener('change', (e) => {
+        if (e.matches && isOpen) {
+          closeDrawer();
+        }
       });
     }
 
