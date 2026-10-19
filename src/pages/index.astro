@@ -515,21 +515,22 @@ const upcomingEvents = allEvents
         {/* Facade Container */}
         <div
           id="video-facade-container"
-          class="relative w-full aspect-video bg-deep-ink cursor-pointer group select-none"
+          class="relative w-full aspect-video bg-deep-ink cursor-pointer group select-none overflow-hidden"
           data-video-id="G1_f6ZzcZ2k"
           role="region"
           aria-label="Aerial video player"
         >
-          {/* Static High-Res Video Poster Image */}
+          {/* Static High-Res Video Poster Image from YouTube CDN with Fallback */}
           <img
-            src="/images/dji_fly_20261017_121424_0089_1792305669278_photo.jpg"
-            alt="Aerial view of Grace Dieu Priory ruins"
-            class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500 opacity-80"
+            src="https://img.youtube.com/vi/G1_f6ZzcZ2k/maxresdefault.jpg"
+            onerror="this.onerror=null;this.src='https://img.youtube.com/vi/G1_f6ZzcZ2k/hqdefault.jpg';"
+            alt="Aerial flight view of Grace Dieu Priory ruins by Richard Taylor"
+            class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500 opacity-90"
             loading="lazy"
           />
 
-          {/* Vignette Overlay */}
-          <div class="absolute inset-0 bg-gradient-to-t from-deep-ink/90 via-deep-ink/30 to-deep-ink/50 group-hover:opacity-75 transition-opacity"></div>
+          {/* Subtle Dark Scrim Overlay */}
+          <div class="absolute inset-0 bg-[#141C16]/50 group-hover:bg-[#141C16]/40 transition-colors"></div>
 
           {/* Central Play Button */}
           <div class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
