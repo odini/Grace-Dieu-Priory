@@ -98,18 +98,18 @@ const navStructure = [
 ---
 
 <header class="sticky top-0 z-40 bg-[#F6F1E7] border-b border-[#D9D4C7]/60 transition-shadow duration-200">
-  <div class="max-w-7xl mx-auto px-6 lg:px-8">
-    <div class="flex items-center justify-between h-20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 sm:h-20">
       
       {/* Logo & Brand Mark (Left) */}
       <a
         href="/"
-        class="flex items-center gap-3.5 group no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B8923A] rounded-lg p-1 -ml-1 transition-opacity hover:opacity-95"
+        class="whitespace-nowrap flex items-center gap-2.5 group no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B8923A] rounded-lg p-1 -ml-1 transition-opacity hover:opacity-95"
         aria-label="Grace Dieu Priory Homepage"
       >
-        {/* Clean SVG arch line-art in deep ivy #2F4A3A (~36px height, crisp 1.5px stroke) */}
+        {/* Clean SVG arch line-art in deep ivy #2F4A3A */}
         <svg
-          class="h-9 w-auto text-[#2F4A3A] shrink-0 drop-shadow-xs group-hover:scale-102 transition-transform duration-200"
+          class="w-7 h-7 sm:w-9 sm:h-9 text-[#2F4A3A] shrink-0 drop-shadow-xs group-hover:scale-102 transition-transform duration-200"
           viewBox="0 0 32 40"
           fill="none"
           stroke="currentColor"
@@ -131,10 +131,10 @@ const navStructure = [
 
         {/* Wordmark */}
         <div class="flex flex-col">
-          <span class="font-serif uppercase tracking-[0.18em] text-lg font-semibold text-[#1E211E] leading-tight group-hover:text-[#2F4A3A] transition-colors">
+          <span class="font-serif uppercase tracking-wider text-sm sm:text-base lg:text-lg font-semibold text-[#1E211E] leading-tight group-hover:text-[#2F4A3A] transition-colors whitespace-nowrap">
             Grace Dieu Priory
           </span>
-          <span class="text-[10px] tracking-[0.14em] uppercase text-[#3F4E4F] block -mt-0.5 font-sans font-medium">
+          <span class="text-[9px] sm:text-[10px] tracking-wider uppercase text-[#5C645E] hidden sm:block -mt-0.5 font-sans font-medium whitespace-nowrap">
             Augustinian Ruins · Est. 1240
           </span>
         </div>
@@ -207,11 +207,11 @@ const navStructure = [
       </nav>
 
       {/* Call to Action Button & Mobile Trigger (Right) */}
-      <div class="flex items-center gap-3">
-        {/* Support Us CTA Button */}
+      <div class="flex items-center gap-2 sm:gap-3">
+        {/* Support Us CTA Button (Hidden on < sm screens to give logo breathing room, accessible in drawer) */}
         <a
           href="/get-involved"
-          class="inline-flex items-center gap-2 whitespace-nowrap h-10 px-5 rounded-md bg-[#2F4A3A] hover:bg-[#1E3025] text-[#F6F1E7] text-sm font-medium transition-colors no-underline shadow-xs focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B8923A] focus-visible:ring-offset-2 select-none"
+          class="hidden sm:inline-flex items-center gap-2 whitespace-nowrap h-10 px-5 rounded-md bg-[#2F4A3A] hover:bg-[#1E3025] text-[#F6F1E7] text-sm font-medium transition-colors no-underline shadow-xs focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B8923A] focus-visible:ring-offset-2 select-none"
         >
           <Heart class="w-4 h-4 text-[#B8923A] fill-[#B8923A]/20 shrink-0" aria-hidden="true" />
           <span>Support Us</span>
