@@ -49,13 +49,13 @@ const storageKey = `gdp-notice-dismissed-${noticeId}`;
     <aside
       id="site-top-notice"
       data-storage-key={storageKey}
-      class={`site-top-banner relative bg-[#243A2D] text-parchment-light border-b border-candle-gold/40 text-xs sm:text-sm py-2.5 px-4 transition-all duration-300 z-30 ${className}`}
+      class={`site-top-banner relative bg-[#243A2D] text-parchment-light border-b border-candle-gold/40 text-xs sm:text-sm px-4 py-3 sm:px-6 transition-all duration-300 z-30 ${className}`}
       aria-label="Important Announcement"
       role="region"
     >
       <div class="max-w-7xl mx-auto flex items-center justify-between gap-3 relative pr-8 sm:pr-0">
-        <div class="flex items-center gap-2.5 flex-1 min-w-0">
-          <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-candle-gold/20 text-candle-gold shrink-0">
+        <div class="flex items-start sm:items-center gap-2.5 flex-1 min-w-0">
+          <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-candle-gold/20 text-candle-gold self-start mt-0.5 shrink-0">
             <Megaphone class="w-3.5 h-3.5" aria-hidden="true" />
           </span>
 
