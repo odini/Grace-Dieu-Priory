@@ -62,6 +62,29 @@ const galleryItems = [
       'An immersive 360-degree aerial FPV drone tour soaring over the cloisters, surviving arches, and peaceful woodland of Grace Dieu Priory. Filmed with the DJI Avata by JuggysTube.',
   },
   {
+    id: 'richard-taylor-flight',
+    title: 'Aerial Cloister & Ruins Drone Flight',
+    category: 'aerial',
+    categoryLabel: 'Aerial Landscape',
+    tag: '4K DRONE',
+    isVideo: true,
+    videoId: 'G1_f6ZzcZ2k',
+    videoUrl: 'https://www.youtube.com/watch?v=G1_f6ZzcZ2k',
+    embedUrl: 'https://www.youtube-nocookie.com/embed/G1_f6ZzcZ2k?autoplay=1',
+    image: '/images/richard-taylor-drone-thumb.jpg',
+    webp: '/images/richard-taylor-drone-thumb.jpg',
+    avif: '/images/richard-taylor-drone-thumb.jpg',
+    thumbnail: '/images/richard-taylor-drone-thumb.jpg',
+    width: 480,
+    height: 360,
+    alt: 'Aerial drone flight capturing the ruined Augustinian cloisters and Tudor walls of Grace Dieu Priory',
+    credit: 'Richard Taylor (@richardtaylor2533)',
+    creditUrl: 'https://www.youtube.com/@richardtaylor2533',
+    date: 'Aerial Survey',
+    description:
+      'Richard Taylor’s renowned aerial drone flight capturing the ruined Augustinian cloisters, Beaumont Tudor chimney, and surrounding Grace Dieu Brook in high-definition.',
+  },
+  {
     id: 'drone-cloisters',
     title: 'Cloister Arches & Chapter House Aerial',
     category: 'aerial',
@@ -374,81 +397,131 @@ const galleryItems = [
       </div>
     </div>
 
-    {/* Section 2: Privacy-Preserving Aerial Drone Video Feature */}
-    <section class="rounded-2xl border border-[#D9D4C7]/80 bg-white p-6 sm:p-10 shadow-sm space-y-6">
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
-        <div class="max-w-3xl space-y-2">
-          <span class="text-xs uppercase font-mono font-bold text-candle-gold-dark tracking-wider">
-            Moving Image Showcase
-          </span>
-          <h2 class="font-serif font-bold text-2xl sm:text-3xl text-deep-ink">
-            DJI Avata 360° Aerial Tour Over Grace Dieu Priory
-          </h2>
-          <p class="text-sm sm:text-base text-deep-ink-muted leading-relaxed m-0">
-            Experience an immersive 360-degree aerial FPV flight soaring through the cloister arches, Chapter House footings, and secluded woodland of Grace Dieu Priory.
-          </p>
-        </div>
-
-        <div class="shrink-0">
-          <a
-            href="https://www.youtube.com/watch?v=i1yJ6Nbw9q4"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#FAF8F5] border border-[#D9D4C7] hover:border-[#B8923A] text-xs font-semibold text-[#1E211E] hover:text-[#7A2E3A] transition-colors shadow-xs"
-          >
-            <span>Watch on YouTube</span>
-            <ExternalLink class="w-3.5 h-3.5 text-[#B8923A]" />
-          </a>
-        </div>
+    {/* Section 2: Privacy-Preserving Aerial Drone Video Features */}
+    <section class="rounded-2xl border border-[#D9D4C7]/80 bg-white p-6 sm:p-10 shadow-sm space-y-8">
+      <div class="max-w-3xl space-y-2">
+        <span class="text-xs uppercase font-mono font-bold text-candle-gold-dark tracking-wider">
+          Moving Image Showcase
+        </span>
+        <h2 class="font-serif font-bold text-2xl sm:text-3xl text-deep-ink">
+          Aerial Drone Flights Over the Ruins
+        </h2>
+        <p class="text-sm sm:text-base text-deep-ink-muted leading-relaxed m-0">
+          Experience Grace Dieu Priory from above through two unique aerial surveys: an immersive 360-degree FPV flight soaring through the cloister arches, and a high-definition survey of the ruined monastery and surrounding Charnwood woodland.
+        </p>
       </div>
 
-      <div class="relative rounded-2xl overflow-hidden border border-[#D9D4C7]/80 shadow-md bg-deep-ink max-w-4xl mx-auto aspect-16/9">
-        {/* Click-to-load video player facade protecting visitor privacy */}
-        <div id="video-facade" class="absolute inset-0 cursor-pointer group">
-          <img
-            src="/images/dji-avata-360-thumb.jpg"
-            alt="DJI Avata 360 Grace Dieu Priory flight preview thumbnail"
-            class="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500 opacity-90"
-          />
-          <div class="absolute inset-0 bg-gradient-to-t from-deep-ink/80 via-deep-ink/20 to-deep-ink/40"></div>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+        {/* Video 1: DJI Avata 360° FPV Flight by JuggysTube */}
+        <div class="rounded-xl border border-[#D9D4C7]/80 bg-[#FAF8F5] p-4 sm:p-5 flex flex-col justify-between h-full space-y-4 shadow-2xs">
+          <div class="relative rounded-xl overflow-hidden border border-[#D9D4C7]/80 shadow-md bg-deep-ink aspect-16/9">
+            <div id="video-facade-1" class="absolute inset-0 cursor-pointer group">
+              <img
+                src="/images/dji-avata-360-thumb.jpg"
+                alt="DJI Avata 360 Grace Dieu Priory flight preview thumbnail"
+                class="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500 opacity-90"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-deep-ink/80 via-deep-ink/20 to-deep-ink/40"></div>
 
-          <div class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center text-white space-y-4">
-            <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-candle-gold text-deep-ink flex items-center justify-center shadow-2xl group-hover:scale-110 group-hover:bg-candle-gold-light transition-all">
-              <Play class="w-8 h-8 sm:w-10 sm:h-10 fill-current translate-x-0.5" />
-            </div>
-            <div>
-              <div class="font-serif font-bold text-xl sm:text-2xl text-white">
-                Play 360° Aerial Tour
+              <div class="absolute inset-0 flex flex-col items-center justify-center p-4 text-center text-white space-y-3">
+                <div class="w-14 h-14 rounded-full bg-candle-gold text-deep-ink flex items-center justify-center shadow-xl group-hover:scale-110 group-hover:bg-candle-gold-light transition-all">
+                  <Play class="w-7 h-7 fill-current translate-x-0.5" />
+                </div>
+                <div>
+                  <div class="font-serif font-bold text-lg sm:text-xl text-white">
+                    Play 360° FPV Tour
+                  </div>
+                  <p class="text-[11px] text-parchment/80 max-w-xs mx-auto mt-0.5 m-0">
+                    Filmed with DJI Avata · Click to load YouTube player
+                  </p>
+                </div>
               </div>
-              <p class="text-xs sm:text-sm text-parchment/80 max-w-md mx-auto mt-1 m-0">
-                Filmed with DJI Avata by JuggysTube · Click to load YouTube player
+            </div>
+            <div id="video-container-1" class="hidden w-full h-full"></div>
+          </div>
+
+          <div class="space-y-2 flex-1 flex flex-col justify-between">
+            <div class="space-y-1">
+              <div class="flex items-start justify-between gap-2">
+                <h3 class="font-serif font-bold text-lg text-[#1E211E] m-0">
+                  DJI Avata 360° Aerial Tour
+                </h3>
+                <a
+                  href="https://www.youtube.com/watch?v=i1yJ6Nbw9q4"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="shrink-0 text-xs font-semibold text-[#1E211E] hover:text-[#7A2E3A] inline-flex items-center gap-1 underline underline-offset-2"
+                >
+                  <span>YouTube</span>
+                  <ExternalLink class="w-3 h-3 text-[#B8923A]" />
+                </a>
+              </div>
+              <p class="text-xs text-[#5C645E] leading-relaxed m-0">
+                An immersive 360-degree aerial FPV tour soaring through the cloister arches, chapter house footings, and tree canopy.
               </p>
+            </div>
+
+            <div class="pt-3 border-t border-[#D9D4C7]/60 flex items-center justify-between text-xs text-[#5C645E]">
+              <span>Credit: <a href="https://www.youtube.com/@justinwilliamson2487" target="_blank" rel="noopener noreferrer" class="font-medium text-[#1E211E] underline hover:text-[#7A2E3A]">JuggysTube (Justin Williamson)</a></span>
+              <span class="font-mono text-[11px] px-2 py-0.5 rounded bg-white border border-[#D9D4C7]">360° FPV</span>
             </div>
           </div>
         </div>
 
-        {/* Video iframe injected on click */}
-        <div id="video-container" class="hidden w-full h-full"></div>
-      </div>
+        {/* Video 2: Cinematic Drone Flight by Richard Taylor */}
+        <div class="rounded-xl border border-[#D9D4C7]/80 bg-[#FAF8F5] p-4 sm:p-5 flex flex-col justify-between h-full space-y-4 shadow-2xs">
+          <div class="relative rounded-xl overflow-hidden border border-[#D9D4C7]/80 shadow-md bg-deep-ink aspect-16/9">
+            <div id="video-facade-2" class="absolute inset-0 cursor-pointer group">
+              <img
+                src="/images/richard-taylor-drone-thumb.jpg"
+                alt="Grace Dieu Priory aerial drone flight preview by Richard Taylor"
+                class="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500 opacity-85"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-deep-ink/80 via-deep-ink/20 to-deep-ink/40"></div>
 
-      {/* Attribution & Credits Bar */}
-      <div class="max-w-4xl mx-auto pt-3 border-t border-[#D9D4C7]/60 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-[#5C645E]">
-        <div class="flex flex-wrap items-center gap-2">
-          <span class="font-semibold text-[#1E211E]">Credits:</span>
-          <span>Filmed and produced by</span>
-          <a
-            href="https://www.youtube.com/@justinwilliamson2487"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-[#1E211E] font-medium underline hover:text-[#7A2E3A] inline-flex items-center gap-0.5"
-          >
-            <span>JuggysTube (Justin Williamson)</span>
-            <ExternalLink class="w-3 h-3 text-[#B8923A]" />
-          </a>
-        </div>
-        <div class="flex items-center gap-2 font-mono text-[11px] text-[#5C645E]">
-          <span class="px-2 py-0.5 rounded bg-[#FAF8F5] border border-[#D9D4C7]">DJI Avata</span>
-          <span class="px-2 py-0.5 rounded bg-[#FAF8F5] border border-[#D9D4C7]">360° FPV</span>
+              <div class="absolute inset-0 flex flex-col items-center justify-center p-4 text-center text-white space-y-3">
+                <div class="w-14 h-14 rounded-full bg-candle-gold text-deep-ink flex items-center justify-center shadow-xl group-hover:scale-110 group-hover:bg-candle-gold-light transition-all">
+                  <Play class="w-7 h-7 fill-current translate-x-0.5" />
+                </div>
+                <div>
+                  <div class="font-serif font-bold text-lg sm:text-xl text-white">
+                    Play Aerial Cloister Survey
+                  </div>
+                  <p class="text-[11px] text-parchment/80 max-w-xs mx-auto mt-0.5 m-0">
+                    High-definition flight · Click to load YouTube player
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div id="video-container-2" class="hidden w-full h-full"></div>
+          </div>
+
+          <div class="space-y-2 flex-1 flex flex-col justify-between">
+            <div class="space-y-1">
+              <div class="flex items-start justify-between gap-2">
+                <h3 class="font-serif font-bold text-lg text-[#1E211E] m-0">
+                  Aerial Cloister & Ruins Flight
+                </h3>
+                <a
+                  href="https://www.youtube.com/watch?v=G1_f6ZzcZ2k"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="shrink-0 text-xs font-semibold text-[#1E211E] hover:text-[#7A2E3A] inline-flex items-center gap-1 underline underline-offset-2"
+                >
+                  <span>YouTube</span>
+                  <ExternalLink class="w-3 h-3 text-[#B8923A]" />
+                </a>
+              </div>
+              <p class="text-xs text-[#5C645E] leading-relaxed m-0">
+                Richard Taylor’s renowned aerial drone flight capturing the ruined Augustinian cloisters, Beaumont Tudor chimney, and surrounding Grace Dieu Brook.
+              </p>
+            </div>
+
+            <div class="pt-3 border-t border-[#D9D4C7]/60 flex items-center justify-between text-xs text-[#5C645E]">
+              <span>Credit: <a href="https://www.youtube.com/@richardtaylor2533" target="_blank" rel="noopener noreferrer" class="font-medium text-[#1E211E] underline hover:text-[#7A2E3A]">Richard Taylor</a></span>
+              <span class="font-mono text-[11px] px-2 py-0.5 rounded bg-white border border-[#D9D4C7]">4K Drone</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -788,25 +861,39 @@ const galleryItems = [
       if (e.key === 'ArrowLeft') showPrev();
     });
 
-    // Section 2 Video facade setup (privacy-friendly embed)
-    const videoFacade = document.getElementById('video-facade');
-    const videoContainer = document.getElementById('video-container');
+    // Section 2 Video facades setup (privacy-friendly click-to-load embeds)
+    const initVideoFacade = (facadeId: string, containerId: string, embedUrl: string, title: string) => {
+      const facade = document.getElementById(facadeId);
+      const container = document.getElementById(containerId);
+      if (facade && container) {
+        facade.addEventListener('click', () => {
+          facade.classList.add('hidden');
+          container.classList.remove('hidden');
+          container.innerHTML = `
+            <iframe
+              class="w-full h-full border-0"
+              src="${embedUrl}"
+              title="${title}"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          `;
+        });
+      }
+    };
 
-    if (videoFacade && videoContainer) {
-      videoFacade.addEventListener('click', () => {
-        videoFacade.classList.add('hidden');
-        videoContainer.classList.remove('hidden');
-        videoContainer.innerHTML = `
-          <iframe
-            class="w-full h-full border-0"
-            src="https://www.youtube-nocookie.com/embed/i1yJ6Nbw9q4?autoplay=1"
-            title="DJI Avata 360 Grace Dieu Priory by JuggysTube"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-          ></iframe>
-        `;
-      });
-    }
+    initVideoFacade(
+      'video-facade-1',
+      'video-container-1',
+      'https://www.youtube-nocookie.com/embed/i1yJ6Nbw9q4?autoplay=1',
+      'DJI Avata 360 Grace Dieu Priory by JuggysTube'
+    );
+    initVideoFacade(
+      'video-facade-2',
+      'video-container-2',
+      'https://www.youtube-nocookie.com/embed/G1_f6ZzcZ2k?autoplay=1',
+      'Grace Dieu Priory Aerial Flight by Richard Taylor'
+    );
   }
 
   setupGallery();
